@@ -1,18 +1,19 @@
 doctype html
-html(ng-app='intervento')
+html(ng-app='interventoApp')
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/nav.css')
-    script(src='javascripts/script.js')
+    script(src='/javascripts/script.js')
     script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js')
-    script(src='javascripts/homepage.js')
+    script(src='/javascripts/intervento.js')
   body
+    h2 Gestione intervento
     ul(class="topnav",id="myTopnav")
       li
-        a(href="/homepage") Home
+        a(href="/") Home
       li
-        a(href="#tecnico") Tecnico
+        a(href="/tecnico") Tecnico
       li
         a(href="#clienti") Clienti
       li
@@ -21,7 +22,10 @@ html(ng-app='intervento')
         a(href="#about") About
       li(class="icon")
         a(href="javascript:void(0);", onclick="myFunction()") &#9776;
-    block content
+
+    div(ng-controller="interventoController")
+      block content
+
     h3(id="tecnico") Tecnico
       p i dettagli tecnico o societá
     h3(id="clienti") Clienti

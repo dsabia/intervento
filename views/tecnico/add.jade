@@ -1,0 +1,9 @@
+extends ../homepage-layout
+
+block content
+  h2 Aggiungi un tecnico
+  label(for='nome') Nome:
+  input(ng-model='form.nome', name='nome')
+  label(for='cognome') Cognome:
+  input(ng-model='form.cognome', name='cognome')
+  button(ng-click='addTecnico();') Aggiungi tecnico
