@@ -22,4 +22,10 @@ router.get('/userlist', function(req, res) {
     });
 });
 
+
+/* GET homepage */
+router.get('/homepage', function(req, res, next) {
+  res.render('homepage', { title: 'App di Rocco' });
+});
+
 module.exports = router;
