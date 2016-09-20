@@ -9,12 +9,18 @@ router.get('/', function(req, res, next) {
 
 /* GET tecnico */
 router.get('/tecnico', function(req, res, next) {
-  res.render('tecnico/view', { title: 'Rocco' });
+  res.render('tecnico/view', { title: 'Get tecnico' });
 });
-/* POST tecnico - add new one*/
-router.get('/tecnico/add', function(req, res, next) {
-  res.render('tecnico/add', { title: 'Rocco' });
-});
+/* GET add tecnico: open page add */
+router.route('/tecnico/add')
+  .get(function(req, res, next) {
+    res.render('tecnico/add', { title: 'Get tecnico add' });
+  })
+  .post(function(req, res, next) {
+    console.log('database ' + req.db);
+    console.log('tecnico ' + req.body.tecnico);
+    res.render('tecnico/view', { title: 'Post tecnico add' });
+  });
 
 
 module.exports = router;

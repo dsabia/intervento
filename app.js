@@ -10,6 +10,7 @@ var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk('mongodb://admin:admin@ds019996.mlab.com:19996/intervento');
 
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var sample = require('./routes/sample');

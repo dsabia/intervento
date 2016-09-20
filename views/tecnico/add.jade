@@ -1,6 +1,7 @@
 extends ../homepage-layout
 
 block content
+  h2= title
   h2 Aggiungi un tecnico
   label(for='nome') Nome:
   input(ng-model='form.nome', name='nome')

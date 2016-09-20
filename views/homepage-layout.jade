@@ -6,7 +6,10 @@ html(ng-app='interventoApp')
     link(rel='stylesheet', href='/stylesheets/nav.css')
     script(src='/javascripts/script.js')
     script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js')
-    script(src='/javascripts/intervento.js')
+    script(src='/javascripts/controller.js')
+    script(src='/javascripts/service.js')
+    script(src='/javascripts/core.js')
+
   body
     h2 Gestione intervento
     ul(class="topnav",id="myTopnav")
@@ -23,7 +26,7 @@ html(ng-app='interventoApp')
       li(class="icon")
         a(href="javascript:void(0);", onclick="myFunction()") &#9776;
 
-    div(ng-controller="interventoController")
+    div(ng-controller="mainController")
       block content
 
     h3(id="tecnico") Tecnico
