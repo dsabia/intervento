@@ -1,15 +1,14 @@
 angular.module('interventoController', [])
-  .controller('mainController', function($scope, $http, $location, $window, Intervento) {
+  .controller('mainController', function($scope, $http, $document, $window, Intervento) {
 
-  $scope.addTecnico = function(){
+    $scope.addTecnico = function($window, $document){
       console.log('Some validation... - nome:'+$scope.form.nome + ' cognome:'+$scope.form.cognome );
-      Intervento.addTecnico($scope.form)
-        .success(function(data) {
-          console.log('Success');
-          redirect($window, '/tecnico')
-				});
-      }
-});
+      var tecnico = $scope.form;
+      return Intervento.addTecnico(tecnico).success(function(data) {
+          console.log('Success ' + $http);
+			});
+    }
+  });
 
 function redirect($window, url){
   $window.location.href = url;

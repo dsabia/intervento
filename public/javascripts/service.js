@@ -5,6 +5,7 @@ angular.module('interventoService', [])
 	.factory('Intervento', ['$http',function($http) {
 		return {
 			addTecnico : function(tecnico) {
+				console.log(tecnico.nome + ' ' + tecnico.cognome);
 				return $http.post('/tecnico/add', tecnico);
 			},
 			getTecnico : function() {
