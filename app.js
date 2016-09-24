@@ -11,6 +11,7 @@ var methodOverride = require('method-override')
 var GoogleStrategy = require('passport-google').Strategy;
 //var GitHubStrategy = require('passport-github2').Strategy;
 var partials = require('express-partials');
+var flash    = require('connect-flash');
 
 //var GITHUB_CLIENT_ID = "1e0c83c6b9d1136af30c";
 //var GITHUB_CLIENT_SECRET = "44836042bdf200c0dbbd989a9eb6e4f61c10ce93";
@@ -18,15 +19,20 @@ var partials = require('express-partials');
 
 //Mongo DB code
 var mongo = require('mongodb');
-var monk = require('monk');
-var db = monk('mongodb://admin:admin@ds019996.mlab.com:19996/intervento');
-
+//var monk = require('monk');
+var mongoose = require('mongoose');
+var configDB = require('./config/database.js');
+//var db = monk(configDB.url);
+var db = mongoose.connect(configDB.url);
 
 var routes = require('./routes/index');
 var tecnico = require('./routes/tecnico');
 var users = require('./routes/users');
 var sample = require('./routes/sample');
 
+require('./config/passport')(passport);
+
+/*
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
 //   serialize users into and deserialize users out of the session.  Typically,
@@ -90,7 +96,7 @@ passport.use(new GitHubStrategy({
 
 
 var app = express();
-require('express-dynamic-helpers-patch')(app);
+//require('express-dynamic-helpers-patch')(app);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -112,6 +118,7 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 // Make our db accessible to our router
 app.use(function(req,res,next){
@@ -123,7 +130,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/tecnico', tecnico);
 app.use('/sample', sample);
-
+/*
 // GET /auth/google
 //   Use passport.authenticate() as route middleware to authenticate the
 //   request.  The first step in Google authentication will involve redirecting
@@ -145,7 +152,7 @@ app.get('/auth/google/return',
   function(req, res) {
     res.redirect('/');
   });
-
+*/
 /*
 // GET /auth/github
 //   Use passport.authenticate() as route middleware to authenticate the
@@ -171,11 +178,12 @@ app.get('/auth/github/callback',
   });
 */
 
+/*
 app.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
 });
-
+*/
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

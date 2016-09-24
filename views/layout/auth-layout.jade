@@ -2,6 +2,8 @@ doctype html
 html
   head
     title Passport-GitHub Example
+    link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css")
+    link(rel="stylesheet", href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css")
   body
     if user === null
       p
@@ -10,6 +12,8 @@ html
     else
       p
         a(href="/") Home |
-        a(href="/account") Account |
+        a(href="/profile") Account |
         a(href="/logout") Log Out
-    block content
+
+    div(class="container")
+      block content
