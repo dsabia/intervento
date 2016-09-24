@@ -9,11 +9,11 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var methodOverride = require('method-override')
 var GoogleStrategy = require('passport-google').Strategy;
-var GitHubStrategy = require('passport-github2').Strategy;
+//var GitHubStrategy = require('passport-github2').Strategy;
 var partials = require('express-partials');
 
-var GITHUB_CLIENT_ID = "1e0c83c6b9d1136af30c";
-var GITHUB_CLIENT_SECRET = "44836042bdf200c0dbbd989a9eb6e4f61c10ce93";
+//var GITHUB_CLIENT_ID = "1e0c83c6b9d1136af30c";
+//var GITHUB_CLIENT_SECRET = "44836042bdf200c0dbbd989a9eb6e4f61c10ce93";
 
 
 //Mongo DB code
@@ -64,6 +64,7 @@ passport.use(new GoogleStrategy({
     });
   }
 ));
+/*
 // Use the GitHubStrategy within Passport.
 //   Strategies in Passport require a `verify` function, which accept
 //   credentials (in this case, an accessToken, refreshToken, and GitHub
@@ -85,7 +86,7 @@ passport.use(new GitHubStrategy({
     });
   }
 ));
-
+*/
 
 
 var app = express();
@@ -145,6 +146,7 @@ app.get('/auth/google/return',
     res.redirect('/');
   });
 
+/*
 // GET /auth/github
 //   Use passport.authenticate() as route middleware to authenticate the
 //   request.  The first step in GitHub authentication will involve redirecting
@@ -167,6 +169,7 @@ app.get('/auth/github/callback',
   function(req, res) {
     res.redirect('/');
   });
+*/
 
 app.get('/logout', function(req, res){
   req.logout();
