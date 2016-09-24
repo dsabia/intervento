@@ -3,7 +3,7 @@ extends layout/auth-layout
 block content
   p User: #{user}
 
-  if user == null
+  if user === null
     h2 Welcome! Please log in.
     a(href="/auth/google") Login with Google
     a(href="/auth/github") Login with GitHub
