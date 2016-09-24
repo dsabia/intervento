@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-
-
 /* GET tecnico */
 router.get('/', function(req, res, next) {
   res.render('tecnico/view', { title: 'Get tecnico' });

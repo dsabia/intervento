@@ -1,0 +1,10 @@
+extends auth-layout
+
+block content
+  if user != null
+    h2 Welcome! Please log in.
+      a(href="/auth/google") Login with Google
+      a(href="/auth/github") Login with GitHub
+  else
+    h2 Hello, #{user}
+    a(href="/homepage") Homepage
