@@ -1,0 +1,22 @@
+extends layout/auth-layout
+
+block content
+  div(class="page-header text-center")
+    h1
+      span(class="fa fa-anchor") Profile Page
+    a(href="/logout",class="btn btn-default btn-sm") Logout
+
+  div(class="row")
+    div(class="col-sm-6")
+      div(class="well")
+        h3
+          span(class="fa fa-user") Local
+        p
+          strong id:
+            #{user._id}
+          br
+          strong email:
+            #{user.local.email}
+          br  
+          strong password:
+            #{user.local.password}
