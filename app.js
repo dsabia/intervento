@@ -1,21 +1,23 @@
 var express = require('express');
+var flash = require('connect-flash');
+var partials = require('express-partials');
+var session = require('express-session');
+var handlebars = require('express-handlebars')
+var app = express();
 var passport = require('passport');
 var util = require('util');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+//var flash    = require('connect-flash');
 var bodyParser = require('body-parser');
-var session = require('express-session');
 var methodOverride = require('method-override')
-var GoogleStrategy = require('passport-google').Strategy;
+//var GoogleStrategy = require('passport-google').Strategy;
 //var GitHubStrategy = require('passport-github2').Strategy;
-var partials = require('express-partials');
-var flash    = require('connect-flash');
 
 //var GITHUB_CLIENT_ID = "1e0c83c6b9d1136af30c";
 //var GITHUB_CLIENT_SECRET = "44836042bdf200c0dbbd989a9eb6e4f61c10ce93";
-
 
 //Mongo DB code
 var mongo = require('mongodb');
@@ -31,6 +33,7 @@ var users = require('./routes/users');
 var sample = require('./routes/sample');
 
 require('./config/passport')(passport);
+//require('express-dynamic-helpers-patch')(app);
 
 /*
 // Passport session setup.
@@ -95,13 +98,11 @@ passport.use(new GitHubStrategy({
 */
 
 
-var app = express();
-//require('express-dynamic-helpers-patch')(app);
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -119,12 +120,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-
-// Make our db accessible to our router
-app.use(function(req,res,next){
-    req.db = db;
-    next();
-});
 
 app.use('/', routes);
 app.use('/users', users);
@@ -184,6 +179,7 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 */
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -215,14 +211,22 @@ app.use(function(err, req, res, next) {
   });
 });
 
-
-//app.configure();
 /*
+//app.configure();
 app.dynamicHelpers({
   user: function(req, res) {
     return req.session.user;
   }
 });
 */
+// Make our db accessible to our router
+app.use(function(req,res,next){
+    req.db = db;
+    next();
+});
+app.use(function (req, res, next) {
+  res.locals.messages = require('express-messages')(req, res);
+  next();
+});
 
 module.exports = app;

@@ -6,7 +6,9 @@ block content
     span(class="fa fa-sign-in") Signup
 
   if message != null
-      div(class="alert alert-danger")  #{message}
+    if message.length > 0
+      div(class="alert alert-danger") #{ message }
+  
 
   form(action="signup", method="post")
     div(class="form-group")

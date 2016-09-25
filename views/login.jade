@@ -1,8 +1,10 @@
 extends layout/auth-layout
 
 block content
-  if message.length > 0
-    div(class="alert alert-danger") #{message}
+  if message != null
+    if message.length > 0
+      div(class="alert alert-danger") #{ message }
+  
 
   form(action="/login",method="post")
     div(class="form-group")

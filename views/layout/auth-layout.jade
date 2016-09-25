@@ -5,15 +5,20 @@ html
     link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css")
     link(rel="stylesheet", href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css")
   body
-    if user === null
+    if user == null
       p
-        a(href="/") Home |
+        a(href="/") Index |
         a(href="/login") Log In
     else
       p
-        a(href="/") Home |
-        a(href="/profile") Account |
-        a(href="/logout") Log Out
+        a(href="/homepage") Homepage |
+        a(href="/profile") Profile |
+        a(href="/logout") Log Out #{user.local.email}
+    p
+      a(href="/account") Account |
+      a(href="/homepage") Homepage |
+      a(href="/") Index
+
 
     div(class="container")
       block content

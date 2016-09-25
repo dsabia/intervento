@@ -3,15 +3,13 @@ var router = express.Router();
 var passport = require('passport');
 
 router.get('/', function(req, res, next) {
-  res.render('index');
+  if(req.isAuthenticated()){
+    res.render('homepage');
+  }else{
+    res.render('index');
+  }
 });
-router.get('/account', function(req, res, next) {
-  res.render('account');
-});
-/* GET homepage */
-router.get('/homepage', function(req, res, next) {
-  res.render('homepage', { title: 'App di Rocco' });
-});
+
 router.get('/signup', function(req, res, next) {
   res.render('signup');
 });
@@ -26,7 +24,7 @@ router.get('/login', function(req, res) {
 });
 // process the login form
 router.post('/login', passport.authenticate('local-login', {
-   successRedirect : '/profile', // redirect to the secure profile section
+   successRedirect : '/homepage', // redirect to the secure profile section
    failureRedirect : '/login', // redirect back to the signup page if there is an error
    failureFlash : true // allow flash messages
 }));
@@ -35,10 +33,20 @@ router.get('/profile', isLoggedIn, function(req, res) {
        user : req.user // get the user out of session and pass to template
     });
 });
+
 router.get('/logout', function(req, res) {
      req.logout();
      res.redirect('/');
 });
+
+router.get('/account', isLoggedIn, function(req, res, next) {
+  res.render('account');
+});
+/* GET homepage */
+router.get('/homepage', isLoggedIn, function(req, res, next) {
+  res.render('homepage', { title: 'App di Rocco' });
+});
+
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {

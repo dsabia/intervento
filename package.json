@@ -13,6 +13,11 @@
     "express-dynamic-helpers-patch": "0.0.2",
     "express-session": ">= 0.0.0",
     "express-partials": ">= 0.0.0",
+    "express-flash": "0.0.2",
+    "connect-flash": "~0.1.1",
+    "express-session": "^1.10.1",
+    "express-handlebars": "1.1.0",
+    "express-messages": "1.0.1",
     "method-override": ">= 0.0.0",
     "jade": "~1.11.0",
     "serve-favicon": "~2.3.0",
@@ -28,8 +33,7 @@
     "morgan": "~1.7.0",
     "mongodb": "^1.4.4",
     "monk": "^1.0.1",
-    "mongoose" : "~3.8.1",   
-    "connect-flash" : "~0.1.1",
+    "mongoose" : "~3.8.1",
     "bcrypt-nodejs" : "latest"
   }
 }
