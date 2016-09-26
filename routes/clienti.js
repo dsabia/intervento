@@ -30,14 +30,15 @@ router.post('/add', ensureAuthenticated, function(req, res, next) {
 });
 // load detail page by code
 router.get('/:codice', ensureAuthenticated, function(req, res, next) {
-  var customer = Customer.findOne({ 'codice' :  req.param.codice }, function(err, customer) {
+  Customer.findOne({ 'codice' :  req.params.codice }, function(err, customer) {
     if (err){
       console.log(err);
       return;
     }
+    console.log(customer);
+    console.log(customer.codice);
+    res.render('app/clienti/dettaglio', { 'customer': customer});
   });
-  console.log('if work> ' + customer.codice);
-  res.render('app/clienti/dettaglio', {'customer' : customer});
 });
 
 function ensureAuthenticated(req, res, next) {

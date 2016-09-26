@@ -5,27 +5,35 @@ block content
   div(id="form-add-new-customer")
     h2 Aggiungi un cliente
 
-    form(action='/clienti/add',method='POST')
+    form(action='/clienti/add',method='POST').form-horizontal
 
-      label(for='codice') Codice cliente:
-      input(name='codice')
+      div.form-group.row
+        div.col-md-3
+          label(for='codice') Codice cliente:
+          input(name='codice').form-control
+        div.col-md-3
+          label(for='sconto') Sconto:
+          input(name='sconto').form-control
 
-      label(for='sconto') Sconto:
-      input(name='sconto')
+      div.form-group.row
+        div.col-md-3
+          label(for='ragione_sociale') Ragione Sociale:
+          input(name='ragione_sociale').form-control
+        div.col-md-3
+          label(for='piva_cf') P.Iva / Cod Fiscale:
+          input(name='piva_cf').form-control
 
-      label(for='ragione_sociale') Ragione Sociale:
-      input(name='ragione_sociale')
+      div.form-group.row
+        div.col-md-6
+          label(for='indirizzo') Indirizzo:
+          input(name='indirizzo', type='text').form-control
 
-      label(for='piva_cf') P.Iva / Cod Fiscale:
-      input(name='piva_cf')
+      div.form-group.row
+        div.col-md-3
+          label(for='telefono') Telefono:
+          input(name='telefono').form-control
+        div.col-md-3
+          label(for='email') E-mail:
+          input(name='email').form-control
 
-      label(for='indirizzo') Indirizzo:
-      input(name='indirizzo')
-
-      label(for='telefono') Telefono:
-      input(name='telefono')
-
-      label(for='email') E-mail:
-      input(name='email')
-
-      button(type="submit") Aggiungi Cliente
+      button(type="submit").btn.btn-default Aggiungi Cliente
