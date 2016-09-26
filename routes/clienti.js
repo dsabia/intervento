@@ -35,8 +35,6 @@ router.get('/:codice', ensureAuthenticated, function(req, res, next) {
       console.log(err);
       return;
     }
-    console.log(customer);
-    console.log(customer.codice);
     res.render('app/clienti/dettaglio', { 'customer': customer});
   });
 });

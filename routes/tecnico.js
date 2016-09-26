@@ -1,26 +1,47 @@
 var express = require('express');
 var router = express.Router();
+var Technician = require('../models/technician');
+
+/* GET elenco tecnici */
+router.get('/', ensureAuthenticated, function(req, res, next) {
+  res.render('app/tecnico/view', { title: 'Elenco dei tecnici' });
+});
+
+/* open page add new tecnico */
+router.get('/add', ensureAuthenticated, function(req, res, next) {
+    res.render('app/tecnico/add', { title: 'Aggiungi un nuovo tecnico' });
+});
+
+// add form data on the db
+router.post('/add', ensureAuthenticated, function(req, res, next) {
+    var technician = new Technician();
+    technician.name         = req.body.name;
+    technician.surname      = req.body.surname;
+    technician.account_code = req.body.account_code;
+    technician.address      = req.body.address;
+    technician.phone        = req.body.phone;
+    technician.email        = req.body.email;
+
+    technician.save(function(err) {
+        console.log('save ' + err);
+        if (err)
+            throw err;
+        return;
+    });
+
+    res.redirect('/clienti/'+technician.account_code);
+});
 
 /* GET tecnico */
-router.get('/', ensureAuthenticated, function(req, res, next) {
-  res.render('app/tecnico/view', { title: 'Get tecnico' });
+router.get('/:code', ensureAuthenticated, function(req, res, next) {
+    Technician.findOne({ 'account_code' :  req.params.code }, function(err, pojo) {
+      if (err){
+        console.log(err);
+        return;
+      }
+      res.render('app/tecnico/view', { tecnico: pojo });
+    });
 });
-/* GET add tecnico: open page add */
-router.get('/add', ensureAuthenticated, function(req, res, next) {
-    res.render('app/tecnico/add', { title: 'Aggiungi uno nuovo' });
-});
-
-router.post('/add', ensureAuthenticated, function(req, res, next) {
-    console.log('database ' + req.db);
-    console.log('body ' + req.body);
-    console.log('tecnico ' + req.body.nome);
-    res.redirect('/tecnico/'+req.body.nome);
-});
-
-router.get('/:nome', ensureAuthenticated, function(req, res, next) {
-    res.render('app/tecnico/view', { title: req.params.nome });
-});
-
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {

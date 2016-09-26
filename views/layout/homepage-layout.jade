@@ -2,6 +2,7 @@ doctype html
 html(ng-app='interventoApp')
   head
     title= title
+    meta(name="viewport",content="width=device-width, initial-scale=1")
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/nav.css')
     link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css")
@@ -12,7 +13,6 @@ html(ng-app='interventoApp')
     script(src='/javascripts/controller.js')
     script(src='/javascripts/service.js')
     script(src='/javascripts/core.js')
-
   body
     h2 Gestione intervento
     ul(class="topnav",id="myTopnav")
@@ -31,7 +31,7 @@ html(ng-app='interventoApp')
       li(class="icon")
         a(href="javascript:void(0);", onclick="myFunction()") &#9776;
 
-    div(ng-controller="mainController")
+    div(ng-controller="mainController").container
       block content
 
     h3(id="tecnico") Tecnico

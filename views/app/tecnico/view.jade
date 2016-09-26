@@ -2,5 +2,9 @@ extends ../../layout/homepage-layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  if tecnico != null
+    p Welcome to #{tecnico.name} #{tecnico.surname}
+  else
+    p Welcome to ... null
+
   a(href="/tecnico/add") Aggiungi tecnico
