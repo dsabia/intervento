@@ -1,0 +1,29 @@
+extends ../../layout/homepage-layout
+
+block content
+  h2= title
+  div(id="form-add-new-customer")
+    h2 Dettaglio cliente #{customer}
+
+    if customer != null
+      table(class="table table-striped")
+        tr
+          td
+            label codice           : #{customer.codice}
+          td
+            label sconto           : #{customer.sconto}
+        tr
+          td
+            label ragione_sociale  : #{customer.ragione_sociale}
+          td
+            label piva_cf          : #{customer.piva_cf}
+        tr
+          td(colspan='2')
+            label indirizzo        : #{customer.indirizzo}
+        tr
+          td
+            label telefono         : #{customer.telefono}
+          td
+            label email            : #{customer.email}
+    else
+      p no customer yet

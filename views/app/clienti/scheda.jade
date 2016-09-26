@@ -1,0 +1,31 @@
+extends ../../layout/homepage-layout
+
+block content
+  h2= title
+  div(id="form-add-new-customer")
+    h2 Aggiungi un cliente
+
+    form(action='/clienti/add',method='POST')
+
+      label(for='codice') Codice cliente:
+      input(name='codice')
+
+      label(for='sconto') Sconto:
+      input(name='sconto')
+
+      label(for='ragione_sociale') Ragione Sociale:
+      input(name='ragione_sociale')
+
+      label(for='piva_cf') P.Iva / Cod Fiscale:
+      input(name='piva_cf')
+
+      label(for='indirizzo') Indirizzo:
+      input(name='indirizzo')
+
+      label(for='telefono') Telefono:
+      input(name='telefono')
+
+      label(for='email') E-mail:
+      input(name='email')
+
+      button(type="submit") Aggiungi Cliente
