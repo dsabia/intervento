@@ -7,37 +7,46 @@ html(ng-app='interventoApp')
     link(rel='stylesheet', href='/stylesheets/nav.css')
     link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css")
     link(rel="stylesheet", href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css")
-    script(src='/javascripts/nav_script.js')
     script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js')
     script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js')
     script(src='/javascripts/controller.js')
     script(src='/javascripts/service.js')
     script(src='/javascripts/core.js')
+    script(src="https://code.jquery.com/jquery-1.11.3.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
+
   body
-    h2 Gestione intervento
-    ul(class="topnav",id="myTopnav")
-      li
-        a(href="/homepage") Home
-      li
-        a(href="/tecnico") Tecnico
-      li
-        a(href="/clienti") Clienti
-      li
-        a(href="#interventi") Interventi
-      li
-        a(href="/profile") My account
-      li
-        a(href="#about") About
-      li(class="icon")
-        a(href="javascript:void(0);", onclick="myFunction()") &#9776;
+    nav#myNavbar.navbar.navbar-default.navbar-inverse.navbar-fixed-top(role="navigation")
+      div.container
+        div.navbar-header
+          button(type="button",class="navbar-toggle",data-toggle="collapse",data-target="#navbarCollapse")
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href="/") Gestione intervento
 
-    div(ng-controller="mainController").container
-      block content
+        div.collapse.navbar-collapse#navbarCollapse
+          ul.nav.navbar-nav
+            li
+              a(href="/homepage") Home
+            li
+              a(href="/tecnico") Tecnico
+            li
+              a(href="/clienti") Clienti
+            li
+              a(href="#interventi") Interventi
+            li
+              a(href="/profile") My account
+            li
+              a(href="#about") About
 
-    h3(id="tecnico") Tecnico
-      p i dettagli tecnico o societá
-    h3(id="clienti") Clienti
-      p i registro clienti
-    h3(id="interventi") Interventi
-      p i elenco interventi
-    h3(id="about") About
+    div.container
+      //div.jumbotron
+
+      div.row(ng-controller="mainController")
+        block content
+
+
+    footer
+      label @Copyright info
