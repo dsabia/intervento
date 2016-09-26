@@ -5,8 +5,31 @@ var Customer            = require('../models/customer');
 
 /* GET scheda */
 router.get('/', ensureAuthenticated, function(req, res, next) {
-  res.render('app/clienti/scheda');
+  Customer.find({}, function(err, list_pojos) {
+    if (err){
+      console.log(err);
+      return;
+    }
+    res.render('app/clienti/dettaglio', { title: 'Elenco clienti', list:  list_pojos });
+  });
 });
+
+/* open page add new cliente */
+router.get('/add', ensureAuthenticated, function(req, res, next) {
+  res.render('app/clienti/scheda', { title: 'Aggiungi un cliente'});
+});
+
+// load detail page by code
+router.get('/:codice', ensureAuthenticated, function(req, res, next) {
+  Customer.findOne({ 'codice' :  req.params.codice }, function(err, customer) {
+    if (err){
+      console.log(err);
+      return;
+    }
+    res.render('app/clienti/dettaglio', { 'customer': customer});
+  });
+});
+
 // add form data on db
 router.post('/add', ensureAuthenticated, function(req, res, next) {
   var customer = new Customer();
@@ -28,20 +51,10 @@ router.post('/add', ensureAuthenticated, function(req, res, next) {
 
   res.redirect('/clienti/'+customer.codice);
 });
-// load detail page by code
-router.get('/:codice', ensureAuthenticated, function(req, res, next) {
-  Customer.findOne({ 'codice' :  req.params.codice }, function(err, customer) {
-    if (err){
-      console.log(err);
-      return;
-    }
-    res.render('app/clienti/dettaglio', { 'customer': customer});
-  });
-});
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
-      return next();
+    return next();
   }
   res.redirect('/login')
 }

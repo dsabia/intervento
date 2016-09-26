@@ -4,12 +4,18 @@ var Technician = require('../models/technician');
 
 /* GET elenco tecnici */
 router.get('/', ensureAuthenticated, function(req, res, next) {
-  res.render('app/tecnico/view', { title: 'Elenco dei tecnici' });
+  Technician.find({}, function(err, list_pojos) {
+    if (err){
+      console.log(err);
+      return;
+    }
+    res.render('app/tecnico/view', { title: 'Elenco dei tecnici', list:  list_pojos });
+  });
 });
 
 /* open page add new tecnico */
 router.get('/add', ensureAuthenticated, function(req, res, next) {
-    res.render('app/tecnico/add', { title: 'Aggiungi un nuovo tecnico' });
+    res.render('app/tecnico/add', { title: 'Aggiungi un tecnico' });
 });
 
 // add form data on the db
@@ -29,7 +35,7 @@ router.post('/add', ensureAuthenticated, function(req, res, next) {
         return;
     });
 
-    res.redirect('/clienti/'+technician.account_code);
+    res.redirect('/tecnico/'+technician.account_code);
 });
 
 /* GET tecnico */

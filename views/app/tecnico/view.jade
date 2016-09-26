@@ -3,8 +3,43 @@ extends ../../layout/homepage-layout
 block content
   h1= title
   if tecnico != null
-    p Welcome to #{tecnico.name} #{tecnico.surname}
-  else
-    p Welcome to ... null
+    p Dettagli di #{tecnico.name} #{tecnico.surname}
+    table(class="table table-striped")
+      tr
+        td
+          label #{tecnico.name}
+        td
+          label #{tecnico.surname}
+      tr
+        td(colspan='2')
+          label #{tecnico.account_code}
+      tr
+        td(colspan='2')
+          label #{tecnico.address}
+      tr
+        td
+          label #{tecnico.phone}
+        td
+          label #{tecnico.email}
 
+  else
+    table(class="table table-striped table-responsive")
+      tr
+        th Nome
+        th Cognome
+        th Codice fiscale / P.Iva
+        th Indirizzo
+        th Telefono
+        th E-mail
+      each item in list
+        tr
+          td #{item.name}
+          td #{item.surname}
+          td
+            a(href="/tecnico/#{item.account_code}") #{item.account_code}
+          td #{item.address}
+          td #{item.phone}
+          td #{item.email}
+
+  a(href="/tecnico") Elenco tecnici |
   a(href="/tecnico/add") Aggiungi tecnico

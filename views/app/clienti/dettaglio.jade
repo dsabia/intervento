@@ -3,27 +3,50 @@ extends ../../layout/homepage-layout
 block content
   h2= title
   div(id="form-add-new-customer")
-    if customer != null
-      h2 Dettaglio cliente #{customer.codice}
+  if customer != null
+    h2 Dettaglio cliente #{customer.codice}
+    table(class="table table-striped")
+      tr
+        td
+          label Codice           : #{customer.codice}
+        td
+          label Sconto           : #{customer.sconto}
+      tr
+        td
+          label Ragione sociale  : #{customer.ragione_sociale}
+        td
+          label P.Iva / CF       : #{customer.piva_cf}
+      tr
+        td(colspan='2')
+          label Indirizzo        : #{customer.indirizzo}
+      tr
+        td
+          label Telefono         : #{customer.telefono}
+        td
+          label Email            : #{customer.email}
 
-      table(class="table table-striped")
+  else
+    h2 Lista dei clienti
+    table(class="table table-striped table-responsive")
+      tr
+        th Codice
+        th Sconto
+        th Ragione sociale
+        th P.Iva / CF
+        th Indirizzo
+        th Telefono
+        th Email
+      each item in list
         tr
           td
-            label codice           : #{customer.codice}
+            a(href="/tecnico/#{item.codice}") #{item.codice}
+          td #{item.sconto}
           td
-            label sconto           : #{customer.sconto}
-        tr
-          td
-            label ragione_sociale  : #{customer.ragione_sociale}
-          td
-            label piva_cf          : #{customer.piva_cf}
-        tr
-          td(colspan='2')
-            label indirizzo        : #{customer.indirizzo}
-        tr
-          td
-            label telefono         : #{customer.telefono}
-          td
-            label email            : #{customer.email}
-    else
-      h2 Tutti i clienti
+            a(href="/tecnico/#{item.codice}") #{item.ragione_sociale}
+          td #{item.piva_cf}
+          td #{item.indirizzo}
+          td #{item.telefono}
+          td #{item.email}
+
+    a(href="/clienti") Elenco clienti |
+    a(href="/clienti/add") Aggiungi cliente
