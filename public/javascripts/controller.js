@@ -8,6 +8,14 @@ angular.module('interventoController', [])
           console.log('Success ' + $http);
 			});
     }
+
+    $scope.addScheda = function($window, $document){
+      console.log('Some validation... - nome:');
+      var cliente = $scope.form;
+      return Intervento.addScheda(cliente).success(function(data) {
+          console.log('Success ' + $http);
+			});
+    }
   });
 
 function redirect($window, url){

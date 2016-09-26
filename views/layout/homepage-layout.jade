@@ -4,12 +4,14 @@ html(ng-app='interventoApp')
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/nav.css')
+    link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css")
+    link(rel="stylesheet", href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css")
     script(src='/javascripts/nav_script.js')
     script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js')
     script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js')
-    script(src='/javascripts/tecnico/controller.js')
-    script(src='/javascripts/tecnico/service.js')
-    script(src='/javascripts/tecnico/core.js')
+    script(src='/javascripts/controller.js')
+    script(src='/javascripts/service.js')
+    script(src='/javascripts/core.js')
 
   body
     h2 Gestione intervento
@@ -19,9 +21,11 @@ html(ng-app='interventoApp')
       li
         a(href="/tecnico") Tecnico
       li
-        a(href="#clienti") Clienti
+        a(href="/clienti") Clienti
       li
         a(href="#interventi") Interventi
+      li
+        a(href="/profile") My account
       li
         a(href="#about") About
       li(class="icon")
