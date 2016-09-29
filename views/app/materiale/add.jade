@@ -1,0 +1,25 @@
+extends ../../layout/homepage-layout
+
+block content
+  h2= title
+
+  form(action='/materiale/add',method='POST').form-horizontal
+    div.form-group.row
+      div.col-md-6.col-xs-12
+        label(for='nome_prodotto') Nome prodotto:
+        input(name='nome_prodotto').form-control
+      div.col-md-6.col-xs-12
+        label(for='codice') Codice:
+        input(name='codice').form-control
+    div.form-group.row
+      div.col-md-12.col-xs-12
+        label(for='descrizione') Descrizione:
+        input(name='descrizione', type='area').form-control
+    div.form-group.row
+      div.col-md-6.col-xs-12
+        label(for='prezzo') Prezzo:
+        input(name='prezzo', type='number').form-control
+    button(type="submit").btn.btn-default Aggiungi Materiale
+
+  a(href="/materiale") Elenco materiali |
+  a(href="/materiale/add") Aggiungi materiale

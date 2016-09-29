@@ -24,6 +24,7 @@ var db = mongoose.connect(configDB.url);
 var routes = require('./routes/index');
 var tecnico = require('./routes/tecnico');
 var clienti = require('./routes/clienti');
+var materiale = require('./routes/materiale');
 //var sample = require('./routes/sample');
 
 require('./config/passport')(passport);
@@ -52,6 +53,7 @@ app.use(flash());
 app.use('/', routes);
 app.use('/tecnico', tecnico);
 app.use('/clienti', clienti);
+app.use('/materiale', materiale);
 // no longer
 //app.use('/sample', sample);
 
