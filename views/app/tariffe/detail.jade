@@ -1,0 +1,23 @@
+extends ../../layout/homepage-layout
+
+block content
+  h1= title
+  if tariffa != null
+    table(class="table table-striped")
+      tr
+        td
+          label Diritto di chiamata: #{tariffa.diritto_chiamata}
+        td
+          label Tariffa fissa: #{tariffa.tariffa_fissa}
+      tr
+        td
+          label Tariffa oraria: #{tariffa.tariffa_oraria}
+        td
+          label Frazioni d\'ora: #{tariffa.frazioni_ora}
+      tr
+        td
+          label Tariffa kilometrica: #{tariffa.tariffa_km}
+        td
+  else
+    p Aggiungere il piano tariffario
+    a(href="/tariffe/add") Aggiungi tariffa

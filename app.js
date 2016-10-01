@@ -25,7 +25,7 @@ var routes = require('./routes/index');
 var tecnico = require('./routes/tecnico');
 var clienti = require('./routes/clienti');
 var materiale = require('./routes/materiale');
-//var sample = require('./routes/sample');
+var tariffe = require('./routes/tariffe');
 
 require('./config/passport')(passport);
 
@@ -54,8 +54,8 @@ app.use('/', routes);
 app.use('/tecnico', tecnico);
 app.use('/clienti', clienti);
 app.use('/materiale', materiale);
-// no longer
-//app.use('/sample', sample);
+app.use('/tariffe', tariffe);
+
 
 
 // catch 404 and forward to error handler
