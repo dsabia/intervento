@@ -10,7 +10,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var methodOverride = require('method-override')
+var methodOverride = require('method-override');
 
 //Mongo DB code
 var mongo = require('mongodb');
@@ -26,6 +26,7 @@ var tecnico = require('./routes/tecnico');
 var clienti = require('./routes/clienti');
 var materiale = require('./routes/materiale');
 var tariffe = require('./routes/tariffe');
+var immagine = require('./routes/immagine');
 
 require('./config/passport')(passport);
 
@@ -55,8 +56,7 @@ app.use('/tecnico', tecnico);
 app.use('/clienti', clienti);
 app.use('/materiale', materiale);
 app.use('/tariffe', tariffe);
-
-
+app.use('/immagine',immagine);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
