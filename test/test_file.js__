@@ -1,0 +1,44 @@
+var chai = require('chai');
+var expect = chai.expect;
+
+//Mongo DB code
+var mongo = require('mongodb');
+var configDB = require('../config/database.js');
+//var monk = require('monk');
+//var db = monk(configDB.url);
+var mongoose = require('mongoose');
+var db = mongoose.connect(configDB.test_url);
+db.safe = {w: 1};
+
+var fs = require('fs');
+var multer = require('multer');
+
+var Grid = require('gridfs-stream');
+Grid.mongo = mongo;
+
+describe('File', function() {
+  it('saveFileInMangoose() should save the file in mangoose and retrive it', function() {
+
+    var path = __dirname + '/resources/aliensmokepipe.jpg';
+    console.log("Path immagine : " + path);
+
+    var read_stream =  fs.createReadStream(path);
+
+    var gfs = Grid(db);
+
+    console.log('gfs ' + gfs);
+
+    var writestream = gfs.createWriteStream({
+      filename: 'aliensmokepipe.jpg'
+    });
+
+    read_stream.pipe(writestream);
+
+    writestream.on('close', function (file) {
+        console.log("saved file as " + file.filename);
+    });
+
+
+//    expect(cartSummary.getSubtotal()).to.equal(0);
+  });
+});

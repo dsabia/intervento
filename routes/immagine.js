@@ -1,7 +1,6 @@
 var express = require('express');
-var router = express.Router();
+var fs = require('fs');
 var multer = require('multer');
-var upload = multer({ dest:  'uploads/' })
 
 var Image = require('../models/image');
 /*
@@ -11,68 +10,118 @@ var upload = multer({
 });
 */
 
-/* GET dettaglio unica tariffa */
-router.get('/', ensureAuthenticated, function(req, res, next) {
-  Image.find({}, function(err, list_results) {
-    if (err){
-      console.log(err);
-      return;
-    }
-    if(list_results.length > 0){
-      var pojo = list_results[0];
-      res.render('app/immagine/view', { title: 'Dettaglio immagine', immagine: pojo });
-    }else{
-      res.render('app/immagine/view', { title: 'Imamgini non presenti'});
-    }
-  });
-});
+module.exports = function(mongo, db){
+  var upload = multer({ dest:  'uploads/' });
+  var router = express.Router();
 
-/* open page add immagine */
-router.get('/add', ensureAuthenticated, function(req, res, next) {
-    res.render('app/immagine/add', { title: 'Aggiungi immagine' });
-});
-
-// add form data on the db
-router.post('/add',  upload.single('immagine'), function(req, res, next) {
-    var image = new Image();
-    image.nome_immagine   = req.body.nome_immagine;
-    image.descrizione     = req.body.descrizione;
-
-    var file = req.file;
-    console.log("File : " + file);
-    var path = file.path;
-    console.log("Path immagine : " + path);
-    var buffer = file.buffer;
-    console.log("Data:  " + buffer);
-
-    image.save(function(err) {
-        console.log('save ' + err);
-        if (err)
-            throw err;
+  /* GET dettaglio unica tariffa */
+  router.get('/', ensureAuthenticated, function(req, res, next) {
+    Image.find({}, function(err, list_results) {
+      if (err){
+        console.log(err);
         return;
+      }
+      if(list_results.length > 0){
+        res.render('app/immagine/view', { title: 'Elenco immagini', list_immagini: list_results });
+      }else if(list_results.length == 1){
+        var pojo = list_results[0];
+        res.render('app/immagine/view', { title: 'Dettaglio immagine', immagine: pojo });
+      }else{
+        res.render('app/immagine/view', { title: 'Imamgini non presenti'});
+      }
     });
-    res.redirect('/immagine/');
-});
-
-
-/* stream image */
-router.get('/:nome_immagine', ensureAuthenticated, function(req, res, next) {
-  Image.findOne({ 'nome_immagine' :  req.params.nome_immagine }, function(err, pojo) {
-    if (err){
-      console.log(err);
-      return;
-    }
-  //  res.sendfile(path.resolve('./uploads/image.png'));
-    res.render('app/immagine/view', { title: 'Aggiungi immagine', immagine: pojo });
   });
-});
 
 
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-      return next();
+  /* open page add immagine */
+  router.get('/add', ensureAuthenticated, function(req, res, next) {
+      res.render('app/immagine/add', { title: 'Aggiungi immagine' });
+  });
+
+
+  // add form data on the db
+  router.post('/add',  upload.single('immagine'), function(req, res, next) {
+      var image = new Image();
+      image.nome_immagine   = req.body.nome_immagine;
+      image.descrizione     = req.body.descrizione;
+
+      image.save(function(err) {
+          if (err){
+            console.log('save ' + err);
+            throw err;
+          }
+          return;
+      });
+
+      var file = req.file;
+      console.log("File : " + file);
+      var path = file.path;
+      console.log("Path immagine : " + path);
+
+      var read_stream =  fs.createReadStream(path);
+
+      var Grid = require('gridfs-stream');
+      Grid.mongo = mongo;
+      var gfs = Grid(db, 'myprefix');
+
+      var writestream = gfs.createWriteStream({
+        mode: 'w',
+        filename: file.name,
+        content_type: file.mimetype
+      });
+
+      read_stream.pipe(writestream);
+
+      writestream.on('close', function (file) {
+          console.log("saved file as " + file.filename);
+      });
+      res.redirect('/immagine/detail/' + image.nome_immagine);
+  });
+
+
+  /* stream image */
+  router.get('/detail/:nome_immagine', ensureAuthenticated, function(req, res, next) {
+    Image.findOne({ 'nome_immagine' :  req.params.nome_immagine }, function(err, pojo) {
+      if (err){
+        console.log(err);
+        return;
+      }
+    //  res.sendfile(path.resolve('./uploads/image.png'));
+      res.render('app/immagine/view', { title: 'Aggiungi immagine', immagine: pojo });
+    });
+  });
+
+
+  /* stream image */
+  router.get('/file/:nome_immagine', ensureAuthenticated, function(req, res, next) {
+    var nome_immagine = req.params.nome_immagine;
+    var Grid = require('gridfs-stream');
+    Grid.mongo = mongo;
+    var gfs = Grid(db, 'myprefix');
+
+    gfs.files.find({filename: nome_immagine}).toArray(function (err, files) {
+      if (err) {
+        res.json(err);
+      }
+      if (files.length > 0) {
+        var mime = 'image/jpeg';
+        res.set('Content-Type', mime);
+        var read_stream = gfs.createReadStream({filename: nome_immagine});
+        read_stream.pipe(res);
+      } else {
+        res.json('File Not Found');
+      }
+    });
+  });
+
+
+  function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/login')
   }
-  res.redirect('/login')
-}
 
-module.exports = router;
+  return router;
+};
+//module.exports = router;
