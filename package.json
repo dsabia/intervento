@@ -14,7 +14,7 @@
     "express-partials": ">= 0.0.0",
     "connect-flash": "~0.1.1",
     "method-override": ">= 0.0.0",
-    "jade": "~1.11.0",
+    "pug": "2.0.0-beta6",
     "serve-favicon": "~2.3.0",
     "passport": "~0.1.17",
     "passport-local": "~0.1.6",
@@ -22,7 +22,8 @@
     "morgan": "~1.7.0",
     "mongodb": "2.2.10",
     "mongoose": "4.6.3",
-    "bcrypt-nodejs": "latest"
+    "bcrypt-nodejs": "latest",
+    "multer": "~1.2.0"
   },
   "devDependencies": {
     "mocha": "*",

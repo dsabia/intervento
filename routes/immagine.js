@@ -3,6 +3,7 @@ var fs = require('fs');
 var multer = require('multer');
 
 var Image = require('../models/image');
+
 /*
 var upload = multer({
   dest: __dirname + '/../public/upload/',
@@ -11,6 +12,7 @@ var upload = multer({
 */
 
 module.exports = function(mongo, db){
+  var GridStore = mongo.GridStore;
   var upload = multer({ dest:  'uploads/' });
   var router = express.Router();
 
@@ -60,21 +62,24 @@ module.exports = function(mongo, db){
 
       var read_stream =  fs.createReadStream(path);
 
-      var Grid = require('gridfs-stream');
-      Grid.mongo = mongo;
-      var gfs = Grid(db, 'myprefix');
+      var gridStore = new GridStore(db, path, 'w');
 
-      var writestream = gfs.createWriteStream({
+      //var Grid = require('gridfs-stream');
+      //Grid.mongo = mongo;
+      //var gfs = Grid(db, 'myprefix');
+
+      var writestream = gridStore.writeFile({
         mode: 'w',
         filename: file.name,
         content_type: file.mimetype
       });
 
-      read_stream.pipe(writestream);
-
+      //read_stream.pipe(writestream);
+/*
       writestream.on('close', function (file) {
           console.log("saved file as " + file.filename);
       });
+*/
       res.redirect('/immagine/detail/' + image.nome_immagine);
   });
 
@@ -95,9 +100,10 @@ module.exports = function(mongo, db){
   /* stream image */
   router.get('/file/:nome_immagine', ensureAuthenticated, function(req, res, next) {
     var nome_immagine = req.params.nome_immagine;
-    var Grid = require('gridfs-stream');
-    Grid.mongo = mongo;
-    var gfs = Grid(db, 'myprefix');
+    //var Grid = require('gridfs-stream');
+    //Grid.mongo = mongo;
+    //var gfs = Grid(db, 'myprefix');
+    var gridStore = new GridStore(db, nome_immagine, 'r');
 
     gfs.files.find({filename: nome_immagine}).toArray(function (err, files) {
       if (err) {
