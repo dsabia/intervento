@@ -4,8 +4,6 @@ var expect = chai.expect;
 //Mongo DB code
 var mongo = require('mongodb');
 var configDB = require('../config/database.js');
-//var monk = require('monk');
-//var db = monk(configDB.url);
 var mongoose = require('mongoose');
 var db = mongoose.connect(configDB.test_url);
 db.safe = {w: 1};
