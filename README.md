@@ -7,17 +7,18 @@ install application
 start application
 
  `npm start`
+ 
+test application _(only local)_
+ 
+ `mocha test --watch`
 
 
  ##### Local notes _(windows only)_
- for starting mongoDB:
+ starting mongoDB manually:
  ```
  cd C:\Program Files\MongoDB\Server\3.2\bin
  mongod --dbpath c:/DB/mongo/test
  ```
 
 ##### TODO
-try this strategy for images:
-https://medium.com/@alvenw/how-to-store-images-to-mongodb-with-node-js-fb3905c37e6d#.odykrrhvj
-
-investigate on debug
+investigate smart way to debug
