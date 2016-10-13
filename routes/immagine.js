@@ -12,7 +12,7 @@ var upload = multer({
 */
 
 module.exports = function(mongo, db){
-  var GridStore = mongo.GridStore;
+
   var upload = multer({ dest:  'uploads/' });
   var router = express.Router();
 
@@ -34,18 +34,18 @@ module.exports = function(mongo, db){
     });
   });
 
-
   /* open page add immagine */
   router.get('/add', ensureAuthenticated, function(req, res, next) {
       res.render('app/immagine/add', { title: 'Aggiungi immagine' });
   });
 
-
   // add form data on the db
   router.post('/add',  upload.single('immagine'), function(req, res, next) {
       var image = new Image();
-      image.nome_immagine   = req.body.nome_immagine;
       image.descrizione     = req.body.descrizione;
+      image.nome_immagine   = req.file.filename;
+      image.data            = fs.readFileSync(req.file.path);
+      image.contentType     = req.file.mimetype;
 
       image.save(function(err) {
           if (err){
@@ -55,36 +55,10 @@ module.exports = function(mongo, db){
           return;
       });
 
-      var file = req.file;
-      console.log("File : " + file);
-      var path = file.path;
-      console.log("Path immagine : " + path);
-
-      var read_stream =  fs.createReadStream(path);
-
-      var gridStore = new GridStore(db, path, 'w');
-
-      //var Grid = require('gridfs-stream');
-      //Grid.mongo = mongo;
-      //var gfs = Grid(db, 'myprefix');
-
-      var writestream = gridStore.writeFile({
-        mode: 'w',
-        filename: file.name,
-        content_type: file.mimetype
-      });
-
-      //read_stream.pipe(writestream);
-/*
-      writestream.on('close', function (file) {
-          console.log("saved file as " + file.filename);
-      });
-*/
       res.redirect('/immagine/detail/' + image.nome_immagine);
   });
 
-
-  /* stream image */
+  /* detail image */
   router.get('/detail/:nome_immagine', ensureAuthenticated, function(req, res, next) {
     Image.findOne({ 'nome_immagine' :  req.params.nome_immagine }, function(err, pojo) {
       if (err){
@@ -96,27 +70,16 @@ module.exports = function(mongo, db){
     });
   });
 
-
   /* stream image */
   router.get('/file/:nome_immagine', ensureAuthenticated, function(req, res, next) {
     var nome_immagine = req.params.nome_immagine;
-    //var Grid = require('gridfs-stream');
-    //Grid.mongo = mongo;
-    //var gfs = Grid(db, 'myprefix');
-    var gridStore = new GridStore(db, nome_immagine, 'r');
-
-    gfs.files.find({filename: nome_immagine}).toArray(function (err, files) {
-      if (err) {
-        res.json(err);
+    Image.findOne({'nome_immagine' : nome_immagine}, function(err, pojo) {
+      if (err){
+        console.log(err);
+        return;
       }
-      if (files.length > 0) {
-        var mime = 'image/jpeg';
-        res.set('Content-Type', mime);
-        var read_stream = gfs.createReadStream({filename: nome_immagine});
-        read_stream.pipe(res);
-      } else {
-        res.json('File Not Found');
-      }
+      res.set('Content-Type', pojo.contentType);
+      res.send(pojo.data);
     });
   });
 
@@ -130,4 +93,3 @@ module.exports = function(mongo, db){
 
   return router;
 };
-//module.exports = router;
