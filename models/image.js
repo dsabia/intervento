@@ -1,8 +1,10 @@
 var mongoose = require('mongoose');
 
 var imageSchema = mongoose.Schema({
-    nome_immagine    : String,
-    descrizione      : String
+    nome_immagine  : String,
+    descrizione    : String,
+    data           : Buffer,
+    contentType    : String
 });
 
 // methods ======================

@@ -18,21 +18,23 @@ var configDB = require('./config/database.js');
 //var monk = require('monk');
 //var db = monk(configDB.url);
 var mongoose = require('mongoose');
-var db = mongoose.connect(configDB.url);
+//var db = mongoose.connect(configDB.url);
+var db = mongoose.connect(configDB.test_url);
+db.safe = {w: 1};
 
 // routes
-var routes = require('./routes/index');
+var router = require('./routes/index');
 var tecnico = require('./routes/tecnico');
 var clienti = require('./routes/clienti');
 var materiale = require('./routes/materiale');
 var tariffe = require('./routes/tariffe');
-var immagine = require('./routes/immagine');
+//var immagine = require('./routes/immagine')(mongo, db);
 
 require('./config/passport')(passport);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -51,12 +53,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-app.use('/', routes);
+app.use('/', router);
 app.use('/tecnico', tecnico);
 app.use('/clienti', clienti);
 app.use('/materiale', materiale);
 app.use('/tariffe', tariffe);
-app.use('/immagine',immagine);
+app.use('/immagine', require('./routes/immagine')(mongo, db));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -89,10 +91,12 @@ app.use(function(err, req, res, next) {
   });
 });
 
-// Make our db accessible to our router
+/* Make our db accessible to our router
 app.use(function(req,res,next){
     req.db = db;
+    req.mongo = mongo;
     next();
 });
+*/
 
 module.exports = app;
