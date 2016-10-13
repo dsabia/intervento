@@ -19,7 +19,7 @@ var configDB = require('./config/database.js');
 //var db = monk(configDB.url);
 var mongoose = require('mongoose');
 //var db = mongoose.connect(configDB.url);
-var db = mongoose.connect(configDB.test_url);
+var db = mongoose.connect(configDB.url);
 db.safe = {w: 1};
 
 // routes
