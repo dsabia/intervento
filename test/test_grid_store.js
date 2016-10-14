@@ -5,7 +5,7 @@ var assert = chai.assert;
 var mongo = require('mongodb');
 var configDB = require('../config/database.js');
 var mongoose = require('mongoose');
-var db = mongoose.connect(configDB.test_url);
+var db = mongoose.connect(configDB.url);
 db.safe = {w: 1};
 
 var fs = require('fs');
