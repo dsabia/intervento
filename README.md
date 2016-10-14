@@ -1,7 +1,10 @@
 # intervento  
-[![Build Status](https://travis-ci.org/dsabia/intervento.svg?branch=master)](https://travis-ci.org/dsabia/intervento)
 
 http://intervento.herokuapp.com/
+
+[![Build Status](https://travis-ci.org/dsabia/intervento.svg?branch=master)](https://travis-ci.org/dsabia/intervento)
+
+[![Stories in Ready](https://badge.waffle.io/dsabia/intervento.svg?label=ready&title=Ready)](http://waffle.io/dsabia/intervento)
 
 install application
 
