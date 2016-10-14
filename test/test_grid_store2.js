@@ -10,7 +10,7 @@ var MongoClient = require('mongodb').MongoClient
 
 describe('GridStore', function() {
   it('executeMongoDbExample() should save the file in mangoose and retrive it', function() {
-    MongoClient.connect(configDB.test_url, function(err, db) {
+    MongoClient.connect(configDB.url, function(err, db) {
       // Set up gridStore
       var gridStore = new GridStore(db, "test_stream_write_2", "w");
       gridStore.writeFile(file_path, function(err, result) {
