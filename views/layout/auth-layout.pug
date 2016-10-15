@@ -1,24 +1,23 @@
 doctype html
 html
   head
-    title Passport-GitHub Example
+    title #{__('title-auth')}
     link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css")
     link(rel="stylesheet", href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css")
   body
     if user == null
       p
-        a(href="/") Index |
-        a(href="/login") Log In
+        a(href="/") #{__('index')} |
+        a(href="/login") #{__('log-in')}
     else
       p
-        a(href="/homepage") Homepage |
-        a(href="/profile") Profile |
-        a(href="/logout") Log Out #{user.local.email}
+        a(href="/homepage") #{__('homepage')}  |
+        a(href="/profile") #{__('profile')} |
+        a(href="/logout") #{__('log out')} #{user.local.email}
     p
-      a(href="/account") Account |
-      a(href="/homepage") Homepage |
-      a(href="/") Index
-
+      a(href="/account") #{__('account')} |
+      a(href="/homepage") #{__('homepage')}  |
+      a(href="/") #{__('index')}
 
     div(class="container")
       block content

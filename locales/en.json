@@ -1,0 +1,12 @@
+{
+  "title-auth" : "Login or Signup",
+  "title-homepage" : "intervento",
+
+  "index"     : "Index",
+  "log-in" 	  : "Log In",
+  "homepage" 	: "Homepage",
+  "profile" 	: "Profile",
+  "log out" 	: "Log Out",
+  "account" 	: "Account"
+
+}

@@ -11,6 +11,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var i18n = require("i18n");
+var cookieParser = require('cookie-parser');
 
 //Mongo DB code
 var mongo = require('mongodb');
@@ -31,6 +33,18 @@ var tariffe = require('./routes/tariffe');
 //var immagine = require('./routes/immagine')(mongo, db);
 
 require('./config/passport')(passport);
+
+i18n.configure({
+    locales:['it', 'en'],
+    directory: __dirname + '/locales',
+    cookie: 'locales',
+    register: global
+});
+
+app.use(cookieParser());
+app.use(i18n.init);
+
+i18n.setLocale('it');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
