@@ -15,4 +15,8 @@ Start application
 
 ---
 
+[![Throughput Graph](https://graphs.waffle.io/dsabia/intervento/throughput.svg)](https://waffle.io/dsabia/intervento/metrics/throughput)
+
+
+
 [Local Notes _(for windows)_](LocalNotes.md)

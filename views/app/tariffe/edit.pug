@@ -6,17 +6,17 @@ block content
   form(action='/tariffe/edit',method='POST').form-horizontal
     div.form-group.row
       div.col-md-6.col-xs-12
-        label(for='diritto_chiamata') Diritto di chiamata:
+        label(for='diritto_chiamata') Diritto di chiamata
         input(name='diritto_chiamata', type='number').form-control
       div.col-md-6.col-xs-12
-        label(for='tariffa_fissa') Tariffa fissa:
+        label(for='tariffa_fissa') Tariffa fissa
         input(name='tariffa_fissa', type='number').form-control
     div.form-group.row
       div.col-md-6.col-xs-12
-        label(for='tariffa_oraria') Tariffa oraria:
+        label(for='tariffa_oraria') Tariffa oraria
         input(name='tariffa_oraria', type='number').form-control
       div.col-md-6.col-xs-12
-        label(for='frazioni_ora') Frazioni d\'ora (minuti):
+        label(for='frazioni_ora') Frazioni d\'ora (minuti)
         select(name='frazioni_ora', type='select').form-control
           option 1
           option 5
@@ -25,7 +25,7 @@ block content
           option 60
     div.form-group.row
       div.col-md-6.col-xs-12
-        label(for='tariffa_km') Tariffa kilometrica:
+        label(for='tariffa_km') Tariffa kilometrica
         input(name='tariffa_km', type='number').form-control
     button(type="submit").btn.btn-default Salva tariffa
 
