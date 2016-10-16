@@ -1,0 +1,19 @@
+extends ../../layout/homepage-layout
+
+block content
+  h2= title
+
+  form(action='/intervento/add',method='POST').form-horizontal
+    div.form-group.row
+      div.col-md-6.col-xs-12
+        label(for='codice') Codice
+        input(name='codice').form-control
+      div.col-md-6.col-xs-12
+        label(for='tipo_intervento') Tipo intervento
+        select(name='tipo_intervento').form-control.selectpicker
+          each tipo in tipo_intervento_option
+            option= tipo
+    button(type="submit").btn.btn-default Aggiungi Intervento
+
+  a(href="/intervento") Elenco interventi |
+  a(href="/intervento/add") Aggiungi intervento

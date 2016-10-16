@@ -1,0 +1,23 @@
+extends ../../layout/homepage-layout
+include intervento_table
+
+block content
+  h1= title
+
+  if intervento != null
+    p Dettaglio intervento #{intervento.codice}
+    +intervento_table(intervento)
+
+  else
+    table(class="table table-striped table-responsive")
+      tr
+        th Codice
+        th Tipo intervento
+      each item in list
+        tr
+          td
+            a(href='/intervento/'+ item.codice) #{item.codice}
+          td #{item.tipo_intervento}
+
+  a(href="/intervento") Elenco interventi |
+  a(href="/intervento/add") Aggiungi intervento
