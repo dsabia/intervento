@@ -1,0 +1,16 @@
+{
+  "title-auth" : "Login or Signup",
+  "title-homepage" : "intervento",
+
+  "index"     : "Index",
+  "log-in" 	  : "Log In",
+  "homepage" 	: "Homepage",
+  "profile" 	: "Profile",
+  "log out" 	: "Log Out",
+  "account" 	: "Account",
+
+  "index-title" : "Authentication",
+  "index-subtitle" : "Login or Signup with:",
+  "index-login-button" : "Login (Local)",
+  "index-signup-button" : "Signup (Local)",
+}

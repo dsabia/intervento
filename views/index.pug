@@ -3,9 +3,9 @@ extends layout/auth-layout
 block content
   div(class="jumbotron text-center")
     h1
-      span(class="fa fa-lock") Node Authentication
-    p Login or Register with:
+      span(class="fa fa-lock") #{__('index-title')}
+    p #{__('index-subtitle')}
     a(href="/login", class="btn btn-default")
-      span(class="fa fa-user") Local Login
+      span(class="fa fa-user") #{__('index-login-button')}
     a(href="/signup", class="btn btn-default")
-      span(class="fa fa-user") Local Signup
+      span(class="fa fa-user") #{__('index-signup-button')}

@@ -9,19 +9,18 @@ block content
     if message.length > 0
       div(class="alert alert-danger") #{ message }
 
-
   form(action="signup", method="post")
     div(class="form-group")
-      label Email
+      label #{__('email')}
       input(type="text",class="form-control",name="email")
     div(class="form-group")
-      label Password
+      label #{__('password')}
       input(type="password", class="form-control", name="password")
-    button(type="submit", class="btn btn-warning btn-lg") Signup
+    button(type="submit", class="btn btn-warning btn-lg") #{__('signup-button-submit"')}
 
   hr
 
-  p Already have an account?
-    a(href="/login")  Login
-  p Or go
-    a(href="/")  home.
+  p #{__('p-already-have-account')}
+    a(href="/login") #{__('login')}
+  p #{__('p-or-go')}
+    a(href="/")  #{__('home')}.

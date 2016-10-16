@@ -1,0 +1,16 @@
+{
+  "title-auth" : "Login o Registrati",
+  "title-homepage" : "intervento",
+
+  "index"     : "Index",
+  "log-in" 	  : "Log In",
+  "homepage" 	: "Homepage",
+  "profile" 	: "Profilo",
+  "log out" 	: "Log Out",
+  "account" 	: "Account",
+
+  "index-title" : "Autenticazione",
+  "index-subtitle" : "Accedi o Registrati:",
+  "index-login-button" : "Accesso (Local)",
+  "index-signup-button" : "Registrazione (Local)",
+}
