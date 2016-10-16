@@ -1,5 +1,5 @@
 ### intervento  
-_a MEAN application_  (review at http://intervento.herokuapp.com/)  
+_a MEAN application_
 
 
 [![Build Status](https://travis-ci.org/dsabia/intervento.svg?branch=master)](https://travis-ci.org/dsabia/intervento)
