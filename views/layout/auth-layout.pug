@@ -11,13 +11,12 @@ html
         a(href="/login") #{__('log-in')}
     else
       p
+        a(href="/") #{__('index')}
         a(href="/homepage") #{__('homepage')}  |
         a(href="/profile") #{__('profile')} |
         a(href="/logout") #{__('log out')} #{user.local.email}
     p
-      a(href="/account") #{__('account')} |
-      a(href="/homepage") #{__('homepage')}  |
-      a(href="/") #{__('index')}
+
 
     div(class="container")
       block content

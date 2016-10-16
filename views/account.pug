@@ -1,8 +1,0 @@
-extends layout/auth-layout
-
-block content
-  if user != null
-    p ID: #{user._id}
-    p Email: #{user.local.email}
-  else
-    p no user detected

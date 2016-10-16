@@ -36,8 +36,11 @@ require('./config/passport')(passport);
 
 i18n.configure({
     locales:['it', 'en'],
-    directory: __dirname + '/locales',
+    defaultLocale: 'it',
     cookie: 'locales',
+    directory: __dirname + '/locales',
+    autoReload: false,
+    updateFiles: false,
     register: global
 });
 

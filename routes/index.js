@@ -5,7 +5,7 @@ var passport = require('passport');
 // open root application
 router.get('/', function(req, res, next) {
   if(req.isAuthenticated()){
-    res.render('app/homepage');
+    res.redirect('/homepage');
   }else{
     res.render('index');
   }
