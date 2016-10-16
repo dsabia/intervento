@@ -30,6 +30,7 @@ var tecnico = require('./routes/tecnico');
 var clienti = require('./routes/clienti');
 var materiale = require('./routes/materiale');
 var tariffe = require('./routes/tariffe');
+var intervento = require('./routes/intervento');
 //var immagine = require('./routes/immagine')(mongo, db);
 
 require('./config/passport')(passport);
@@ -75,6 +76,7 @@ app.use('/tecnico', tecnico);
 app.use('/clienti', clienti);
 app.use('/materiale', materiale);
 app.use('/tariffe', tariffe);
+app.use('/intervento', intervento);
 app.use('/immagine', require('./routes/immagine')(mongo, db));
 
 // catch 404 and forward to error handler

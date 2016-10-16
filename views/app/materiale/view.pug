@@ -27,9 +27,9 @@ block content
       each item in list
         tr
           td
-            a(href="/materiale/#{item.codice}") #{item.nome_prodotto}
+            a(href="/materiale/" + item.codice) #{item.nome_prodotto}
           td
-            a(href="/materiale/#{item.codice}") #{item.codice}
+            a(href="/materiale/" + item.codice) #{item.codice}
           td #{item.descrizione}
           td #{item.prezzo}
 

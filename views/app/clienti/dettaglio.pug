@@ -39,10 +39,10 @@ block content
       each item in list
         tr
           td
-            a(href="/clienti/#{item.codice}") #{item.codice}
+            a(href="/clienti/" + item.codice) #{item.codice}
           td #{item.sconto}
           td
-            a(href="/clienti/#{item.codice}") #{item.ragione_sociale}
+            a(href="/clienti/" + item.codice) #{item.ragione_sociale}
           td #{item.piva_cf}
           td #{item.indirizzo}
           td #{item.telefono}
