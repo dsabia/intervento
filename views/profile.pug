@@ -4,19 +4,19 @@ block content
   div(class="page-header text-center")
     h1
       span(class="fa fa-anchor") Profile Page
-    a(href="/logout",class="btn btn-default btn-sm") Logout
+    a(href="/logout",class="btn btn-default btn-sm") #{__('logout')}
 
   div(class="row")
     div(class="col-sm-6")
       div(class="well")
         h3
-          span(class="fa fa-user") Local
+          span(class="fa fa-user") #{__('profile-title-local')}
         p
-          strong id:
+          strong #{__('id')}
             #{user._id}
           br
-          strong email:
+          strong #{__('email')}
             #{user.local.email}
           br
-          strong password:
+          strong #{__('password')}
             #{user.local.password}

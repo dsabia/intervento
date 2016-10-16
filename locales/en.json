@@ -4,13 +4,29 @@
 
   "index"     : "Index",
   "log-in" 	  : "Log In",
+  "login" 	  : "Login",
+  "home" 	    : "Home",
   "homepage" 	: "Homepage",
   "profile" 	: "Profile",
   "log out" 	: "Log Out",
+  "logout" 	  : "Logout",
   "account" 	: "Account",
+  "signup"    : "Signup",
 
   "index-title" : "Authentication",
   "index-subtitle" : "Login or Signup with:",
   "index-login-button" : "Login (Local)",
-  "index-signup-button" : "Signup (Local)"
+  "index-signup-button" : "Signup (Local)",
+
+  "id"     			         : "Id",
+  "email" 			         : "Email",
+  "password" 		         : "Password",
+
+  "p-need-account"  : "Need an account?",
+  "p-already-have-account" : "Already have an account?",
+  "p-or-go"         : "Or go",
+
+  "login-button-submit"   : "Login",
+  "profile-title-local" : "Local",
+  "signup-button-submit" : "Signup"
 }
