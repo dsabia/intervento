@@ -54,7 +54,7 @@ router.post('/add', ensureAuthenticated, function(req, res, next) {
         return;
     });
 
-    res.redirect('/intervento/'+intervento.id);
+    res.redirect('/intervento/'+intervento.codice);
 });
 
 /* GET tecnico */
