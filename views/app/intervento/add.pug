@@ -1,6 +1,8 @@
 extends ../../layout/homepage-layout
 
+
 block content
+
   h2= title
 
   form(action='/intervento/add',method='POST').form-horizontal
@@ -11,9 +13,33 @@ block content
       div.col-md-6.col-xs-12
         label(for='tipo_intervento') #{__('tipo-intervento')}
         select(name='tipo_intervento').form-control.selectpicker
+          option
           each tipo in tipo_intervento_option
             option #{__(tipo)}
+    div.form-group.row
+      div.col-md-6.col-xs-12
+        label(for='data') #{__('data')}
+        input(name='data', type="date").form-control
+      div.col-md-3.col-xs-6
+        label(for='ora_inizio') #{__('orario-inizio')}
+        div.input-group.clockpicker
+          input.form-control(id="id-ora_inizio", name='ora_inizio',type='text', value='09:30')
+          span.input-group-addon
+            span.glyphicon.glyphicon-time
+      div.col-md-3.col-xs-6
+        label(for='ora_fine') #{__('orario-fine')}
+        div.input-group.clockpicker
+          input.form-control(id="id-ora_fine", name='ora_fine',type='text', value='09:30')
+          span.input-group-addon
+            span.glyphicon.glyphicon-time
+    div.form-group.row
+      div.col-md-12.col-xs-12
+        label(for='note') #{__('note')}
+        textarea(name='note', rows="3").form-control
+
     button(type="submit").btn.btn-default Aggiungi Intervento
 
   a(href="/intervento") Elenco interventi |
   a(href="/intervento/add") Aggiungi intervento
+
+  script(src='/javascripts/intervento/add.js')

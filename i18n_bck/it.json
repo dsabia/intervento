@@ -24,6 +24,10 @@
   "intervento"           : "Intervento",
   "codice"               : "Codice",
   "tipo-intervento"      : "Tipo intervento",
+  "data" 			           : "Data",
+  "orario-inizio"        : "Orario inizio",
+  "orario-fine"          : "Orario fine",
+  "note"                 : "Note",
 
   "p-need-account"  : "Vuoi creare un account?",
   "p-already-have-account" : "Hai giá un account?",

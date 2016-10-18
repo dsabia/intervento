@@ -24,6 +24,10 @@
   "intervento"           : "Intervention",
   "codice"               : "Code",
   "tipo-intervento"      : "Type of intervention",
+  "data" 			           : "Date",
+  "orario-inizio"        : "Start time",
+  "orario-fine"          : "End time",
+  "note"                 : "Notes",
 
   "p-need-account"  : "Need an account?",
   "p-already-have-account" : "Already have an account?",

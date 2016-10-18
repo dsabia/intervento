@@ -118,4 +118,6 @@ app.use(function(req,res,next){
 });
 */
 
+console.log("Initialization completed!");
+
 module.exports = app;

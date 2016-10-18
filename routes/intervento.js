@@ -42,6 +42,10 @@ router.post('/add', ensureAuthenticated, function(req, res, next) {
     var intervento = new Intervento();
     intervento.codice                  = req.body.codice;
     intervento.tipo_intervento         = req.body.tipo_intervento;
+    intervento.data                    = req.body.data;
+    intervento.ora_inizio              = req.body.ora_inizio;
+    intervento.ora_fine                = req.body.ora_fine;
+    intervento.note                    = req.body.note;
 
     intervento.save(function(err) {
         console.log('save ' + err);
