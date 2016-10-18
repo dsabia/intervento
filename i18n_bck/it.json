@@ -21,6 +21,7 @@
   "id"     			         : "Id",
   "email" 			         : "Email",
   "password" 		         : "Password",
+  "intervento"           : "Intervento",
   "codice"               : "Codice",
   "tipo-intervento"      : "Tipo intervento",
 
