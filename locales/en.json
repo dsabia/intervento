@@ -21,6 +21,9 @@
   "id"     			         : "Id",
   "email" 			         : "Email",
   "password" 		         : "Password",
+  "intervento"           : "Intervention",
+  "codice"               : "Code",
+  "tipo-intervento"      : "Type of intervention",
 
   "p-need-account"  : "Need an account?",
   "p-already-have-account" : "Already have an account?",
@@ -28,5 +31,12 @@
 
   "login-button-submit"   : "Login",
   "profile-title-local" : "Local",
-  "signup-button-submit" : "Signup"
+  "signup-button-submit" : "Signup",
+
+  "o-tipo-intervento-sopralluogo" : "Inspection",
+  "o-tipo-intervento-installazione" : "Installation",
+  "o-tipo-intervento-manutenzione" : "Manutention",
+  "o-tipo-intervento-assistenza" : "Assistance",
+  "o-tipo-intervento-fornitura-materiale" : "Material supply",
+  "o-tipo-intervento-preventivo": "Quote"
 }

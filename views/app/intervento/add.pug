@@ -6,13 +6,13 @@ block content
   form(action='/intervento/add',method='POST').form-horizontal
     div.form-group.row
       div.col-md-6.col-xs-12
-        label(for='codice') Codice
+        label(for='codice') #{__('codice')}
         input(name='codice').form-control
       div.col-md-6.col-xs-12
-        label(for='tipo_intervento') Tipo intervento
+        label(for='tipo_intervento') #{__('tipo-intervento')}
         select(name='tipo_intervento').form-control.selectpicker
           each tipo in tipo_intervento_option
-            option= tipo
+            option #{__(tipo)}
     button(type="submit").btn.btn-default Aggiungi Intervento
 
   a(href="/intervento") Elenco interventi |

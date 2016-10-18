@@ -21,6 +21,9 @@
   "id"     			         : "Id",
   "email" 			         : "Email",
   "password" 		         : "Password",
+  "intervento"           : "Intervento",
+  "codice"               : "Codice",
+  "tipo-intervento"      : "Tipo intervento",
 
   "p-need-account"  : "Vuoi creare un account?",
   "p-already-have-account" : "Hai giá un account?",
@@ -28,5 +31,12 @@
 
   "login-button-submit"   : "Login",
   "profile-title-local" : "Locale",
-  "signup-button-submit" : "Registrati"
+  "signup-button-submit" : "Registrati",
+
+  "o-tipo-intervento-sopralluogo" : "Sopralluogo",
+  "o-tipo-intervento-installazione" : "Installazione",
+  "o-tipo-intervento-manutenzione" : "Manutenzione",
+  "o-tipo-intervento-assistenza" : "Assistenza",
+  "o-tipo-intervento-fornitura-materiale" : "Fornitura Materiale",
+  "o-tipo-intervento-preventivo": "Preventivo"
 }

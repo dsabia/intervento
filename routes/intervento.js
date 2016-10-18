@@ -3,7 +3,12 @@ var router = express.Router();
 var Intervento = require('../models/intervento');
 
 var tipo_intervento_option = [
-  "Sopralluogo", "Installazione", "Manutenzione", "Assistenza", "Fornitura Materiale", "Preventivo"
+  "o-tipo-intervento-sopralluogo" ,
+  "o-tipo-intervento-installazione" ,
+  "o-tipo-intervento-manutenzione" ,
+  "o-tipo-intervento-assistenza" ,
+  "o-tipo-intervento-fornitura-materiale" ,
+  "o-tipo-intervento-preventivo"
 ];
 
 
