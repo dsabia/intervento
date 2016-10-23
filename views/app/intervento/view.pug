@@ -20,9 +20,9 @@ block content
           td #{item.tipo_intervento}
         tr
           td
-             #{intervento.data.toDateString()}
+             #{item.data.toDateString()}
           td
-            #{intervento.ora_inizio} - #{intervento.ora_fine}
-            
+            #{item.ora_inizio} - #{item.ora_fine}
+
   a(href="/intervento") Elenco interventi |
   a(href="/intervento/add") Aggiungi intervento
