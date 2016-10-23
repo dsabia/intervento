@@ -21,6 +21,7 @@
   "id"     			         : "Id",
   "email" 			         : "Email",
   "password" 		         : "Password",
+  "ripeti-password"      : "Repeat password",
   "intervento"           : "Intervention",
   "codice"               : "Code",
   "tipo-intervento"      : "Type of intervention",

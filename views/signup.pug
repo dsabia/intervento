@@ -9,13 +9,21 @@ block content
     if message.length > 0
       div(class="alert alert-danger") #{ message }
 
-  form(action="signup", method="post")
+  form(id="signupForm", action="signup", method="post", data-toggle="validator", role="form", novalidate="true")
     div(class="form-group")
       label #{__('email')}
-      input(type="text",class="form-control",name="email")
+      input(type="email",class="form-control",name="email", required,data-error="Bruh, that email address is invalid")
+      div.help-block.with-errors
     div(class="form-group")
       label #{__('password')}
-      input(type="password", class="form-control", name="password")
+      input(type="password", class="form-control", name="password", id="inputPassword", required, data-minlength="6" )
+      span.glyphicon.form-control-feedback(aria-hidden="true")
+      div.help-block Minimum of 6 characters
+    div(class="form-group")
+      label #{__('ripeti-password')}
+      input(type="password", class="form-control", name="confirmPassword", data-match="#inputPassword",data-match-error="Whoops, these don't match",required)
+      span.glyphicon.form-control-feedback(aria-hidden="true")
+      div.help-block.with-errors
     button(type="submit", class="btn btn-warning btn-lg") #{__('signup-button-submit')}
 
   hr
@@ -24,3 +32,5 @@ block content
     a(href="/login") #{__('login')}
   p #{__('p-or-go')}
     a(href="/")  #{__('home')}.
+
+//-  script(src='/javascripts/index/signup.js')
