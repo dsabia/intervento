@@ -29,6 +29,8 @@
   "orario-fine"          : "Orario fine",
   "note"                 : "Note",
 
+  "option-void"          : "Seleziona",
+
   "p-need-account"  : "Vuoi creare un account?",
   "p-already-have-account" : "Hai giá un account?",
   "p-or-go"         : "O torna a ",

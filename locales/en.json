@@ -29,6 +29,8 @@
   "orario-fine"          : "End time",
   "note"                 : "Notes",
 
+  "option-void"          : "Select one",
+
   "p-need-account"  : "Need an account?",
   "p-already-have-account" : "Already have an account?",
   "p-or-go"         : "Or go",
