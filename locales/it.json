@@ -25,6 +25,7 @@
   "codice"               : "Codice",
   "tipo-intervento"      : "Tipo intervento",
   "data" 			           : "Data",
+  "orario"               : "Orario",
   "orario-inizio"        : "Orario inizio",
   "orario-fine"          : "Orario fine",
   "note"                 : "Note",

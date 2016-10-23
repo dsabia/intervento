@@ -25,6 +25,7 @@
   "codice"               : "Code",
   "tipo-intervento"      : "Type of intervention",
   "data" 			           : "Date",
+  "orario"               : "Time",
   "orario-inizio"        : "Start time",
   "orario-fine"          : "End time",
   "note"                 : "Notes",

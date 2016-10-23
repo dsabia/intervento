@@ -11,18 +11,17 @@ block content
   else
     table(class="table table-striped table-responsive")
       tr
-        th Codice
-        th Tipo intervento
+        th #{__('codice')}
+        th #{__('tipo-intervento')}
+        th #{__('data')}
+        th #{__('orario')}
       each item in list
         tr
           td
             a(href='/intervento/'+ item.codice) #{item.codice}
           td #{item.tipo_intervento}
-        tr
-          td
-             #{item.data.toDateString()}
-          td
-            #{item.ora_inizio} - #{item.ora_fine}
+          td #{item.data.toDateString()}
+          td #{item.ora_inizio} - #{item.ora_fine}
 
   a(href="/intervento") Elenco interventi |
   a(href="/intervento/add") Aggiungi intervento
