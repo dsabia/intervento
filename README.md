@@ -6,6 +6,8 @@ _a MEAN application_
 
 [![Stories in Ready](https://badge.waffle.io/dsabia/intervento.svg?label=ready&title=Ready)](http://waffle.io/dsabia/intervento)
 
+[![codecov](https://codecov.io/gh/dsabia/intervento/branch/master/graph/badge.svg)](https://codecov.io/gh/dsabia/intervento)
+
 ---
 Install application  
 `npm install`
