@@ -6,3 +6,5 @@ before_install :
 install :
  - "npm install chai"
  - "npm install"
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
