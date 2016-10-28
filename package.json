@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R test && cat ./coverage/lcov.info | ./node_modules/.bin/codecov"
+    "test": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec && cat ./coverage/lcov.info | ./node_modules/.bin/codecov"
   },
   "dependencies": {
     "body-parser": "~1.15.1",
@@ -26,12 +26,12 @@
     "mongoose": "4.6.3",
     "bcrypt-nodejs": "latest",
     "multer": "~1.2.0",
-    "i18n": "~0.8.3",
-    "istanbul": "0.4.5",
-    "codecov": "0.1.6" 
+    "i18n": "~0.8.3"
   },
   "devDependencies": {
     "mocha": "*",
-    "chai": "~3.5.0"
+    "chai": "~3.5.0",
+    "istanbul": "0.4.5",
+    "codecov": "0.1.6" 
   }
 }
