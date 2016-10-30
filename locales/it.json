@@ -41,6 +41,10 @@
   "eb-minimum-6-character" : "Minimo 6 caratteri",
   "e-these-dont-match" : "Le password non sono uguali",
 
+  "e-passport-email-already-taken" : "Email giá in uso.",
+  "e-passport-no-user-found" : "Nessun utente trovato.",
+  "e-passport-wrong-password" : "Oops! Password errata.",
+
   "login-button-submit"   : "Login",
   "profile-title-local" : "Locale",
   "signup-button-submit" : "Registrati",

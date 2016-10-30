@@ -3,7 +3,7 @@ extends layout/auth-layout
 block content
   if message != null
     if message.length > 0
-      div(class="alert alert-danger") #{ message }
+      div(class="alert alert-danger") #{__(''+message)}
 
   form(action="/login",method="post", data-toggle="validator", role="form", novalidate="true")
     div.form-group

@@ -44,11 +44,6 @@ router.get('/logout', function(req, res) {
      res.redirect('/');
 });
 
-// no longer in use
-router.get('/account', isLoggedIn, function(req, res, next) {
-  res.render('account');
-});
-
 /* open homepage */
 router.get('/homepage', isLoggedIn, function(req, res, next) {
   res.render('app/homepage', { title: 'App di Rocco' });

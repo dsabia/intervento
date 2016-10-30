@@ -7,7 +7,7 @@ block content
 
   if message != null
     if message.length > 0
-      div(class="alert alert-danger") #{ message }
+      div(class="alert alert-danger") #{__(''+message)}
 
   form(id="signupForm", action="signup", method="post", data-toggle="validator", role="form", novalidate="true")
     div(class="form-group")
