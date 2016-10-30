@@ -21,7 +21,7 @@
   "id"     			         : "Id",
   "email" 			         : "Email",
   "password" 		         : "Password",
-  "ripeti-password"      : "Ripeti password",
+  "ripeti-password"      : "Conferma password",
   "intervento"           : "Intervento",
   "codice"               : "Codice",
   "tipo-intervento"      : "Tipo intervento",

@@ -21,7 +21,7 @@
   "id"     			         : "Id",
   "email" 			         : "Email",
   "password" 		         : "Password",
-  "ripeti-password"      : "Repeat password",
+  "ripeti-password"      : "Confirm password",
   "intervento"           : "Intervention",
   "codice"               : "Code",
   "tipo-intervento"      : "Type of intervention",
@@ -37,9 +37,9 @@
   "p-already-have-account" : "Already have an account?",
   "p-or-go"         : "Or go",
 
-  "e-invalid-email" : "Bruh, that email address is invalid",
+  "e-invalid-email" : "Invalid email address",
   "eb-minimum-6-character" : "Minimum of 6 characters",
-  "e-these-dont-match" : "Whoops, these don't match",
+  "e-these-dont-match" : "Passwords doesn't match",
 
   "login-button-submit"   : "Login",
   "profile-title-local" : "Local",

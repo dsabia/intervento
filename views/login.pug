@@ -5,13 +5,15 @@ block content
     if message.length > 0
       div(class="alert alert-danger") #{ message }
 
-  form(action="/login",method="post")
-    div(class="form-group")
+  form(action="/login",method="post", data-toggle="validator", role="form", novalidate="true")
+    div.form-group
       label #{__('email')}
-      input(type="text", class="form-control", name="email")
-    div(class="form-group")
+      input(type="email", class="form-control", name="email" ,required, data-delay="1500", data-error=''+__('e-invalid-email'))
+      div.help-block.with-errors
+    div.form-group
       label #{__('password')}
-      input(type="password",class="form-control",name="password")
+      input(type="password",class="form-control",name="password", required, data-delay="1500")
+      div.help-block.with-errors
     button(type="submit",class="btn btn-warning btn-lg") #{__('login-button-submit')}
 
     hr
