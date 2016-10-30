@@ -2,9 +2,9 @@ language: node_js
 node_js:
   - "0.12"
 before_install :
- - "npm install -g mocha"
- - "npm install codecov"
+ - "npm install mocha"
  - "npm install chai"
+ - "npm install codecov"
 install :
  - "npm install"
 after_success:
