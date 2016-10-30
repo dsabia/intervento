@@ -1,11 +1,11 @@
 language: node_js
 node_js:
   - "0.12"
-before_install :
+before_install:
  - "npm install mocha"
  - "npm install chai"
  - "npm install codecov"
-install :
+install:
  - "npm install"
 after_success:
   - bash <(curl -s https://codecov.io/bash)
