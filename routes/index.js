@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 
 // open signup page
 router.get('/signup', function(req, res, next) {
-  res.render('signup');
+  res.render('signup', { message: req.flash('signupMessage') });
 });
 // process the signup form
 router.post('/signup', passport.authenticate('local-signup', {
