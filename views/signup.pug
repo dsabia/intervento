@@ -12,16 +12,16 @@ block content
   form(id="signupForm", action="signup", method="post", data-toggle="validator", role="form", novalidate="true")
     div(class="form-group")
       label #{__('email')}
-      input(type="email",class="form-control",name="email", required,data-error="Bruh, that email address is invalid")
+      input(type="email",class="form-control",name="email", required,data-error=''+__('e-invalid-email'))
       div.help-block.with-errors
     div(class="form-group")
       label #{__('password')}
       input(type="password", class="form-control", name="password", id="inputPassword", required, data-minlength="6" )
       span.glyphicon.form-control-feedback(aria-hidden="true")
-      div.help-block Minimum of 6 characters
+      div.help-block #{__('eb-minimum-6-character')}
     div(class="form-group")
       label #{__('ripeti-password')}
-      input(type="password", class="form-control", name="confirmPassword", data-match="#inputPassword",data-match-error="Whoops, these don't match",required)
+      input(type="password", class="form-control", name="confirmPassword", data-match="#inputPassword",data-match-error=''+__('e-these-dont-match'),required)
       span.glyphicon.form-control-feedback(aria-hidden="true")
       div.help-block.with-errors
     button(type="submit", class="btn btn-warning btn-lg") #{__('signup-button-submit')}
@@ -31,6 +31,4 @@ block content
   p #{__('p-already-have-account')}
     a(href="/login") #{__('login')}
   p #{__('p-or-go')}
-    a(href="/")  #{__('home')}.
-
-//-  script(src='/javascripts/index/signup.js')
+    a(href="/") #{__('home')}.

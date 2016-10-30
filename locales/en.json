@@ -37,6 +37,10 @@
   "p-already-have-account" : "Already have an account?",
   "p-or-go"         : "Or go",
 
+  "e-invalid-email" : "Bruh, that email address is invalid",
+  "eb-minimum-6-character" : "Minimum of 6 characters",
+  "e-these-dont-match" : "Whoops, these don't match",
+
   "login-button-submit"   : "Login",
   "profile-title-local" : "Local",
   "signup-button-submit" : "Signup",

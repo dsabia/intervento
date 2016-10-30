@@ -37,6 +37,10 @@
   "p-already-have-account" : "Hai giá un account?",
   "p-or-go"         : "O torna a ",
 
+  "e-invalid-email" : "E-mail non valida",
+  "eb-minimum-6-character" : "Minimo 6 caratteri",
+  "e-these-dont-match" : "Le password non sono uguali",
+
   "login-button-submit"   : "Login",
   "profile-title-local" : "Locale",
   "signup-button-submit" : "Registrati",
