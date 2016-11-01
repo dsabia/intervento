@@ -7,26 +7,32 @@ block content
     div.form-group.row
       div.col-md-6.col-xs-12
         label(for='diritto_chiamata') Diritto di chiamata
-        input(name='diritto_chiamata', type='number').form-control
+        input(name='diritto_chiamata', type='number', value=''+(rate ? rate.diritto_chiamata : '')).form-control
       div.col-md-6.col-xs-12
         label(for='tariffa_fissa') Tariffa fissa
-        input(name='tariffa_fissa', type='number').form-control
+        input(name='tariffa_fissa', type='number', value=''+(rate ? rate.tariffa_fissa : '')).form-control
     div.form-group.row
       div.col-md-6.col-xs-12
         label(for='tariffa_oraria') Tariffa oraria
-        input(name='tariffa_oraria', type='number').form-control
+        input(name='tariffa_oraria', type='number', value=''+(rate ? rate.tariffa_oraria : '')).form-control
       div.col-md-6.col-xs-12
         label(for='frazioni_ora') Frazioni d\'ora (minuti)
-        select(name='frazioni_ora', type='select').form-control
-          option 1
-          option 5
-          option 15
-          option 30
-          option 60
+        select(name='frazioni_ora', type='select', value=''+(rate ? rate.frazioni_ora : '')).form-control
+          if rate != null
+            option(value="", disabled, selected) #{__('option-void')}
+          each frazione in frazioni_dora_option
+            if rate != null
+              if frazione.selected
+                option(selected) #{__(frazione.value)}
+              else
+                option #{__(frazione.value)}
+            else
+              option #{__(frazione.value)}
     div.form-group.row
       div.col-md-6.col-xs-12
         label(for='tariffa_km') Tariffa kilometrica
-        input(name='tariffa_km', type='number').form-control
-    button(type="submit").btn.btn-default Salva tariffa
+        input(name='tariffa_km', type='number', value=''+(rate ? rate.tariffa_km : '')).form-control
+    input(type='hidden', name='id', value=''+(rate ? rate._id : ''))
+    button(type="submit").btn.btn-default #{rate ? 'Modifica' : 'Salva'} tariffa
 
   a(href="/tariffe") Visualizza tariffa
