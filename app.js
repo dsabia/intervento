@@ -16,12 +16,12 @@ var cookieParser = require('cookie-parser');
 
 //Mongo DB code
 var mongo = require('mongodb');
-var configDB = require('./config/database.js');
+var config = require('config');
 //var monk = require('monk');
 //var db = monk(configDB.url);
 var mongoose = require('mongoose');
-//var db = mongoose.connect(configDB.url);
-var db = mongoose.connect(configDB.url);
+
+var db = mongoose.connect(config.database_url);
 db.safe = {w: 1};
 
 // routes
@@ -33,7 +33,7 @@ var tariffe = require('./routes/tariffe');
 var intervento = require('./routes/intervento');
 //var immagine = require('./routes/immagine')(mongo, db);
 
-require('./config/passport')(passport);
+require('./services/passport')(passport);
 
 i18n.configure({
     locales:['it', 'en'],
