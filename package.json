@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "SET NODE_ENV=test&& istanbul cover ./node_modules/mocha/bin/_mocha -R && cat ./coverage/lcov.info | ./node_modules/.bin/codecov"
+    "test": "SET NODE_ENV=test && istanbul cover ./node_modules/mocha/bin/_mocha -R && cat ./coverage/lcov.info | ./node_modules/.bin/codecov"
   },
   "dependencies": {
     "config" : "1.24.0",
