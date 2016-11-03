@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Intervento = require('../models/intervento');
+var appUtil = require('../services/app_util');
 
 var tipo_intervento_option = [
   "o-tipo-intervento-sopralluogo" ,
@@ -27,39 +28,31 @@ router.get('/', ensureAuthenticated, function(req, res, next) {
     }else{
       res.render('app/intervento/view', { title: 'Nessun intervento presente'});
     }
-
-
   });
 });
 
-/* open page add new tecnico */
+/* open page add new intervento */
 router.get('/add', ensureAuthenticated, function(req, res, next) {
-    res.render('app/intervento/add', { title: 'Aggiungi un intervento tecnico', tipo_intervento_option: tipo_intervento_option });
+    res.render('app/intervento/add', { title: 'Aggiungi un intervento tecnico',
+                                       tipo_intervento_option: tipo_intervento_option });
 });
 
-// add form data on the db
-router.post('/add', ensureAuthenticated, function(req, res, next) {
-    var intervento = new Intervento();
-    intervento.codice                  = req.body.codice;
-    intervento.tipo_intervento         = req.body.tipo_intervento;
-    intervento.data                    = req.body.data;
-    intervento.ora_inizio              = req.body.ora_inizio;
-    intervento.ora_fine                = req.body.ora_fine;
-    intervento.note                    = req.body.note;
-
-    intervento.save(function(err) {
-        console.log('save ' + err);
-        if (err)
-            throw err;
+/* edit intervento */
+router.get('/edit/:code', ensureAuthenticated, function(req, res, next) {
+      Intervento.findOne({ 'codice' :  req.params.code }, function(err, pojo) {
+      if (err){
+        console.log(err);
         return;
+      }
+      res.render('app/intervento/add',{ title: 'Modifica intervento',
+                                        intervento : pojo,
+                                        tipo_intervento_option: appUtil.setSelectedOption(tipo_intervento_option, pojo.tipo_intervento) });
     });
-
-    res.redirect('/intervento/'+intervento.codice);
 });
 
-/* GET tecnico */
+/* GET intervento */
 router.get('/:code', ensureAuthenticated, function(req, res, next) {
-    Intervento.findOne({ 'codice' :  req.params.code }, function(err, pojo) {
+      Intervento.findOne({ 'codice' :  req.params.code }, function(err, pojo) {
       if (err){
         console.log(err);
         return;
@@ -67,6 +60,36 @@ router.get('/:code', ensureAuthenticated, function(req, res, next) {
       res.render('app/intervento/view', { title: 'Dettaglio intervento', intervento: pojo });
     });
 });
+
+// add form data on the db
+router.post('/add', ensureAuthenticated, function(req, res, next) {
+  if(req.body.id){
+    Intervento.findById(req.body.id, function(err, pojo) {
+      populateRequestAndSave(req, pojo);
+      res.redirect('/intervento/'+pojo.codice);
+    });
+  }else{
+    var intervento = new Intervento();
+    populateRequestAndSave(req, intervento);
+    res.redirect('/intervento/'+intervento.codice);
+  }
+});
+
+function populateRequestAndSave(req, intervento){
+  intervento.codice                  = req.body.codice;
+  intervento.tipo_intervento         = req.body.tipo_intervento;
+  intervento.data                    = req.body.data;
+  intervento.ora_inizio              = req.body.ora_inizio;
+  intervento.ora_fine                = req.body.ora_fine;
+  intervento.note                    = req.body.note;
+
+  intervento.save(function(err) {
+      console.log('save ' + err);
+      if (err)
+          throw err;
+      return;
+  });
+}
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {

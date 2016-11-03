@@ -2,22 +2,23 @@ extends ../../layout/homepage-layout
 
 block content
   h1= title
-  if tariffa != null
+  if rate != null
     table(class="table table-striped")
       tr
         td
-          label Diritto di chiamata: #{tariffa.diritto_chiamata}
+          label Diritto di chiamata: #{rate.diritto_chiamata}
         td
-          label Tariffa fissa: #{tariffa.tariffa_fissa}
+          label Tariffa fissa: #{rate.tariffa_fissa}
       tr
         td
-          label Tariffa oraria: #{tariffa.tariffa_oraria}
+          label Tariffa oraria: #{rate.tariffa_oraria}
         td
-          label Frazioni d\'ora: #{tariffa.frazioni_ora}
+          label Frazioni d\'ora: #{rate.frazioni_ora}
       tr
         td
-          label Tariffa kilometrica: #{tariffa.tariffa_km}
+          label Tariffa kilometrica: #{rate.tariffa_km}
         td
+    a(href="/tariffe/edit/"+rate._id) Modifica tariffa
   else
     p Aggiungere il piano tariffario
     a(href="/tariffe/add") Aggiungi tariffa

@@ -9,35 +9,44 @@ block content
     div.form-group.row
       div.col-md-6.col-xs-12
         label(for='codice') #{__('codice')}
-        input(name='codice').form-control
+        input(name='codice', value=''+(intervento ? intervento.codice : '')).form-control
       div.col-md-6.col-xs-12
         label(for='tipo_intervento') #{__('tipo-intervento')}
         select(name='tipo_intervento').form-control.selectpicker
-          option(value="", disabled, selected) #{__('option-void')}
+          if intervento == null
+            option(value="", disabled, selected) #{__('option-void')}
+          else
+            option(value="", disabled) #{__('option-void')}
           each tipo in tipo_intervento_option
-            option #{__(tipo)}
+            if intervento != null
+              if tipo.selected
+                option(value=''+tipo.value, selected) #{__(tipo.value)}
+              else
+                option(value=''+tipo.value) #{__(tipo.value)}
+            else
+              option(value=''+tipo) #{__(tipo)}
     div.form-group.row
       div.col-md-6.col-xs-12
         label(for='data') #{__('data')}
-        input(name='data', type="date").form-control
+        input(name='data', type="date", value=''+(intervento ? intervento.data.toISOString().substring(0, 10) : '')).form-control
       div.col-md-3.col-xs-6
         label(for='ora_inizio') #{__('orario-inizio')}
         div.input-group.clockpicker
-          input.form-control(id="id-ora_inizio", name='ora_inizio',type='text')
+          input.form-control(id="id-ora_inizio", name='ora_inizio',type='text', value=''+(intervento ? intervento.ora_inizio : ''))
           span.input-group-addon
             span.glyphicon.glyphicon-time
       div.col-md-3.col-xs-6
         label(for='ora_fine') #{__('orario-fine')}
         div.input-group.clockpicker
-          input.form-control(id="id-ora_fine", name='ora_fine',type='text')
+          input.form-control(id="id-ora_fine", name='ora_fine',type='text', value=''+(intervento ? intervento.ora_fine : ''))
           span.input-group-addon
             span.glyphicon.glyphicon-time
     div.form-group.row
       div.col-md-12.col-xs-12
         label(for='note') #{__('note')}
-        textarea(name='note', rows="3").form-control
-
-    button(type="submit").btn.btn-default Aggiungi Intervento
+        textarea(name='note', rows="3").form-control #{intervento ? intervento.note : ''}
+    input(type="hidden",name='id', value=''+(intervento ? intervento._id : ''))
+    button(type="submit").btn.btn-default #{intervento ? 'Modifica' : Aggiungi} intervento
 
   a(href="/intervento") Elenco interventi |
   a(href="/intervento/add") Aggiungi intervento

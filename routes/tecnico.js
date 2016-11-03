@@ -15,38 +15,45 @@ router.get('/', ensureAuthenticated, function(req, res, next) {
 
 /* open page add new tecnico */
 router.get('/add', ensureAuthenticated, function(req, res, next) {
-    res.render('app/tecnico/add', { title: 'Aggiungi un tecnico' });
+  res.render('app/tecnico/add', { title: 'Aggiungi un tecnico'});
 });
 
 // add form data on the db
 router.post('/add', ensureAuthenticated, function(req, res, next) {
-    var technician = new Technician();
-    technician.name         = req.body.name;
-    technician.surname      = req.body.surname;
-    technician.account_code = req.body.account_code;
-    technician.address      = req.body.address;
-    technician.phone        = req.body.phone;
-    technician.email        = req.body.email;
-
-    technician.save(function(err) {
-        console.log('save ' + err);
-        if (err)
-            throw err;
-        return;
+  if(req.body.id){
+    // update
+    Technician.findById(req.body.id, function(err, technician){
+      populateRequestAndSave(req, technician);
+      res.redirect('/tecnico/'+technician.account_code);
     });
-
+  }else{
+    // insert
+    var technician = new Technician();
+    populateRequestAndSave(req, technician);
     res.redirect('/tecnico/'+technician.account_code);
+  }
 });
 
 /* GET tecnico */
 router.get('/:code', ensureAuthenticated, function(req, res, next) {
-    Technician.findOne({ 'account_code' :  req.params.code }, function(err, pojo) {
-      if (err){
-        console.log(err);
-        return;
-      }
-      res.render('app/tecnico/view', { tecnico: pojo });
-    });
+  Technician.findOne({ 'account_code' :  req.params.code }, function(err, pojo) {
+    if (err){
+      console.log(err);
+      return;
+    }
+    res.render('app/tecnico/view', { tecnico: pojo });
+  });
+});
+
+/* open page add new tecnico */
+router.get('/edit/:code', ensureAuthenticated, function(req, res, next) {
+  Technician.findOne({ 'account_code' :  req.params.code }, function(err, pojo) {
+    if (err){
+      console.log(err);
+      return;
+    }
+    res.render('app/tecnico/add', { title: 'Modifica il tecnico', tecnico : pojo });
+  });
 });
 
 function ensureAuthenticated(req, res, next) {
@@ -54,6 +61,22 @@ function ensureAuthenticated(req, res, next) {
       return next();
   }
   res.redirect('/login')
+}
+
+function populateRequestAndSave(req, technician){
+  technician.name         = req.body.name;
+  technician.surname      = req.body.surname;
+  technician.account_code = req.body.account_code;
+  technician.address      = req.body.address;
+  technician.phone        = req.body.phone;
+  technician.email        = req.body.email;
+
+  technician.save(function(err) {
+    console.log('save ' + err);
+    if (err)
+      throw err;
+    return;
+  });
 }
 
 module.exports = router;
