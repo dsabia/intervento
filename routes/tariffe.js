@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var TechnicianRate = require('../models/technician_rate');
+var appUtil = require('../services/app_util');
 
 var frazioni_dora_option = [1,  5, 15, 30, 60];
 /* GET dettaglio unica tariffa */
@@ -27,7 +28,7 @@ router.get('/add', ensureAuthenticated, function(req, res, next) {
 /* open page add new tariffa */
 router.get('/edit/:id', ensureAuthenticated, function(req, res, next) {
   TechnicianRate.findById(req.params.id, function(err, pojo){
-    res.render('app/tariffe/edit', { title: 'Modifica tariffa', rate: pojo, frazioni_dora_option: setSelectedOption(frazioni_dora_option, pojo.frazioni_ora) });
+    res.render('app/tariffe/edit', { title: 'Modifica tariffa', rate: pojo, frazioni_dora_option: appUtil.setSelectedOption(frazioni_dora_option, pojo.frazioni_ora) });
   });
 });
 
@@ -59,15 +60,6 @@ function populateRequestAndSave(req, rate){
           throw err;
       return;
   });
-}
-
-function setSelectedOption(options, value){
-  var result = [];
-  for (var i = 0; i < options.length; i++) {
-    var o_value = options[i];
-    result.push({value : o_value, selected : o_value==value});
-  }
-  return result;
 }
 
 function ensureAuthenticated(req, res, next) {

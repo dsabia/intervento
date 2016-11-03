@@ -7,7 +7,7 @@ block content
   if intervento != null
     p Dettaglio intervento #{intervento.codice}
     +intervento(intervento)
-
+    a(href="/intervento/edit/"+intervento.codice) Modifica intervento
   else
     table(class="table table-striped table-responsive")
       tr
@@ -19,9 +19,10 @@ block content
         tr
           td
             a(href='/intervento/'+ item.codice) #{item.codice}
-          td #{item.tipo_intervento}
+          td #{__(item.tipo_intervento)}
           td #{item.data.toDateString()}
           td #{item.ora_inizio} - #{item.ora_fine}
 
+  br
   a(href="/intervento") Elenco interventi |
   a(href="/intervento/add") Aggiungi intervento
