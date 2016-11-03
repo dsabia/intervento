@@ -14,9 +14,16 @@ router.get('/', ensureAuthenticated, function(req, res, next) {
   });
 });
 
-/* open page add new cliente */
+/* open page add new material */
 router.get('/add', ensureAuthenticated, function(req, res, next) {
   res.render('app/materiale/add', { title: 'Aggiungi materiale'});
+});
+
+/* open page edit material */
+router.get('/edit/:codice', ensureAuthenticated, function(req, res, next) {
+  Material.findOne({ 'codice' :  req.params.codice }, function(err, pojo){
+    res.render('app/materiale/add', { title: 'Modifica materiale', material : pojo});
+  });
 });
 
 // load detail page by code
@@ -32,9 +39,19 @@ router.get('/:codice', ensureAuthenticated, function(req, res, next) {
 
 // add form data on db
 router.post('/add', ensureAuthenticated, function(req, res, next) {
-  var material = new Material();
-  console.log(req.body.codice);
-  console.log(material);
+  if(req.body.id){
+    Material.findById(req.body.id, function(err, pojo){
+      populateRequestAndSave(req, pojo);
+      res.redirect('/materiale/'+pojo.codice);
+    });
+  }else{
+    var material = new Material();
+    populateRequestAndSave(req, material);
+    res.redirect('/materiale/'+material.codice);
+  }
+});
+
+function populateRequestAndSave(req, material){
   material.codice    		   = req.body.codice;
   material.nome_prodotto   = req.body.nome_prodotto;
   material.descrizione     = req.body.descrizione;
@@ -42,15 +59,14 @@ router.post('/add', ensureAuthenticated, function(req, res, next) {
   //material.matricola     	 = req.body.matricola;
   //material.sconto     		 = req.body.sconto;
   //material.quantita     	 = req.body.quantita;
+
   material.save(function(err) {
       console.log('save ' + err);
       if (err)
           throw err;
       return;
   });
-
-  res.redirect('/materiale/'+material.codice);
-});
+}
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {

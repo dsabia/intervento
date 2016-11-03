@@ -7,22 +7,23 @@ block content
     div.form-group.row
       div.col-md-6.col-xs-12
         label(for='nome_prodotto') Nome prodotto
-        input(name='nome_prodotto').form-control
+        input(name='nome_prodotto', value=''+(material ? material.nome_prodotto : '')).form-control
       div.col-md-6.col-xs-12
         label(for='codice') Codice
-        input(name='codice').form-control
+        input(name='codice', value=''+(material ? material.codice : '')).form-control
     div.form-group.row
       div.col-md-12.col-xs-12
         label(for='descrizione') Descrizione
-        input(name='descrizione', type='area').form-control
+        input(name='descrizione', type='area', value=''+(material ? material.descrizione : '')).form-control
     div.form-group.row
       div.col-md-6.col-xs-12
         label(for='prezzo') Prezzo
         div.input-group
           span.input-group-addon
             span.fa.fa-euro
-          input(name='prezzo', type='number', min="0", step="0.01", data-number-to-fixed="2" ).form-control.currency
-    button(type="submit").btn.btn-default Aggiungi Materiale
+          input(name='prezzo', type='number', min="0", step="0.01", data-number-to-fixed="2", value=''+(material ? material.prezzo : '')).form-control.currency
+    input(type="hidden", name="id", value=''+(material ? material._id : ''))
+    button(type="submit").btn.btn-default #{material ? 'Modifica' : 'Aggiungi'} Materiale
 
   a(href="/materiale") Elenco materiali |
   a(href="/materiale/add") Aggiungi materiale

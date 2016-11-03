@@ -16,7 +16,8 @@ block content
       tr
         td
           label #{materiale.prezzo}
-
+    a(href="/materiale/edit/" + materiale.codice) Modifica materiale
+    br
   else
     table(class="table table-striped table-responsive")
       tr
