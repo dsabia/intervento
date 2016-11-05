@@ -33,32 +33,39 @@ router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
 
 /* open page add new intervento */
 router.get('/add', appUtil.ensureAuthenticated, function(req, res, next) {
-    res.render('app/intervento/add', { title: 'Aggiungi un intervento tecnico',
-                                       tipo_intervento_option: tipo_intervento_option });
+  res.render('app/intervento/add', { title: 'Aggiungi un intervento tecnico',
+                                     tipo_intervento_option: tipo_intervento_option });
 });
 
 /* edit intervento */
 router.get('/edit/:code', appUtil.ensureAuthenticated, function(req, res, next) {
-      Intervento.findOne({ 'codice' :  req.params.code }, function(err, pojo) {
-      if (err){
-        console.log(err);
-        return;
-      }
-      res.render('app/intervento/add',{ title: 'Modifica intervento',
-                                        intervento : pojo,
-                                        tipo_intervento_option: appUtil.setSelectedOption(tipo_intervento_option, pojo.tipo_intervento) });
-    });
+  Intervento.findOne({ 'codice' :  req.params.code }, function(err, pojo) {
+    if (err){
+      console.log(err);
+      return;
+    }
+    res.render('app/intervento/add',{ title: 'Modifica intervento',
+                                      intervento : pojo,
+                                      tipo_intervento_option: appUtil.setSelectedOption(tipo_intervento_option, pojo.tipo_intervento) });
+  });
+});
+
+/* delete intervento */
+router.get('/delete/:id', appUtil.ensureAuthenticated, function(req, res, next) {
+  Intervento.remove({ '_id' :  req.params.id }, function(err, pojo) {
+    res.redirect('/intervento');
+  });
 });
 
 /* GET intervento */
 router.get('/:code', appUtil.ensureAuthenticated, function(req, res, next) {
-      Intervento.findOne({ 'codice' :  req.params.code }, function(err, pojo) {
-      if (err){
-        console.log(err);
-        return;
-      }
-      res.render('app/intervento/view', { title: 'Dettaglio intervento', intervento: pojo });
-    });
+  Intervento.findOne({ 'codice' :  req.params.code }, function(err, pojo) {
+    if (err){
+      console.log(err);
+      return;
+    }
+    res.render('app/intervento/view', { title: 'Dettaglio intervento', intervento: pojo });
+  });
 });
 
 // add form data on the db

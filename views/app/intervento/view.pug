@@ -7,7 +7,8 @@ block content
   if intervento != null
     p Dettaglio intervento #{intervento.codice}
     +intervento(intervento)
-    a(href="/intervento/edit/"+intervento.codice) Modifica intervento
+    a(href="/intervento/edit/"+intervento.codice) Modifica intervento |
+    a(href="/intervento/delete/"+intervento._id) Elimina intervento |
   else
     table(class="table table-striped table-responsive")
       tr

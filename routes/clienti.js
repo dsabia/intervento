@@ -26,6 +26,13 @@ router.get('/edit/:codice', appUtil.ensureAuthenticated, function(req, res, next
   });
 });
 
+// delete cliente
+router.get('/delete/:id', appUtil.ensureAuthenticated, function(req, res, next) {
+  Customer.remove({ '_id' :  req.params.id }, function(err, customer) {
+    res.redirect('/clienti');
+  });
+});
+
 // load detail page by code
 router.get('/:codice', appUtil.ensureAuthenticated, function(req, res, next) {
   Customer.findOne({ 'codice' :  req.params.codice }, function(err, customer) {

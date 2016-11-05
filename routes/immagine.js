@@ -36,26 +36,26 @@ module.exports = function(mongo, db){
 
   /* open page add immagine */
   router.get('/add', appUtil.ensureAuthenticated, function(req, res, next) {
-      res.render('app/immagine/add', { title: 'Aggiungi immagine' });
+    res.render('app/immagine/add', { title: 'Aggiungi immagine' });
   });
 
   // add form data on the db
   router.post('/add',  upload.single('immagine'), function(req, res, next) {
-      var image = new Image();
-      image.descrizione     = req.body.descrizione;
-      image.nome_immagine   = req.file.filename;
-      image.data            = fs.readFileSync(req.file.path);
-      image.contentType     = req.file.mimetype;
+    var image = new Image();
+    image.descrizione     = req.body.descrizione;
+    image.nome_immagine   = req.file.originalname;
+    image.data            = fs.readFileSync(req.file.path);
+    image.contentType     = req.file.mimetype;
 
-      image.save(function(err) {
-          if (err){
-            console.log('save ' + err);
-            throw err;
-          }
-          return;
-      });
+    image.save(function(err) {
+      if (err){
+        console.log('save ' + err);
+        throw err;
+      }
+      return;
+    });
 
-      res.redirect('/immagine/detail/' + image.nome_immagine);
+    res.redirect('/immagine/detail/' + image.nome_immagine);
   });
 
   /* detail image */
@@ -65,8 +65,14 @@ module.exports = function(mongo, db){
         console.log(err);
         return;
       }
-    //  res.sendfile(path.resolve('./uploads/image.png'));
-      res.render('app/immagine/view', { title: 'Aggiungi immagine', immagine: pojo });
+      res.render('app/immagine/view', { title: 'Dettaglio immagine', immagine: pojo });
+    });
+  });
+
+  /* delete image */
+  router.get('/delete/:id', appUtil.ensureAuthenticated, function(req, res, next) {
+    Image.remove({ '_id' :  req.params.id }, function(err, pojo) {
+      res.redirect('/immagine');
     });
   });
 

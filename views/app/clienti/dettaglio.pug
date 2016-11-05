@@ -24,7 +24,8 @@ block content
           label Telefono         : #{customer.telefono}
         td
           label Email            : #{customer.email}
-    a(href="/clienti/edit/" + (customer ? customer.codice : '')) Modifica cliente
+    a(href="/clienti/edit/" + customer.codice) Modifica cliente |
+    a(href="/clienti/delete/" + customer._id) Elimina cliente
     br
   else
     h2 Lista dei clienti

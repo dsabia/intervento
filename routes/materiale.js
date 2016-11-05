@@ -26,6 +26,13 @@ router.get('/edit/:codice', appUtil.ensureAuthenticated, function(req, res, next
   });
 });
 
+/* open page delete material */
+router.get('/delete/:id', appUtil.ensureAuthenticated, function(req, res, next) {
+  Material.remove({ '_id' :  req.params.id }, function(err){
+    res.redirect('/materiale');
+  });
+});
+
 // load detail page by code
 router.get('/:codice', appUtil.ensureAuthenticated, function(req, res, next) {
   Material.findOne({ 'codice' :  req.params.codice }, function(err, pojo) {

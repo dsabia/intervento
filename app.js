@@ -15,12 +15,9 @@ var i18n = require("i18n");
 var cookieParser = require('cookie-parser');
 
 //Mongo DB code
-var mongo = require('mongodb');
 var config = require('config');
-//var monk = require('monk');
-//var db = monk(configDB.url);
+var mongo = require('mongodb');
 var mongoose = require('mongoose');
-
 var db = mongoose.connect(config.database_url);
 db.safe = {w: 1};
 
