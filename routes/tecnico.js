@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
+var appUtil = require('../services/app_util');
 var Technician = require('../models/technician');
 
 /* GET elenco tecnici */
-router.get('/', ensureAuthenticated, function(req, res, next) {
+router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
   Technician.find({}, function(err, list_pojos) {
     if (err){
       console.log(err);
@@ -14,12 +15,12 @@ router.get('/', ensureAuthenticated, function(req, res, next) {
 });
 
 /* open page add new tecnico */
-router.get('/add', ensureAuthenticated, function(req, res, next) {
+router.get('/add', appUtil.ensureAuthenticated, function(req, res, next) {
   res.render('app/tecnico/add', { title: 'Aggiungi un tecnico'});
 });
 
 // add form data on the db
-router.post('/add', ensureAuthenticated, function(req, res, next) {
+router.post('/add', appUtil.ensureAuthenticated, function(req, res, next) {
   if(req.body.id){
     // update
     Technician.findById(req.body.id, function(err, technician){
@@ -35,7 +36,7 @@ router.post('/add', ensureAuthenticated, function(req, res, next) {
 });
 
 /* GET tecnico */
-router.get('/:code', ensureAuthenticated, function(req, res, next) {
+router.get('/:code', appUtil.ensureAuthenticated, function(req, res, next) {
   Technician.findOne({ 'account_code' :  req.params.code }, function(err, pojo) {
     if (err){
       console.log(err);
@@ -46,7 +47,7 @@ router.get('/:code', ensureAuthenticated, function(req, res, next) {
 });
 
 /* open page add new tecnico */
-router.get('/edit/:code', ensureAuthenticated, function(req, res, next) {
+router.get('/edit/:code', appUtil.ensureAuthenticated, function(req, res, next) {
   Technician.findOne({ 'account_code' :  req.params.code }, function(err, pojo) {
     if (err){
       console.log(err);
@@ -55,13 +56,6 @@ router.get('/edit/:code', ensureAuthenticated, function(req, res, next) {
     res.render('app/tecnico/add', { title: 'Modifica il tecnico', tecnico : pojo });
   });
 });
-
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-      return next();
-  }
-  res.redirect('/login')
-}
 
 function populateRequestAndSave(req, technician){
   technician.name         = req.body.name;

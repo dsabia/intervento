@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-
-var Material            = require('../models/material');
+var appUtil = require('../services/app_util');
+var Material = require('../models/material');
 
 /* GET scheda */
-router.get('/', ensureAuthenticated, function(req, res, next) {
+router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
   Material.find({}, function(err, list_pojos) {
     if (err){
       console.log(err);
@@ -15,19 +15,19 @@ router.get('/', ensureAuthenticated, function(req, res, next) {
 });
 
 /* open page add new material */
-router.get('/add', ensureAuthenticated, function(req, res, next) {
+router.get('/add', appUtil.ensureAuthenticated, function(req, res, next) {
   res.render('app/materiale/add', { title: 'Aggiungi materiale'});
 });
 
 /* open page edit material */
-router.get('/edit/:codice', ensureAuthenticated, function(req, res, next) {
+router.get('/edit/:codice', appUtil.ensureAuthenticated, function(req, res, next) {
   Material.findOne({ 'codice' :  req.params.codice }, function(err, pojo){
     res.render('app/materiale/add', { title: 'Modifica materiale', material : pojo});
   });
 });
 
 // load detail page by code
-router.get('/:codice', ensureAuthenticated, function(req, res, next) {
+router.get('/:codice', appUtil.ensureAuthenticated, function(req, res, next) {
   Material.findOne({ 'codice' :  req.params.codice }, function(err, pojo) {
     if (err){
       pojo.log(err);
@@ -38,7 +38,7 @@ router.get('/:codice', ensureAuthenticated, function(req, res, next) {
 });
 
 // add form data on db
-router.post('/add', ensureAuthenticated, function(req, res, next) {
+router.post('/add', appUtil.ensureAuthenticated, function(req, res, next) {
   if(req.body.id){
     Material.findById(req.body.id, function(err, pojo){
       populateRequestAndSave(req, pojo);
@@ -66,13 +66,6 @@ function populateRequestAndSave(req, material){
           throw err;
       return;
   });
-}
-
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/login')
 }
 
 module.exports = router;

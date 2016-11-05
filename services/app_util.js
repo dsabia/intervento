@@ -9,4 +9,12 @@ exports.setSelectedOption = function (options, value){
   return result;
 }
 
+
+exports.ensureAuthenticated = function (req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/login')
+}
+
 module.exports = exports;

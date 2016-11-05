@@ -5,7 +5,7 @@ var appUtil = require('../services/app_util');
 
 var frazioni_dora_option = [1,  5, 15, 30, 60];
 /* GET dettaglio unica tariffa */
-router.get('/', ensureAuthenticated, function(req, res, next) {
+router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
   TechnicianRate.find({}, function(err, list_results) {
     if (err){
       console.log(err);
@@ -21,19 +21,19 @@ router.get('/', ensureAuthenticated, function(req, res, next) {
 });
 
 /* open page add new tariffa */
-router.get('/add', ensureAuthenticated, function(req, res, next) {
+router.get('/add', appUtil.ensureAuthenticated, function(req, res, next) {
   res.render('app/tariffe/edit', { title: 'Aggiungi tariffa', frazioni_dora_option: frazioni_dora_option });
 });
 
 /* open page add new tariffa */
-router.get('/edit/:id', ensureAuthenticated, function(req, res, next) {
+router.get('/edit/:id', appUtil.ensureAuthenticated, function(req, res, next) {
   TechnicianRate.findById(req.params.id, function(err, pojo){
     res.render('app/tariffe/edit', { title: 'Modifica tariffa', rate: pojo, frazioni_dora_option: appUtil.setSelectedOption(frazioni_dora_option, pojo.frazioni_ora) });
   });
 });
 
 // add form data on the db
-router.post('/edit', ensureAuthenticated, function(req, res, next) {
+router.post('/edit', appUtil.ensureAuthenticated, function(req, res, next) {
   if(req.body.id){
     // update
     TechnicianRate.findById(req.body.id, function(err, rate){
@@ -60,13 +60,6 @@ function populateRequestAndSave(req, rate){
           throw err;
       return;
   });
-}
-
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-      return next();
-  }
-  res.redirect('/login')
 }
 
 module.exports = router;

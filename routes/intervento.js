@@ -14,7 +14,7 @@ var tipo_intervento_option = [
 
 
 /* GET elenco tecnici */
-router.get('/', ensureAuthenticated, function(req, res, next) {
+router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
   Intervento.find({}, function(err, list_results) {
     if (err){
       console.log(err);
@@ -32,13 +32,13 @@ router.get('/', ensureAuthenticated, function(req, res, next) {
 });
 
 /* open page add new intervento */
-router.get('/add', ensureAuthenticated, function(req, res, next) {
+router.get('/add', appUtil.ensureAuthenticated, function(req, res, next) {
     res.render('app/intervento/add', { title: 'Aggiungi un intervento tecnico',
                                        tipo_intervento_option: tipo_intervento_option });
 });
 
 /* edit intervento */
-router.get('/edit/:code', ensureAuthenticated, function(req, res, next) {
+router.get('/edit/:code', appUtil.ensureAuthenticated, function(req, res, next) {
       Intervento.findOne({ 'codice' :  req.params.code }, function(err, pojo) {
       if (err){
         console.log(err);
@@ -51,7 +51,7 @@ router.get('/edit/:code', ensureAuthenticated, function(req, res, next) {
 });
 
 /* GET intervento */
-router.get('/:code', ensureAuthenticated, function(req, res, next) {
+router.get('/:code', appUtil.ensureAuthenticated, function(req, res, next) {
       Intervento.findOne({ 'codice' :  req.params.code }, function(err, pojo) {
       if (err){
         console.log(err);
@@ -62,7 +62,7 @@ router.get('/:code', ensureAuthenticated, function(req, res, next) {
 });
 
 // add form data on the db
-router.post('/add', ensureAuthenticated, function(req, res, next) {
+router.post('/add', appUtil.ensureAuthenticated, function(req, res, next) {
   if(req.body.id){
     Intervento.findById(req.body.id, function(err, pojo) {
       populateRequestAndSave(req, pojo);
@@ -89,13 +89,6 @@ function populateRequestAndSave(req, intervento){
           throw err;
       return;
   });
-}
-
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-      return next();
-  }
-  res.redirect('/login')
 }
 
 module.exports = router;

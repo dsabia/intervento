@@ -24,17 +24,6 @@ var mongoose = require('mongoose');
 var db = mongoose.connect(config.database_url);
 db.safe = {w: 1};
 
-// routes
-var router = require('./routes/index');
-var tecnico = require('./routes/tecnico');
-var clienti = require('./routes/clienti');
-var materiale = require('./routes/materiale');
-var tariffe = require('./routes/tariffe');
-var intervento = require('./routes/intervento');
-//var immagine = require('./routes/immagine')(mongo, db);
-
-require('./services/passport')(passport);
-
 i18n.configure({
     locales:['it', 'en'],
     defaultLocale: 'it',
@@ -70,6 +59,15 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+
+// routes
+var router = require('./routes/index');
+var tecnico = require('./routes/tecnico');
+var clienti = require('./routes/clienti');
+var materiale = require('./routes/materiale');
+var tariffe = require('./routes/tariffe');
+var intervento = require('./routes/intervento');
+require('./services/passport')(passport);
 
 app.use('/', router);
 app.use('/tecnico', tecnico);
@@ -110,14 +108,5 @@ app.use(function(err, req, res, next) {
   });
 });
 
-/* Make our db accessible to our router
-app.use(function(req,res,next){
-    req.db = db;
-    req.mongo = mongo;
-    next();
-});
-*/
-
 console.log("Initialization completed!");
-
 module.exports = app;
