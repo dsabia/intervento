@@ -8,7 +8,8 @@ var technicianRateSchema = mongoose.Schema({
     tariffa_fissa     : Number,
     tariffa_km        : Number,
     tariffa_oraria    : Number,
-    frazioni_ora      : Number
+    frazioni_ora      : Number,
+    owner             : mongoose.Schema.Types.ObjectId
 });
 
 // methods ======================

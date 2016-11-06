@@ -15,7 +15,7 @@ var tipo_intervento_option = [
 
 /* GET elenco tecnici */
 router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
-  Intervento.find({}, function(err, list_results) {
+  Intervento.find({'owner' : req.user._id}, function(err, list_results) {
     if (err){
       console.log(err);
       return;
@@ -39,7 +39,7 @@ router.get('/add', appUtil.ensureAuthenticated, function(req, res, next) {
 
 /* edit intervento */
 router.get('/edit/:code', appUtil.ensureAuthenticated, function(req, res, next) {
-  Intervento.findOne({ 'codice' :  req.params.code }, function(err, pojo) {
+  Intervento.findOne({ 'codice' :  req.params.code, 'owner' : req.user._id}, function(err, pojo) {
     if (err){
       console.log(err);
       return;
@@ -59,7 +59,7 @@ router.get('/delete/:id', appUtil.ensureAuthenticated, function(req, res, next) 
 
 /* GET intervento */
 router.get('/:code', appUtil.ensureAuthenticated, function(req, res, next) {
-  Intervento.findOne({ 'codice' :  req.params.code }, function(err, pojo) {
+  Intervento.findOne({ 'codice' :  req.params.code, 'owner' : req.user._id}, function(err, pojo) {
     if (err){
       console.log(err);
       return;
@@ -89,6 +89,7 @@ function populateRequestAndSave(req, intervento){
   intervento.ora_inizio              = req.body.ora_inizio;
   intervento.ora_fine                = req.body.ora_fine;
   intervento.note                    = req.body.note;
+  intervento.owner                   = req.user._id;
 
   intervento.save(function(err) {
       console.log('save ' + err);

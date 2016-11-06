@@ -9,7 +9,8 @@ var technicianSchema = mongoose.Schema({
     account_code      : String,
     address           : String,
     phone             : String,
-    email             : String
+    email             : String,
+    owner             : mongoose.Schema.Types.ObjectId
 });
 
 // methods ======================

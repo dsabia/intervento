@@ -4,7 +4,8 @@ var imageSchema = mongoose.Schema({
     nome_immagine  : String,
     descrizione    : String,
     data           : Buffer,
-    contentType    : String
+    contentType    : String,
+    owner             : mongoose.Schema.Types.ObjectId
 });
 
 // methods ======================
