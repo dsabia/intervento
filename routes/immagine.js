@@ -18,7 +18,7 @@ module.exports = function(mongo, db){
 
   /* GET dettaglio unica tariffa */
   router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
-    Image.find({}, function(err, list_results) {
+    Image.find({'owner' : req.user._id}, function(err, list_results) {
       if (err){
         console.log(err);
         return;
@@ -46,6 +46,7 @@ module.exports = function(mongo, db){
     image.nome_immagine   = req.file.originalname;
     image.data            = fs.readFileSync(req.file.path);
     image.contentType     = req.file.mimetype;
+    image.owner           = req.user._id;
 
     image.save(function(err) {
       if (err){
@@ -60,7 +61,7 @@ module.exports = function(mongo, db){
 
   /* detail image */
   router.get('/detail/:nome_immagine', appUtil.ensureAuthenticated, function(req, res, next) {
-    Image.findOne({ 'nome_immagine' :  req.params.nome_immagine }, function(err, pojo) {
+    Image.findOne({ 'nome_immagine' :  req.params.nome_immagine, 'owner' : req.user._id}, function(err, pojo) {
       if (err){
         console.log(err);
         return;
@@ -79,7 +80,7 @@ module.exports = function(mongo, db){
   /* stream image */
   router.get('/file/:nome_immagine', appUtil.ensureAuthenticated, function(req, res, next) {
     var nome_immagine = req.params.nome_immagine;
-    Image.findOne({'nome_immagine' : nome_immagine}, function(err, pojo) {
+    Image.findOne({'nome_immagine' : nome_immagine, 'owner' : req.user._id}, function(err, pojo) {
       if (err){
         console.log(err);
         return;

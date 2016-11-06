@@ -28,7 +28,7 @@ block content
     div.form-group.row
       div.col-md-6.col-xs-12
         label(for='data') #{__('data')}
-        input(name='data', type="date", value=''+(intervento ? intervento.data.toISOString().substring(0, 10) : '')).form-control
+        input(name='data', type="date", required, value=''+(intervento ? intervento.data.toISOString().substring(0, 10) : '')).form-control
       div.col-md-3.col-xs-6
         label(for='ora_inizio') #{__('orario-inizio')}
         div.input-group.clockpicker
@@ -46,7 +46,7 @@ block content
         label(for='note') #{__('note')}
         textarea(name='note', rows="3").form-control #{intervento ? intervento.note : ''}
     input(type="hidden",name='id', value=''+(intervento ? intervento._id : ''))
-    button(type="submit").btn.btn-default #{intervento ? 'Modifica' : Aggiungi} intervento
+    button(type="submit").btn.btn-default #{intervento ? 'Modifica' : 'Aggiungi'} intervento
 
   a(href="/intervento") Elenco interventi |
   a(href="/intervento/add") Aggiungi intervento

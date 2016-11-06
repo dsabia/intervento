@@ -5,7 +5,7 @@ var Material = require('../models/material');
 
 /* GET scheda */
 router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
-  Material.find({}, function(err, list_pojos) {
+  Material.find({'owner' : req.user._id}, function(err, list_pojos) {
     if (err){
       console.log(err);
       return;
@@ -21,7 +21,7 @@ router.get('/add', appUtil.ensureAuthenticated, function(req, res, next) {
 
 /* open page edit material */
 router.get('/edit/:codice', appUtil.ensureAuthenticated, function(req, res, next) {
-  Material.findOne({ 'codice' :  req.params.codice }, function(err, pojo){
+  Material.findOne({ 'codice' :  req.params.codice, 'owner' : req.user._id}, function(err, pojo){
     res.render('app/materiale/add', { title: 'Modifica materiale', material : pojo});
   });
 });
@@ -35,7 +35,7 @@ router.get('/delete/:id', appUtil.ensureAuthenticated, function(req, res, next) 
 
 // load detail page by code
 router.get('/:codice', appUtil.ensureAuthenticated, function(req, res, next) {
-  Material.findOne({ 'codice' :  req.params.codice }, function(err, pojo) {
+  Material.findOne({ 'codice' :  req.params.codice, 'owner' : req.user._id}, function(err, pojo) {
     if (err){
       pojo.log(err);
       return;
@@ -66,7 +66,8 @@ function populateRequestAndSave(req, material){
   //material.matricola     	 = req.body.matricola;
   //material.sconto     		 = req.body.sconto;
   //material.quantita     	 = req.body.quantita;
-
+  material.owner           = req.user._id;
+  
   material.save(function(err) {
       console.log('save ' + err);
       if (err)

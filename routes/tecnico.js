@@ -59,7 +59,7 @@ router.get('/edit/:code', appUtil.ensureAuthenticated, function(req, res, next) 
 
 /* open page add new tecnico */
 router.get('/delete/:id', appUtil.ensureAuthenticated, function(req, res, next) {
-  Technician.remove({ '_id' :  req.params.id , 'owner' : req.user._id}, function(err) {
+  Technician.remove({ '_id' :  req.params.id}, function(err) {
     res.redirect('/tecnico');
   });
 });

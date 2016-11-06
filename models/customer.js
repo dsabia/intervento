@@ -10,7 +10,8 @@ var customerSchema = mongoose.Schema({
     piva_cf           : String,
     indirizzo         : String,
     telefono          : String,
-    email             : String
+    email             : String,
+    owner             : mongoose.Schema.Types.ObjectId
 });
 
 // methods ======================
