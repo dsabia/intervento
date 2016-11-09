@@ -16,4 +16,7 @@ var technicianSchema = mongoose.Schema({
 // methods ======================
 
 // create the model for users and expose it to our app
-module.exports = mongoose.model('Technician', technicianSchema);
+module.exports = {
+  model : mongoose.model('Technician', technicianSchema),
+  schema: technicianSchema
+}

@@ -17,4 +17,7 @@ var customerSchema = mongoose.Schema({
 // methods ======================
 
 // create the model for users and expose it to our app
-module.exports = mongoose.model('Customer', customerSchema);
+module.exports = {
+  model: mongoose.model('Customer', customerSchema),
+  schema: customerSchema
+}

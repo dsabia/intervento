@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var appUtil = require('../services/app_util');
-var Customer            = require('../models/customer');
+var Customer = require('../models/customer').model;
 
 /* GET scheda */
 router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
@@ -67,7 +67,7 @@ function populateRequestAndSave(req, customer){
     customer.telefono              = req.body.telefono;
     customer.email                 = req.body.email;
     customer.owner                 = req.user._id;
-    
+
     customer.save(function(err) {
         console.log('save ' + err);
         if (err)

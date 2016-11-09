@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var appUtil = require('../services/app_util');
-var Technician = require('../models/technician');
+var Technician = require('../models/technician').model;
 
 /* GET elenco tecnici */
 router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
