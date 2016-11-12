@@ -10,7 +10,7 @@ block content
       div.col-md-6.col-xs-12
     div.form-group.row
       label(for='customer') Cliente
-      input(name='customer', value=''+(work ? work.customer.ragione_sociale : '')).form-control
+      input.typeahead( name='customer', value=''+(work ? work.customer.ragione_sociale : '')).form-control
 
     input(type="hidden", name="id", value=''+(work ? work._id : ''))
     button(type="submit").btn.btn-default #{work ? 'Modifica' : 'Aggiungi'} lavoro
@@ -18,3 +18,5 @@ block content
   br
   a(href="/lavoro") Elenco lavori |
   a(href="/lavoro/add") Aggiungi lavoro
+
+  script(src='/javascripts/lavoro/add.js')
