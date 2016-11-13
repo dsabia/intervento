@@ -8,9 +8,12 @@ block content
         label(for='codice') Codice
         input(name='codice', value=''+(work ? work.codice : '')).form-control
       div.col-md-6.col-xs-12
+        label(for='customer') Cliente
+        input.typeahead(id='customer_th', name='customer', required, value=''+(work ? work.customer.ragione_sociale : '')).form-control
     div.form-group.row
-      label(for='customer') Cliente
-      input.typeahead( name='customer', required ,value=''+(work ? work.customer.ragione_sociale : '')).form-control
+      div.col-md-6.col-xs-12
+        label(for='technician') Tecnico
+        input.typeahead(id='technician_th',  name='technician', required, value=''+(work ? work.technician.name : '')).form-control
 
     input(type="hidden", name="id", value=''+(work ? work._id : ''))
     button(type="submit").btn.btn-default #{work ? 'Modifica' : 'Aggiungi'} lavoro

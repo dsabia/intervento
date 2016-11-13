@@ -4,9 +4,9 @@ var mongoose = require('mongoose');
 
 // define the schema for our user model
 var technicianSchema = mongoose.Schema({
+    account_code      : String,
     name              : String,
     surname           : String,
-    account_code      : String,
     address           : String,
     phone             : String,
     email             : String,
