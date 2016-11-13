@@ -15,6 +15,7 @@
   "customer"  : "Clienti",
   "intervention" : "Intervento",
   "technician": "Tecnico",
+  "work_record"  : "Registro lavori",
 
   "index-title" : "Autenticazione",
   "index-subtitle" : "Accedi o Registrati:",

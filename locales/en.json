@@ -15,6 +15,7 @@
   "customer"  : "Customer",
   "intervention" : "Intervention",
   "technician": "Technician",
+  "work_record"  : "Work record",
 
   "index-title" : "Authentication",
   "index-subtitle" : "Login or Signup with:",

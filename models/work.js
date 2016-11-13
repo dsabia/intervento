@@ -5,10 +5,10 @@ var interventoSchema = require('../models/intervention').schema;
 
 // define the schema for our user model
 var workSchema = mongoose.Schema({
-    codice            : String,
+    code              : String,
     customer          : {type: mongoose.Schema.Types.ObjectId, ref: 'Customer'},
     technician        : {type: mongoose.Schema.Types.ObjectId, ref: 'Technician'},
-    interventi        : [interventoSchema],
+    interventions     : [interventoSchema],
     owner             : mongoose.Schema.Types.ObjectId
 });
 

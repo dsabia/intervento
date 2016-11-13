@@ -3,7 +3,7 @@ jQuery(document).ready(function($) {
     // Set the Options for "Bloodhound" suggestion engine
     var clientiEngine = new Bloodhound({
         remote: {
-            url: '/lavoro/clienti/%QUERY%',
+            url: '/work/customer/%QUERY%',
             wildcard: '%QUERY%'
         },
         datumTokenizer: Bloodhound.tokenizers.whitespace('q'),
@@ -12,7 +12,7 @@ jQuery(document).ready(function($) {
 
     var tecniciEngine = new Bloodhound({
         remote: {
-            url: '/lavoro/tecnici/%QUERY%',
+            url: '/work/technician/%QUERY%',
             wildcard: '%QUERY%'
         },
         datumTokenizer: Bloodhound.tokenizers.whitespace('q'),
@@ -26,7 +26,7 @@ jQuery(document).ready(function($) {
     }, {
         source: clientiEngine.ttAdapter(),
 
-        display: 'ragione_sociale',
+        display: 'company_name',
 
         // This will be appended to "tt-dataset-" to form the class name of the suggestion menu.
         name: 'customer',
@@ -39,7 +39,7 @@ jQuery(document).ready(function($) {
             header: [
                 '<div class="list-group search-results-dropdown">'
             ],
-            suggestion: Handlebars.compile('<div><strong>{{codice}}</strong> – {{ragione_sociale}}</div>')
+            suggestion: Handlebars.compile('<div><strong>{{code}}</strong> – {{company_name}}</div>')
         }
     });
 

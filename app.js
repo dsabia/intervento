@@ -64,7 +64,7 @@ var customer = require('./routes/customer');
 var material = require('./routes/material');
 var technician_rate = require('./routes/technician_rate');
 var intervention = require('./routes/intervention');
-var lavoro = require('./routes/lavoro');
+var work = require('./routes/work');
 require('./services/passport')(passport);
 
 app.use('/', router);
@@ -73,7 +73,7 @@ app.use('/customer', customer);
 app.use('/material', material);
 app.use('/technician_rate', technician_rate);
 app.use('/intervention', intervention);
-app.use('/lavoro', lavoro);
+app.use('/work', work);
 app.use('/image', require('./routes/image')(mongo, db));
 
 // catch 404 and forward to error handler

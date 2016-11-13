@@ -9,7 +9,7 @@ var appUtil = require('../services/app_util');
 /* GET elenco lavori */
 router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
   Work.find({'owner' : req.user._id})
-      .populate('customer','ragione_sociale')
+      .populate('customer','company_name')
       .populate('technician','name')
       .exec( function(err, list_results) {
         if (err){
@@ -17,36 +17,36 @@ router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
           return;
         }
         if(list_results.length > 0){
-          res.render('app/lavoro/view', { title: 'Elenco lavori', list:  list_results });
+          res.render('app/work/view', { title: 'Elenco lavori', list:  list_results });
         }else{
-          res.render('app/lavoro/view', { title: 'Nessun lavoro presente'});
+          res.render('app/work/view', { title: 'Nessun lavoro presente'});
         }
       });
 });
 
 /* open page add new lavoro */
 router.get('/add', appUtil.ensureAuthenticated, function(req, res, next) {
-  res.render('app/lavoro/add', { title: 'Nuovo lavoro'});
+  res.render('app/work/add', { title: 'Nuovo lavoro'});
 });
 
 /* edit lavoro */
 router.get('/edit/:code', appUtil.ensureAuthenticated, function(req, res, next) {
   Work.findOne({ 'codice' :  req.params.code, 'owner' : req.user._id})
-      .populate('customer','ragione_sociale')
+      .populate('customer','company_name')
       .populate('technician','name')
       .exec( function(err, pojo) {
         if (err){
           console.log(err);
           return;
         }
-        res.render('app/lavoro/add',{ title: 'Modifica lavoro', work : pojo });
+        res.render('app/work/add',{ title: 'Modifica lavoro', work : pojo });
       });
 });
 
 /* delete lavoro */
 router.get('/delete/:id', appUtil.ensureAuthenticated, function(req, res, next) {
   Work.remove({ '_id' :  req.params.id }, function(err, pojo) {
-    res.redirect('/lavoro');
+    res.redirect('/work');
   });
 });
 
@@ -55,34 +55,34 @@ router.post('/add', appUtil.ensureAuthenticated, function(req, res, next) {
   if(req.body.id){
     Work.findById(req.body.id, function(err, pojo) {
       populateRequestAndSave(req, pojo);
-      res.redirect('/lavoro/'+pojo.codice);
+      res.redirect('/work/'+pojo.code);
     });
   }else{
     var work = new Work();
     populateRequestAndSave(req, work);
-    res.redirect('/lavoro/'+work.codice);
+    res.redirect('/work/'+work.code);
   }
 });
 
 /* GET lavoro */
 router.get('/:code', appUtil.ensureAuthenticated, function(req, res, next) {
-  Work.findOne({ 'codice' :  req.params.code, 'owner' : req.user._id})
-      .populate('customer','ragione_sociale')
+  Work.findOne({ 'code' :  req.params.code, 'owner' : req.user._id})
+      .populate('customer','company_name')
       .populate('technician','name')
       .exec(function(err, pojo) {
         if (err){
           console.log(err);
           return;
         }
-        res.render('app/lavoro/view', { title: 'Dettaglio lavoro', pojo: pojo });
+        res.render('app/work/view', { title: 'Dettaglio lavoro', pojo: pojo });
       });
 });
 
 
-router.get('/clienti/:q', appUtil.ensureAuthenticated, function(req, res, next) {
+router.get('/customer/:q', appUtil.ensureAuthenticated, function(req, res, next) {
   Customer.find({
     "owner" : req.user._id,
-    "ragione_sociale" : new RegExp(req.params.q, "i")
+    "company_name" : new RegExp(req.params.q, "i")
   }, function(err, list_results){
     if (err){
       console.log(err);
@@ -92,8 +92,7 @@ router.get('/clienti/:q', appUtil.ensureAuthenticated, function(req, res, next) 
   });
 });
 
-
-router.get('/tecnici/:q', appUtil.ensureAuthenticated, function(req, res, next) {
+router.get('/technician/:q', appUtil.ensureAuthenticated, function(req, res, next) {
   Technician.find({
     "owner" : req.user._id,
     "name" : new RegExp(req.params.q, "i")
@@ -106,12 +105,11 @@ router.get('/tecnici/:q', appUtil.ensureAuthenticated, function(req, res, next) 
   });
 });
 
-
 function populateRequestAndSave(req, work){
-  work.codice      = req.body.codice;
+  work.code        = req.body.code;
   work.owner       = req.user._id;
 
-  Customer.findOne({"ragione_sociale":req.body.customer, "owner":req.user._id}, function (err, customer){
+  Customer.findOne({"company_name":req.body.customer, "owner":req.user._id}, function (err, customer){
     work.customer    = customer;
 
     Technician.findOne({"name" : req.body.technician, "owner":req.user._id}, function (err, technician){
