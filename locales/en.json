@@ -12,6 +12,8 @@
   "logout" 	  : "Logout",
   "account" 	: "Account",
   "signup"    : "Signup",
+  "customer"  : "Customer",
+
 
   "index-title" : "Authentication",
   "index-subtitle" : "Login or Signup with:",
@@ -23,7 +25,7 @@
   "password" 		         : "Password",
   "ripeti-password"      : "Confirm password",
   "intervento"           : "Intervention",
-  "codice"               : "Code",
+  "code"                 : "Code",
   "tipo-intervento"      : "Type of intervention",
   "data" 			           : "Date",
   "orario"               : "Time",
