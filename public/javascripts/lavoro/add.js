@@ -16,6 +16,8 @@ jQuery(document).ready(function($) {
     }, {
         source: engine.ttAdapter(),
 
+        display: 'ragione_sociale',
+
         // This will be appended to "tt-dataset-" to form the class name of the suggestion menu.
         name: 'customer',
 

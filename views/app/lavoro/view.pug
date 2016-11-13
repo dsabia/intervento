@@ -2,10 +2,10 @@ extends ../../layout/homepage-layout
 
 block content
   h1= title
-  if work
-    TODO #{work.codice}
-    br
-    a(href='/lavoro/edit/'+work.codice) Edit lavoro
+  if pojo
+    p #{pojo.codice}
+    p #{pojo.customer.ragione_sociale}
+    a(href='/lavoro/edit/'+pojo.codice) Edit lavoro
   else if list
     table(class="table table-striped table-responsive")
       tr
