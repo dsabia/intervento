@@ -24,26 +24,26 @@ module.exports = function(mongo, db){
         return;
       }
       if(list_results.length > 0){
-        res.render('app/immagine/view', { title: 'Elenco immagini', list_immagini: list_results });
+        res.render('app/image/view', { title: 'Elenco immagini', list: list_results });
       }else if(list_results.length == 1){
         var pojo = list_results[0];
-        res.render('app/immagine/view', { title: 'Dettaglio immagine', immagine: pojo });
+        res.render('app/image/view', { title: 'Dettaglio immagine', image: pojo });
       }else{
-        res.render('app/immagine/view', { title: 'Imamgini non presenti'});
+        res.render('app/image/view', { title: 'Imamgini non presenti'});
       }
     });
   });
 
   /* open page add immagine */
   router.get('/add', appUtil.ensureAuthenticated, function(req, res, next) {
-    res.render('app/immagine/add', { title: 'Aggiungi immagine' });
+    res.render('app/image/add', { title: 'Aggiungi immagine' });
   });
 
   // add form data on the db
   router.post('/add',  upload.single('immagine'), function(req, res, next) {
     var image = new Image();
-    image.descrizione     = req.body.descrizione;
-    image.nome_immagine   = req.file.originalname;
+    image.description     = req.body.description;
+    image.name            = req.file.originalname;
     image.data            = fs.readFileSync(req.file.path);
     image.contentType     = req.file.mimetype;
     image.owner           = req.user._id;
@@ -56,31 +56,31 @@ module.exports = function(mongo, db){
       return;
     });
 
-    res.redirect('/immagine/detail/' + image.nome_immagine);
+    res.redirect('/image/detail/' + image.name);
   });
 
   /* detail image */
-  router.get('/detail/:nome_immagine', appUtil.ensureAuthenticated, function(req, res, next) {
-    Image.findOne({ 'nome_immagine' :  req.params.nome_immagine, 'owner' : req.user._id}, function(err, pojo) {
+  router.get('/detail/:name', appUtil.ensureAuthenticated, function(req, res, next) {
+    Image.findOne({ 'name' :  req.params.name, 'owner' : req.user._id}, function(err, pojo) {
       if (err){
         console.log(err);
         return;
       }
-      res.render('app/immagine/view', { title: 'Dettaglio immagine', immagine: pojo });
+      res.render('app/image/view', { title: 'Dettaglio immagine', image: pojo });
     });
   });
 
   /* delete image */
   router.get('/delete/:id', appUtil.ensureAuthenticated, function(req, res, next) {
     Image.remove({ '_id' :  req.params.id }, function(err, pojo) {
-      res.redirect('/immagine');
+      res.redirect('/image');
     });
   });
 
   /* stream image */
-  router.get('/file/:nome_immagine', appUtil.ensureAuthenticated, function(req, res, next) {
-    var nome_immagine = req.params.nome_immagine;
-    Image.findOne({'nome_immagine' : nome_immagine, 'owner' : req.user._id}, function(err, pojo) {
+  router.get('/file/:name', appUtil.ensureAuthenticated, function(req, res, next) {
+    var name = req.params.name;
+    Image.findOne({'name' : name, 'owner' : req.user._id}, function(err, pojo) {
       if (err){
         console.log(err);
         return;

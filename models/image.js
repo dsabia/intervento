@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
 
 var imageSchema = mongoose.Schema({
-    nome_immagine  : String,
-    descrizione    : String,
+    name           : String,
+    description    : String,
     data           : Buffer,
     contentType    : String,
-    owner             : mongoose.Schema.Types.ObjectId
+    owner          : mongoose.Schema.Types.ObjectId
 });
 
 // methods ======================

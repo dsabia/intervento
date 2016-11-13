@@ -74,7 +74,7 @@ app.use('/materiale', materiale);
 app.use('/tariffe', tariffe);
 app.use('/intervento', intervento);
 app.use('/lavoro', lavoro);
-app.use('/immagine', require('./routes/immagine')(mongo, db));
+app.use('/image', require('./routes/image')(mongo, db));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
