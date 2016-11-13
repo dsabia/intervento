@@ -1,0 +1,15 @@
+mixin intervention(intervention)
+  table(class="table table-striped")
+    tr
+      td
+        label #{intervention.code}
+      td
+        label #{__(intervention.type_of_intervention)}
+    tr
+      td
+        label #{intervention.date.toDateString()}
+      td
+        label #{intervention.start_time} - #{intervention.end_time}
+    tr
+      td(colspan='2')
+        label #{intervention.notes}

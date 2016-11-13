@@ -1,0 +1,47 @@
+extends ../../layout/homepage-layout
+
+block content
+  h1= title
+  if technician != null
+    p Dettaglio di #{technician.name} #{technician.surname}
+    table(class="table table-striped")
+      tr
+        td
+          label #{technician.name}
+        td
+          label #{technician.surname}
+      tr
+        td(colspan='2')
+          label #{technician.account_code}
+      tr
+        td(colspan='2')
+          label #{technician.address}
+      tr
+        td
+          label #{technician.phone}
+        td
+          label #{technician.email}
+    a(href="/technician/edit/"+ technician.account_code) Modifica tecnico |
+    a(href="/technician/delete/"+ technician._id) Elimina tecnico
+  else
+    table(class="table table-striped table-responsive")
+      tr
+        th #{__('name')}
+        th #{__('surname')}
+        th #{__('piva_cf')}
+        th #{__('address')}
+        th #{__('phone')}
+        th #{__('email')}
+      each item in list
+        tr
+          td #{item.name}
+          td #{item.surname}
+          td
+            a(href="/technician/" + item.account_code) #{item.account_code}
+          td #{item.address}
+          td #{item.phone}
+          td #{item.email}
+
+  br
+  a(href="/technician") Elenco tecnici |
+  a(href="/technician/add") Aggiungi tecnico

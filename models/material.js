@@ -2,10 +2,10 @@ var mongoose = require('mongoose');
 
 // define the schema for material model
 var materialSchema = mongoose.Schema({
-  codice    	     : String,
-  nome_prodotto    : String,
-  descrizione      : String,
-  prezzo     	     : Number,
+  code    	       : String,
+  product_name     : String,
+  description      : String,
+  price     	     : Number,
   owner            : mongoose.Schema.Types.ObjectId
 });
 

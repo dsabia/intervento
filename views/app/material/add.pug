@@ -1,0 +1,29 @@
+extends ../../layout/homepage-layout
+
+block content
+  h2= title
+
+  form(action='/material/add',method='POST').form-horizontal
+    div.form-group.row
+      div.col-md-6.col-xs-12
+        label(for='product_name') #{__('product_name')}
+        input(name='product_name', value=''+(material ? material.product_name : '')).form-control
+      div.col-md-6.col-xs-12
+        label(for='code') #{__('code')}
+        input(name='code', value=''+(material ? material.code : '')).form-control
+    div.form-group.row
+      div.col-md-12.col-xs-12
+        label(for='description') #{__('description')}
+        input(name='description', type='area', value=''+(material ? material.description : '')).form-control
+    div.form-group.row
+      div.col-md-6.col-xs-12
+        label(for='price') #{__('price')}
+        div.input-group
+          span.input-group-addon
+            span.fa.fa-euro
+          input(name='price', type='number', min="0", step="0.01", data-number-to-fixed="2", value=''+(material ? material.price : '')).form-control.currency
+    input(type="hidden", name="id", value=''+(material ? material._id : ''))
+    button(type="submit").btn.btn-default #{material ? 'Modifica' : 'Aggiungi'} materiale
+
+  a(href="/material") Elenco materiali |
+  a(href="/material/add") Aggiungi materiale

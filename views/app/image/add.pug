@@ -1,0 +1,15 @@
+extends ../../layout/homepage-layout
+
+block content
+  h2= title
+
+  form(action='/image/add',method='POST',enctype='multipart/form-data').form-horizontal
+    div.form-group.row
+      div.col-md-12.col-xs-12
+        label(for='immagine') File
+        input(name='immagine', type='file').form-control
+    div.form-group.row
+      div.col-md-12.col-xs-12
+        label(for='description') Descrizione
+        input(name='description', type='area').form-control
+    button(type="submit").btn.btn-default Aggiungi Imamgine

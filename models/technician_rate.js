@@ -4,11 +4,11 @@ var mongoose = require('mongoose');
 
 // define the schema for our user model
 var technicianRateSchema = mongoose.Schema({
-    diritto_chiamata  : Number,
-    tariffa_fissa     : Number,
-    tariffa_km        : Number,
-    tariffa_oraria    : Number,
-    frazioni_ora      : Number,
+    consultancy_fee   : Number,
+    fixed_rate        : Number,
+    km_rate           : Number,
+    hour_rate         : Number,
+    fraction_of_hour  : Number,
     owner             : mongoose.Schema.Types.ObjectId
 });
 

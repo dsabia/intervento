@@ -1,0 +1,40 @@
+extends ../../layout/homepage-layout
+
+block content
+  h2=title
+
+  form(action='/customer/add',method='POST').form-horizontal
+
+    div.form-group.row
+      div.col-md-6.col-xs-12
+        label(for='codecode') #{__('code')}
+        input(name='code',value=''+(customer ? customer.code : '')).form-control
+      div.col-md-6.col-xs-12
+        label(for='discount') #{__('discount')}
+        input(name='discount',value=''+(customer ? customer.discount : '')).form-control
+
+    div.form-group.row
+      div.col-md-6.col-xs-12
+        label(for='company_name') #{__('company_name')}
+        input(name='company_name',value=''+(customer ? customer.company_name : '')).form-control
+      div.col-md-6.col-xs-12
+        label(for='piva_cf') #{__('piva_cf')}
+        input(name='piva_cf',value=''+(customer ? customer.piva_cf : '')).form-control
+
+    div.form-group.row
+      div.col-md-12.col-xs-12
+        label(for='addressaddress') #{__('address')}
+        input(name='address', type='area', value=''+(customer ? customer.address : '')).form-control
+
+    div.form-group.row
+      div.col-md-6.col-xs-12
+        label(for='phone') #{__('phone')}
+        input(name='phone',value=''+(customer ? customer.phone : '')).form-control
+      div.col-md-6.col-xs-12
+        label(for='email') #{__('email')}
+        input(name='email',type='email',value=''+(customer ? customer.email : '')).form-control
+    input(name='id',type="hidden",value=''+(customer ? customer._id : '')).form-control
+    button(type="submit").btn.btn-default #{customer ? 'Modifica' : 'Aggiungi'} cliente
+
+  a(href="/clienti") Elenco clienti |
+  a(href="/clienti/add") Aggiungi cliente

@@ -1,0 +1,13 @@
+extends ../../layout/homepage-layout
+include image
+
+block content
+  h1= title
+  if image != null
+    +image(image)
+
+  else
+    if list != null
+      each img in list
+        +image(img)
+        br

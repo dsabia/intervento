@@ -59,22 +59,22 @@ app.use(flash());
 
 // routes
 var router = require('./routes/index');
-var tecnico = require('./routes/tecnico');
-var clienti = require('./routes/clienti');
-var materiale = require('./routes/materiale');
-var tariffe = require('./routes/tariffe');
-var intervento = require('./routes/intervento');
-var lavoro = require('./routes/lavoro');
+var technician = require('./routes/technician');
+var customer = require('./routes/customer');
+var material = require('./routes/material');
+var technician_rate = require('./routes/technician_rate');
+var intervention = require('./routes/intervention');
+var work = require('./routes/work');
 require('./services/passport')(passport);
 
 app.use('/', router);
-app.use('/tecnico', tecnico);
-app.use('/clienti', clienti);
-app.use('/materiale', materiale);
-app.use('/tariffe', tariffe);
-app.use('/intervento', intervento);
-app.use('/lavoro', lavoro);
-app.use('/immagine', require('./routes/immagine')(mongo, db));
+app.use('/technician', technician);
+app.use('/customer', customer);
+app.use('/material', material);
+app.use('/technician_rate', technician_rate);
+app.use('/intervention', intervention);
+app.use('/work', work);
+app.use('/image', require('./routes/image')(mongo, db));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,0 +1,39 @@
+extends ../../layout/homepage-layout
+
+block content
+  h1= title
+  if material
+    p Dettaglio materiale #{material.code}
+    table(class="table table-striped")
+      tr
+        td
+          label #{material.product_name}
+        td
+          label #{material.code}
+      tr
+        td(colspan='2')
+          label #{material.description}
+      tr
+        td
+          label #{material.price}
+    a(href="/material/edit/" + material.code) Modifica materiale |
+    a(href="/material/delete/" + material._id) Elimina materiale
+  else if list
+    table(class="table table-striped table-responsive")
+      tr
+        th #{__('product_name')}
+        th #{__('code')}
+        th #{__('description')}
+        th #{__('price')}
+      each item in list
+        tr
+          td
+            a(href="/material/" + item.code) #{item.product_name}
+          td
+            a(href="/material/" + item.code) #{item.code}
+          td #{item.description}
+          td #{item.price}
+
+  br
+  a(href="/material") Elenco materiali |
+  a(href="/material/add") Aggiungi materiale

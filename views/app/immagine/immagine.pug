@@ -1,6 +1,0 @@
-mixin immagine(immagine)
-  p Dettaglio imamgine <b>#{immagine.nome_immagine}</b>
-  img(src='/immagine/file/' + immagine.nome_immagine, alt='' + immagine.descrizione).img-rounded
-  p <i>#{immagine.descrizione}</i>
-  a(href="/immagine/delete/"+immagine._id) cancella
-  br
