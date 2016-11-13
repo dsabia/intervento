@@ -1,0 +1,28 @@
+extends ../../layout/homepage-layout
+
+block content
+  h1= title
+  if pojo
+    p #{pojo.codice}
+    p #{pojo.customer.ragione_sociale}
+    p #{pojo.technician.name}
+    a(href='/lavoro/edit/'+pojo.codice) Edit lavoro |
+    a(href='/lavoro/delete/'+pojo._id) Elimina lavoro
+  else if list
+    table(class="table table-striped table-responsive")
+      tr
+        th Codice
+        th Cliente
+        th Tecnico
+        th Numero Interventi
+      each item in list
+        tr
+          td
+            a(href='/lavoro/'+item.codice) #{item.codice}
+          td #{item.customer.ragione_sociale}
+          td #{item.technician.name}
+          // td #{item.interventi.length}
+
+  br
+  a(href="/lavoro") Elenco lavori |
+  a(href="/lavoro/add") Aggiungi lavoro

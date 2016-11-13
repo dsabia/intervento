@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Intervento = require('../models/intervento');
+var Intervento = require('../models/intervento').model;
 var appUtil = require('../services/app_util');
 
 var tipo_intervento_option = [

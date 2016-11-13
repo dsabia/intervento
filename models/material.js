@@ -6,7 +6,7 @@ var materialSchema = mongoose.Schema({
   nome_prodotto    : String,
   descrizione      : String,
   prezzo     	     : Number,
-  owner             : mongoose.Schema.Types.ObjectId
+  owner            : mongoose.Schema.Types.ObjectId
 });
 
 // methods ======================

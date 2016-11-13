@@ -17,6 +17,16 @@ html(ng-app='interventoApp')
     script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
     script(src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js")
 
+
+    link(rel="stylesheet", href="/typeahead/typeahead.css")
+    script(src="/typeahead/bloodhound.js")
+    //-  script(src="/typeahead/bloodhound.min.js")
+    script(src="/typeahead/typeahead.bundle.js")
+    //-  script(src="/typeahead/typeahead.bundle.min.js")
+    script(src="/typeahead/typeahead.jquery.js")
+    //- script(src="/typeahead/typeahead.jquery.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js")
+
     link(rel='stylesheet', href='/clockpicker/bootstrap-clockpicker.css')
     script(src='/clockpicker/bootstrap-clockpicker.js')
     link(rel='stylesheet', href='/clockpicker/bootstrap-clockpicker.min.css')
@@ -42,6 +52,8 @@ html(ng-app='interventoApp')
               a(href="/tecnico") Tecnico
             li
               a(href="/clienti") Clienti
+            li
+              a(href="/lavoro") Lavori
             li
               a(href="/intervento") Interventi
             li
