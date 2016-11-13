@@ -3,32 +3,32 @@ extends ../../layout/homepage-layout
 block content
   h2 Aggiungi un tecnico
 
-  form(action='/tecnico/add',method='POST').form-horizontal
+  form(action='/technician/add',method='POST').form-horizontal
     div.form-group.row
       div.col-md-6.col-xs-12
-        label(for='name') Nome
+        label(for='name') #{__('name')}
         input(name='name', value=''+ (tecnico ? tecnico.name : '') ).form-control
       div.col-md-6.col-xs-12
-        label(for='surname') Cognome
+        label(for='surname') #{__('surname')}
         input(name='surname', value=''+ (tecnico ? tecnico.surname : '') ).form-control
     div.form-group.row
       div.col-md-6.col-xs-12
-        label(for='account_code') Codice fiscale / P.Iva
+        label(for='account_code') #{__('piva_cf')}
         input(name='account_code', value=''+ (tecnico ? tecnico.account_code : '') ).form-control
     div.form-group.row
       div.col-md-12.col-xs-12
-        label(for='address') Indirizzo
+        label(for='address') #{__('address')}
         input(name='address', type='area', value=''+ (tecnico ? tecnico.address : '') ).form-control
     div.form-group.row
       div.col-md-6.col-xs-12
-        label(for='phone') Telefono
+        label(for='phone') #{__('phone')}
         input(name='phone', value=''+ (tecnico ? tecnico.phone : '') ).form-control
     div.form-group.row
       div.col-md-6.col-xs-12
-        label(for='email') E-mail
+        label(for='email') #{__('email')}
         input(type='email',name='email', value=''+ (tecnico ? tecnico.email : '') ).form-control
     input(type='hidden',name='id', value=''+ (tecnico ? tecnico._id : '') )
     button(type="submit").btn.btn-default #{tecnico ? 'Modifica' : 'Aggiungi'} Tecnico
 
-  a(href="/tecnico") Elenco tecnici |
-  a(href="/tecnico/add") Aggiungi tecnico
+  a(href="/technician") Elenco tecnici |
+  a(href="/technician/add") Aggiungi tecnico

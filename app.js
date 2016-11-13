@@ -59,7 +59,7 @@ app.use(flash());
 
 // routes
 var router = require('./routes/index');
-var tecnico = require('./routes/tecnico');
+var technician = require('./routes/technician');
 var customer = require('./routes/customer');
 var material = require('./routes/material');
 var technician_rate = require('./routes/technician_rate');
@@ -68,7 +68,7 @@ var lavoro = require('./routes/lavoro');
 require('./services/passport')(passport);
 
 app.use('/', router);
-app.use('/tecnico', tecnico);
+app.use('/technician', technician);
 app.use('/customer', customer);
 app.use('/material', material);
 app.use('/technician_rate', technician_rate);

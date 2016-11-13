@@ -21,10 +21,11 @@
   "index-signup-button" : "Signup (Local)",
 
   "id"     			         : "Id",
+  "name"                 : "Name",
+  "surname"              : "Surname",
   "email" 			         : "Email",
   "password" 		         : "Password",
   "ripeti-password"      : "Confirm password",
-  "intervento"           : "Intervention",
   "code"                 : "Code",
   "type_of_intervention" : "Type of intervention",
   "data" 			           : "Date",

@@ -10,13 +10,13 @@ router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
       console.log(err);
       return;
     }
-    res.render('app/tecnico/view', { title: 'Elenco dei tecnici', list:  list_pojos });
+    res.render('app/technician/view', { title: 'Elenco dei tecnici', list:  list_pojos });
   });
 });
 
 /* open page add new tecnico */
 router.get('/add', appUtil.ensureAuthenticated, function(req, res, next) {
-  res.render('app/tecnico/add', { title: 'Aggiungi un tecnico'});
+  res.render('app/technician/add', { title: 'Aggiungi un tecnico'});
 });
 
 // add form data on the db
@@ -25,13 +25,13 @@ router.post('/add', appUtil.ensureAuthenticated, function(req, res, next) {
     // update
     Technician.findById(req.body.id, function(err, technician){
       populateRequestAndSave(req, technician);
-      res.redirect('/tecnico/'+technician.account_code);
+      res.redirect('/technician/'+technician.account_code);
     });
   }else{
     // insert
     var technician = new Technician();
     populateRequestAndSave(req, technician);
-    res.redirect('/tecnico/'+technician.account_code);
+    res.redirect('/technician/'+technician.account_code);
   }
 });
 
@@ -42,7 +42,7 @@ router.get('/:code', appUtil.ensureAuthenticated, function(req, res, next) {
       console.log(err);
       return;
     }
-    res.render('app/tecnico/view', { tecnico: pojo });
+    res.render('app/technician/view', { technician: pojo });
   });
 });
 
@@ -53,7 +53,7 @@ router.get('/edit/:code', appUtil.ensureAuthenticated, function(req, res, next) 
       console.log(err);
       return;
     }
-    res.render('app/tecnico/add', { title: 'Modifica il tecnico', tecnico : pojo });
+    res.render('app/technician/add', { title: 'Modifica il tecnico', technician : pojo });
   });
 });
 

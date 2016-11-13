@@ -21,10 +21,11 @@
   "index-signup-button" : "Registrazione (Locale)",
 
   "id"     			         : "Id",
+  "name"                 : "Nome",
+  "surname"              : "Cognome",
   "email" 			         : "Email",
   "password" 		         : "Password",
   "ripeti-password"      : "Conferma password",
-  "intervento"           : "Intervento",
   "code"                 : "Codice",
   "type_of_intervention" : "Tipo intervento",
   "data" 			           : "Data",
