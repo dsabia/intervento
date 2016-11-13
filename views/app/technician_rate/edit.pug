@@ -3,7 +3,7 @@ extends ../../layout/homepage-layout
 block content
   h2= title
 
-  form(action='/tariffe/edit',method='POST').form-horizontal
+  form(action='/technician_rate/edit',method='POST').form-horizontal
     div.form-group.row
       div.col-md-6.col-xs-12
         label(for='consultancy_fee') #{__('consultancy_fee')}
@@ -35,4 +35,4 @@ block content
     input(type='hidden', name='id', value=''+(rate ? rate._id : ''))
     button(type="submit").btn.btn-default #{rate ? 'Modifica' : 'Salva'} tariffa
 
-  a(href="/tariffe") Visualizza tariffa
+  a(href="/technician_rate") Visualizza tariffa

@@ -46,7 +46,7 @@ router.get('/edit/:code', appUtil.ensureAuthenticated, function(req, res, next) 
     }
     res.render('app/intervention/add',{ title: 'Modifica intervento',
                                       intervention : pojo,
-                                      tipo_intervento_option: appUtil.setSelectedOption(intervention_type_option, pojo.tipo_intervento) });
+                                      tipo_intervento_option: appUtil.setSelectedOption(intervention_type_option, pojo.type_of_intervention) });
   });
 });
 

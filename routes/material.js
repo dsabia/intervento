@@ -49,12 +49,12 @@ router.post('/add', appUtil.ensureAuthenticated, function(req, res, next) {
   if(req.body.id){
     Material.findById(req.body.id, function(err, pojo){
       populateRequestAndSave(req, pojo);
-      res.redirect('/material/'+pojo.codice);
+      res.redirect('/material/'+pojo.code);
     });
   }else{
     var material = new Material();
     populateRequestAndSave(req, material);
-    res.redirect('/material/'+material.codice);
+    res.redirect('/material/'+material.code);
   }
 });
 

@@ -31,7 +31,7 @@ router.get('/edit', appUtil.ensureAuthenticated, function(req, res, next) {
   TechnicianRate.findOne({ 'owner' : req.user._id }, function(err, pojo){
     res.render('app/technician_rate/edit', { title: 'Modifica tariffa',
                                      rate: pojo,
-                                     frazioni_dora_option: appUtil.setSelectedOption(frazioni_dora_option, pojo.frazioni_ora) });
+                                     frazioni_dora_option: appUtil.setSelectedOption(frazioni_dora_option, pojo.fraction_of_hour) });
   });
 });
 
