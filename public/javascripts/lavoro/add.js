@@ -1,47 +1,33 @@
-var substringMatcher = function(strs) {
-  return function findMatches(q, cb) {
-    var matches, substringRegex;
-
-    // an array that will be populated with substring matches
-    matches = [];
-
-    // regex used to determine if a string contains the substring `q`
-    substrRegex = new RegExp(q, 'i');
-
-    // iterate through the pool of strings and for any string that
-    // contains the substring `q`, add it to the `matches` array
-    $.each(strs, function(i, str) {
-      if (substrRegex.test(str)) {
-        matches.push(str);
-      }
+jQuery(document).ready(function($) {
+    // Set the Options for "Bloodhound" suggestion engine
+    var engine = new Bloodhound({
+        remote: {
+            url: '/lavoro/clienti/%QUERY%',
+            wildcard: '%QUERY%'
+        },
+        datumTokenizer: Bloodhound.tokenizers.whitespace('q'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace
     });
 
-    cb(matches);
-  };
-};
+    $(".typeahead").typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+    }, {
+        source: engine.ttAdapter(),
 
-var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-  'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
-  'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-  'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-  'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-  'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-  'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-  'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-  'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-];
+        // This will be appended to "tt-dataset-" to form the class name of the suggestion menu.
+        name: 'customer',
 
-$('.typeahead').typeahead({
-  classNames: {
-   input: 'Typeahead-input',
-   hint: 'Typeahead-hint',
-   selectable: 'Typeahead-selectable'
-  },
-  hint: true,
-  highlight: true,
-  minLength: 1
-},
-{
-  name: 'states',
-  source: substringMatcher(states)
+        // the key from the array we want to display (name,id,email,etc...)
+        templates: {
+            empty: [
+                '<div class="list-group search-results-dropdown"><div class="list-group-item">Nothing found.</div></div>'
+            ],
+            header: [
+                '<div class="list-group search-results-dropdown">'
+            ],
+            suggestion: Handlebars.compile('<div><strong>{{codice}}</strong> – {{ragione_sociale}}</div>')
+        }
+    });
 });

@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Work = require('../models/work');
 var appUtil = require('../services/app_util');
-
+var Customer = require('../models/customer').model;
 
 /* GET elenco lavori */
 router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
@@ -31,17 +31,6 @@ router.get('/delete/:id', appUtil.ensureAuthenticated, function(req, res, next) 
   });
 });
 
-/* GET lavoro */
-router.get('/:code', appUtil.ensureAuthenticated, function(req, res, next) {
-  Work.findOne({ 'codice' :  req.params.code, 'owner' : req.user._id}, function(err, pojo) {
-    if (err){
-      console.log(err);
-      return;
-    }
-    res.render('app/lavoro/view', { title: 'Dettaglio lavoro', work: pojo });
-  });
-});
-
 /* edit lavoro */
 router.get('/edit/:code', appUtil.ensureAuthenticated, function(req, res, next) {
   Work.findOne({ 'codice' :  req.params.code, 'owner' : req.user._id}, function(err, pojo) {
@@ -65,6 +54,35 @@ router.post('/add', appUtil.ensureAuthenticated, function(req, res, next) {
     populateRequestAndSave(req, work);
     res.redirect('/lavoro/'+work.codice);
   }
+});
+
+router.get('/clienti/:q', appUtil.ensureAuthenticated, function(req, res, next) {
+  console.log("Input: " + req.params.q + " user " + req.user._id + " regexP: " + new RegExp(req.params.q, "i"));
+  Customer.find({
+    "owner" : req.user._id,
+    "ragione_sociale" : new RegExp(req.params.q, "i")
+  }, function(err, list_results){
+    if (err){
+      console.log(err);
+      return;
+    }
+    console.log(list_results);
+    res.json(list_results);
+  });
+});
+
+
+
+
+/* GET lavoro */
+router.get('/:code', appUtil.ensureAuthenticated, function(req, res, next) {
+  Work.findOne({ 'codice' :  req.params.code, 'owner' : req.user._id}, function(err, pojo) {
+    if (err){
+      console.log(err);
+      return;
+    }
+    res.render('app/lavoro/view', { title: 'Dettaglio lavoro', work: pojo });
+  });
 });
 
 function populateRequestAndSave(req, work){
