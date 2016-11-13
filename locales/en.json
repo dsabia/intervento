@@ -39,6 +39,11 @@
   "phone_no"             : "Phone No",
   "product_name"         : "Product name",
   "price"                : "Price",
+  "consultancy_fee"      : "Consultancy fee",
+  "fixed_rate"           : "Fixed rate",
+  "hour_rate"            : "Hour rate",
+  "fraction_of_hour"     : "Fraction of hour",
+  "km_rate"              : "Kilometric charge",
 
   "option-void"          : "Select one",
 

@@ -6,17 +6,17 @@ block content
     table(class="table table-striped")
       tr
         td
-          label Diritto di chiamata: #{rate.diritto_chiamata}
+          label #{__('consultancy_fee')}: #{rate.consultancy_fee}
         td
-          label Tariffa fissa: #{rate.tariffa_fissa}
+          label #{__('fixed_rate')}: #{rate.fixed_rate}
       tr
         td
-          label Tariffa oraria: #{rate.tariffa_oraria}
+          label #{__('hour_rate')}: #{rate.hour_rate}
         td
-          label Frazioni d\'ora: #{rate.frazioni_ora}
+          label #{__('fraction_of_hour')}: #{rate.fraction_of_hour}
       tr
         td
-          label Tariffa kilometrica: #{rate.tariffa_km}
+          label #{__('km_rate')}: #{rate.km_rate}
         td
     a(href="/tariffe/edit") Modifica tariffa
   else

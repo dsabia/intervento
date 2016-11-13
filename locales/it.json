@@ -39,6 +39,11 @@
   "phone_no"             : "Telefono",
   "product_name"         : "Nome prodotto",
   "price"                : "Prezzo",
+  "consultancy_fee"      : "Diritto di chiamata",
+  "fixed_rate"           : "Tariffa fissa",
+  "hour_rate"            : "Tariffa oraria",
+  "fraction_of_hour"     : "Frazioni d'ora",
+  "km_rate"              : "Tariffa kilometrica",
 
   "option-void"          : "Seleziona",
 
