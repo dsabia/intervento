@@ -1,7 +1,7 @@
 // app/models/user.js
 // load the things we need
 var mongoose = require('mongoose');
-var interventoSchema = require('../models/intervento').schema;
+var interventoSchema = require('../models/intervention').schema;
 
 // define the schema for our user model
 var workSchema = mongoose.Schema({
