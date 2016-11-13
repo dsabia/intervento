@@ -2,38 +2,38 @@ extends ../../layout/homepage-layout
 
 block content
   h1= title
-  if materiale != null
-    p Dettaglio materiale #{materiale.codice}
+  if material != null
+    p Dettaglio materiale #{material.code}
     table(class="table table-striped")
       tr
         td
-          label #{materiale.nome_prodotto}
+          label #{material.product_name}
         td
-          label #{materiale.codice}
+          label #{material.code}
       tr
         td(colspan='2')
-          label #{materiale.descrizione}
+          label #{material.description}
       tr
         td
-          label #{materiale.prezzo}
-    a(href="/materiale/edit/" + materiale.codice) Modifica materiale |
-    a(href="/materiale/delete/" + materiale._id) Elimina materiale
+          label #{material.price}
+    a(href="/materialmaterial/edit/" + materiale.code) Modifica materiale |
+    a(href="/material/delete/" + materiale._id) Elimina materiale
   else
     table(class="table table-striped table-responsive")
       tr
-        th Nome prodotto
-        th Codice
-        th Descrizione
-        th Prezzo
+        th #{__('product_name')}
+        th #{__('code')}
+        th #{__('description')}
+        th #{__('price')}
       each item in list
         tr
           td
-            a(href="/materiale/" + item.codice) #{item.nome_prodotto}
+            a(href="/material/" + item.code) #{item.product_name}
           td
-            a(href="/materiale/" + item.codice) #{item.codice}
-          td #{item.descrizione}
-          td #{item.prezzo}
+            a(href="/material/" + item.code) #{item.code}
+          td #{item.description}
+          td #{item.price}
 
   br
-  a(href="/materiale") Elenco materiali |
-  a(href="/materiale/add") Aggiungi materiale
+  a(href="/material") Elenco materiali |
+  a(href="/material/add") Aggiungi materiale
