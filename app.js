@@ -63,7 +63,7 @@ var tecnico = require('./routes/tecnico');
 var customer = require('./routes/customer');
 var materiale = require('./routes/materiale');
 var tariffe = require('./routes/tariffe');
-var intervento = require('./routes/intervento');
+var intervention = require('./routes/intervention');
 var lavoro = require('./routes/lavoro');
 require('./services/passport')(passport);
 
@@ -72,7 +72,7 @@ app.use('/tecnico', tecnico);
 app.use('/customer', customer);
 app.use('/materiale', materiale);
 app.use('/tariffe', tariffe);
-app.use('/intervento', intervento);
+app.use('/intervention', intervention);
 app.use('/lavoro', lavoro);
 app.use('/image', require('./routes/image')(mongo, db));
 

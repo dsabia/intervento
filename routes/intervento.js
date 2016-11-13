@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var Intervento = require('../models/intervento').model;
+var Intervention = require('../models/intervention').model;
 var appUtil = require('../services/app_util');
 
-var tipo_intervento_option = [
+var intervention_type_option = [
   "o-tipo-intervento-sopralluogo" ,
   "o-tipo-intervento-installazione" ,
   "o-tipo-intervento-manutenzione" ,
@@ -15,83 +15,83 @@ var tipo_intervento_option = [
 
 /* GET elenco tecnici */
 router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
-  Intervento.find({'owner' : req.user._id}, function(err, list_results) {
+  Intervention.find({'owner' : req.user._id}, function(err, list_results) {
     if (err){
       console.log(err);
       return;
     }
     if(list_results.length > 0){
-      res.render('app/intervento/view', { title: 'Elenco interventi', list:  list_results });
+      res.render('app/intervention/view', { title: 'Elenco interventi', list:  list_results });
 //    }else if(list_results.length == 1){
 //      var pojo = list_results[0];
 //      res.render('app/intervento/view', { title: 'Dettaglio intervento', intervento: pojo });
     }else{
-      res.render('app/intervento/view', { title: 'Nessun intervento presente'});
+      res.render('app/intervention/view', { title: 'Nessun intervento presente'});
     }
   });
 });
 
 /* open page add new intervento */
 router.get('/add', appUtil.ensureAuthenticated, function(req, res, next) {
-  res.render('app/intervento/add', { title: 'Aggiungi un intervento tecnico',
-                                     tipo_intervento_option: tipo_intervento_option });
+  res.render('app/intervention/add', { title: 'Aggiungi un intervento tecnico',
+                                       tipo_intervento_option: intervention_type_option });
 });
 
 /* edit intervento */
 router.get('/edit/:code', appUtil.ensureAuthenticated, function(req, res, next) {
-  Intervento.findOne({ 'codice' :  req.params.code, 'owner' : req.user._id}, function(err, pojo) {
+  Intervention.findOne({ 'code' :  req.params.code, 'owner' : req.user._id}, function(err, pojo) {
     if (err){
       console.log(err);
       return;
     }
-    res.render('app/intervento/add',{ title: 'Modifica intervento',
-                                      intervento : pojo,
-                                      tipo_intervento_option: appUtil.setSelectedOption(tipo_intervento_option, pojo.tipo_intervento) });
+    res.render('app/intervention/add',{ title: 'Modifica intervento',
+                                      intervention : pojo,
+                                      tipo_intervento_option: appUtil.setSelectedOption(intervention_type_option, pojo.tipo_intervento) });
   });
 });
 
 /* delete intervento */
 router.get('/delete/:id', appUtil.ensureAuthenticated, function(req, res, next) {
-  Intervento.remove({ '_id' :  req.params.id }, function(err, pojo) {
-    res.redirect('/intervento');
+  Intervention.remove({ '_id' :  req.params.id }, function(err, pojo) {
+    res.redirect('/intervention');
   });
 });
 
 /* GET intervento */
 router.get('/:code', appUtil.ensureAuthenticated, function(req, res, next) {
-  Intervento.findOne({ 'codice' :  req.params.code, 'owner' : req.user._id}, function(err, pojo) {
+  Intervention.findOne({ 'code' :  req.params.code, 'owner' : req.user._id}, function(err, pojo) {
     if (err){
       console.log(err);
       return;
     }
-    res.render('app/intervento/view', { title: 'Dettaglio intervento', intervento: pojo });
+    res.render('app/intervention/view', { title: 'Dettaglio intervento', intervento: pojo });
   });
 });
 
 // add form data on the db
 router.post('/add', appUtil.ensureAuthenticated, function(req, res, next) {
   if(req.body.id){
-    Intervento.findById(req.body.id, function(err, pojo) {
+    Intervention.findById(req.body.id, function(err, pojo) {
       populateRequestAndSave(req, pojo);
-      res.redirect('/intervento/'+pojo.codice);
+      res.redirect('/intervention/'+pojo.codice);
     });
   }else{
-    var intervento = new Intervento();
-    populateRequestAndSave(req, intervento);
-    res.redirect('/intervento/'+intervento.codice);
+    var intervention = new Intervention();
+    populateRequestAndSave(req, intervention);
+    res.redirect('/intervention/'+intervention.codice);
   }
 });
 
-function populateRequestAndSave(req, intervento){
-  intervento.codice                  = req.body.codice;
-  intervento.tipo_intervento         = req.body.tipo_intervento;
-  intervento.data                    = req.body.data;
-  intervento.ora_inizio              = req.body.ora_inizio;
-  intervento.ora_fine                = req.body.ora_fine;
-  intervento.note                    = req.body.note;
-  intervento.owner                   = req.user._id;
+function populateRequestAndSave(req, intervention){
+  intervention.code                     = req.body.code;
+  intervention.type_of_intervention     = req.body.type_of_intervention;
+  intervention.date                     = req.body.date;
+  intervention.start_time               = req.body.start_time;
+  intervention.end_time                 = req.body.end_time;
+  intervention.notes                    = req.body.notes;
+  intervention.owner                    = req.user._id;
 
-  intervento.save(function(err) {
+  intervention.save(function(err) {
       console.log('save ' + err);
       if (err)
           throw err;

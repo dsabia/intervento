@@ -13,6 +13,7 @@
   "account" 	: "Account",
   "signup"    : "Registrazione",
   "customer"  : "Clienti",
+  "intervention" : "Intervento",
 
   "index-title" : "Autenticazione",
   "index-subtitle" : "Accedi o Registrati:",
@@ -25,7 +26,7 @@
   "ripeti-password"      : "Conferma password",
   "intervento"           : "Intervento",
   "code"                 : "Codice",
-  "tipo-intervento"      : "Tipo intervento",
+  "type_of_intervention" : "Tipo intervento",
   "data" 			           : "Data",
   "orario"               : "Orario",
   "orario-inizio"        : "Orario inizio",
