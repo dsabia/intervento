@@ -4,28 +4,28 @@ block content
   h2= title
   div(id="form-add-new-customer")
   if customer != null
-    h2 Dettaglio cliente #{customer.codice}
+    h2 Dettaglio cliente #{customer.code}
     table(class="table table-striped")
       tr
         td
-          label Codice           : #{customer.codice}
+          label Codice           : #{customer.code}
         td
-          label Sconto           : #{customer.sconto}
+          label Sconto           : #{customer.discount}
       tr
         td
-          label Ragione sociale  : #{customer.ragione_sociale}
+          label Ragione sociale  : #{customer.company_name}
         td
           label P.Iva / CF       : #{customer.piva_cf}
       tr
         td(colspan='2')
-          label Indirizzo        : #{customer.indirizzo}
+          label Indirizzo        : #{customer.address}
       tr
         td
-          label Telefono         : #{customer.telefono}
+          label Telefono         : #{customer.phone}
         td
           label Email            : #{customer.email}
-    a(href="/clienti/edit/" + customer.codice) Modifica cliente |
-    a(href="/clienti/delete/" + customer._id) Elimina cliente
+    a(href="/customer/edit/" + customer.code) Modifica cliente |
+    a(href="/customer/delete/" + customer._id) Elimina cliente
     br
   else
     h2 Lista dei clienti
@@ -41,14 +41,14 @@ block content
       each item in list
         tr
           td
-            a(href="/clienti/" + item.codice) #{item.codice}
-          td #{item.sconto}
+            a(href="/customer/" + item.code) #{item.code}
+          td #{item.discount}
           td
-            a(href="/clienti/" + item.codice) #{item.ragione_sociale}
+            a(href="/customer/" + item.code) #{item.company_name}
           td #{item.piva_cf}
-          td #{item.indirizzo}
-          td #{item.telefono}
+          td #{item.address}
+          td #{item.phone}
           td #{item.email}
 
-  a(href="/clienti") Elenco clienti |
-  a(href="/clienti/add") Aggiungi cliente
+  a(href="/customer") Elenco clienti |
+  a(href="/customer/add") Aggiungi cliente
