@@ -26,24 +26,24 @@ block content
               option(value=''+tipo) #{__(tipo)}
     div.form-group.row
       div.col-md-6.col-xs-12
-        label(for='data') #{__('data')}
-        input(name='data', type="date", required, value=''+(intervention ? intervention.datae.toISOString().substring(0, 10) : '')).form-control
+        label(for='date') #{__('date')}
+        input(name='date', type="date", required, value=''+(intervention ? intervention.date.toISOString().substring(0, 10) : '')).form-control
       div.col-md-3.col-xs-6
-        label(for='ora_inizio') #{__('orario-inizio')}
+        label(for='start_time') #{__('start_time')}
         div.input-group.clockpicker
-          input.form-control(id="id-ora_inizio", name='ora_inizio',type='text', value=''+(intervention ? intervention.ora_inizio : ''))
+          input.form-control(id="id-ora_inizio", name='start_time',type='text', value=''+(intervention ? intervention.start_time : ''))
           span.input-group-addon
             span.glyphicon.glyphicon-time
       div.col-md-3.col-xs-6
-        label(for='ora_fine') #{__('orario-fine')}
+        label(for='end_time') #{__('end_time')}
         div.input-group.clockpicker
-          input.form-control(id="id-ora_fine", name='ora_fine',type='text', value=''+(intervention ? intervention.ora_fine : ''))
+          input.form-control(id="id-ora_fine", name='end_time',type='text', value=''+(intervention ? intervention.end_time : ''))
           span.input-group-addon
             span.glyphicon.glyphicon-time
     div.form-group.row
       div.col-md-12.col-xs-12
-        label(for='note') #{__('note')}
-        textarea(name='note', rows="3").form-control #{intervention ? intervention.note : ''}
+        label(for='notes') #{__('notes')}
+        textarea(name='notes', rows="3").form-control #{intervention ? intervention.notes : ''}
     input(type="hidden",name='id', value=''+(intervention ? intervention._id : ''))
     button(type="submit").btn.btn-default #{intervention ? 'Modifica' : 'Aggiungi'} intervento
 

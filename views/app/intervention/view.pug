@@ -1,11 +1,11 @@
 extends ../../layout/homepage-layout
-include intervento
+include intervention
 
 block content
   h1= title
 
   if intervention != null
-    p Dettaglio intervento #{intervention.codice}
+    p Dettaglio intervento #{intervention.code}
     +intervention(intervention)
     a(href="/intervention/edit/"+intervention.code) Modifica intervento |
     a(href="/intervention/delete/"+intervention._id) Elimina intervento |
@@ -14,8 +14,8 @@ block content
       tr
         th #{__('codice')}
         th #{__('tipo-intervento')}
-        th #{__('data')}
-        th #{__('orario')}
+        th #{__('date')}
+        th #{__('time')}
       each item in list
         tr
           td

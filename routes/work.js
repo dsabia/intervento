@@ -31,7 +31,7 @@ router.get('/add', appUtil.ensureAuthenticated, function(req, res, next) {
 
 /* edit lavoro */
 router.get('/edit/:code', appUtil.ensureAuthenticated, function(req, res, next) {
-  Work.findOne({ 'codice' :  req.params.code, 'owner' : req.user._id})
+  Work.findOne({ 'code' :  req.params.code, 'owner' : req.user._id})
       .populate('customer','company_name')
       .populate('technician','name')
       .exec( function(err, pojo) {

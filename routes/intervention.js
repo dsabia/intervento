@@ -64,7 +64,7 @@ router.get('/:code', appUtil.ensureAuthenticated, function(req, res, next) {
       console.log(err);
       return;
     }
-    res.render('app/intervention/view', { title: 'Dettaglio intervento', intervento: pojo });
+    res.render('app/intervention/view', { title: 'Dettaglio intervento', intervention: pojo });
   });
 });
 
@@ -73,12 +73,12 @@ router.post('/add', appUtil.ensureAuthenticated, function(req, res, next) {
   if(req.body.id){
     Intervention.findById(req.body.id, function(err, pojo) {
       populateRequestAndSave(req, pojo);
-      res.redirect('/intervention/'+pojo.codice);
+      res.redirect('/intervention/'+pojo.code);
     });
   }else{
     var intervention = new Intervention();
     populateRequestAndSave(req, intervention);
-    res.redirect('/intervention/'+intervention.codice);
+    res.redirect('/intervention/'+intervention.code);
   }
 });
 
