@@ -32,12 +32,13 @@
   "orario-inizio"        : "Orario inizio",
   "orario-fine"          : "Orario fine",
   "note"                 : "Note",
-
   "discount"             : "Sconto",
   "company_name"         : "Ragione sociale",
   "piva_cf"              : "P.Iva / CF",
   "address"              : "Indirizzo",
   "phone_no"             : "Telefono",
+  "product_name"         : "Nome prodotto",
+  "price"                : "Prezzo",
 
   "option-void"          : "Seleziona",
 

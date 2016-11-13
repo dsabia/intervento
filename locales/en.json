@@ -32,12 +32,13 @@
   "orario-inizio"        : "Start time",
   "orario-fine"          : "End time",
   "note"                 : "Notes",
-
   "discount"             : "Discount",
   "company_name"         : "Company name",
   "piva_cf"              : "Work code",
   "address"              : "Address",
   "phone_no"             : "Phone No",
+  "product_name"         : "Product name",
+  "price"                : "Price",
 
   "option-void"          : "Select one",
 
