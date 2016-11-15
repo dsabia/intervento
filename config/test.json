@@ -1,3 +1,3 @@
 {
-  "database_url" : "mongodb://admin:admin@ds019996.mlab.com:19996/intervento"
+  "database_url" : "mongodb://admin:admin@ds155097.mlab.com:55097/intervento_test"
 }
