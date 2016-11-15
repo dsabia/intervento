@@ -3,6 +3,8 @@
   "title-homepage" : "intervento",
   "title-login" : "Login",
   "title-signup" : "Signup",
+  "title-profile" : "Profile Page",
+  "profile-title-local" : "Local",
 
   "index"     : "Index",
   "log-in" 	  : "Log In",
@@ -66,7 +68,6 @@
   "e-passport-wrong-password" : "Oops! Wrong password.",
 
   "login-button-submit"   : "Login",
-  "profile-title-local" : "Local",
   "signup-button-submit" : "Signup",
 
   "o-tipo-intervento-sopralluogo" : "Inspection",
@@ -74,5 +75,10 @@
   "o-tipo-intervento-manutenzione" : "Manutention",
   "o-tipo-intervento-assistenza" : "Assistance",
   "o-tipo-intervento-fornitura-materiale" : "Material supply",
-  "o-tipo-intervento-preventivo": "Quote"
+  "o-tipo-intervento-preventivo": "Quote",
+
+  "link-list-materials" : "Material list",
+  "link-technician-rate" : "Technician rate",
+  "link-image"           : "Images",
+  "link-add-image"       : "Add Image"
 }

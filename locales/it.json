@@ -3,6 +3,8 @@
   "title-homepage" : "intervento",
   "title-login" : "Login",
   "title-signup" : "Registrazione",
+  "title-profile" : "Profilo Utente",
+  "profile-title-local" : "Locale",
 
   "index"     : "Index",
   "log-in" 	  : "Log In",
@@ -66,7 +68,6 @@
   "e-passport-wrong-password" : "Oops! Password errata.",
 
   "login-button-submit"   : "Login",
-  "profile-title-local" : "Locale",
   "signup-button-submit" : "Registrati",
 
   "o-tipo-intervento-sopralluogo" : "Sopralluogo",
@@ -74,5 +75,10 @@
   "o-tipo-intervento-manutenzione" : "Manutenzione",
   "o-tipo-intervento-assistenza" : "Assistenza",
   "o-tipo-intervento-fornitura-materiale" : "Fornitura Materiale",
-  "o-tipo-intervento-preventivo": "Preventivo"
+  "o-tipo-intervento-preventivo": "Preventivo",
+
+  "link-list-materials"  : "Elenco materiali",
+  "link-technician-rate" : "Pagina tariffe",
+  "link-image"           : "Immagini",
+  "link-add-image"       : "Aggiungi immagine"
 }

@@ -2,11 +2,11 @@ extends ../layout/homepage-layout
 
 block content
   h1= title
-  p Welcome to #{title}
-  a(href="/material") Elenco materiali
+  p #{title}
+  a(href="/material") #{__('link-list-materials')}
   br
-  a(href="/technician_rate") Pagina tariffe
+  a(href="/technician_rate") #{__('link-technician-rate')}
   br
-  a(href="/image") Immagine
+  a(href="/image") #{__('link-image')}
   br
-  a(href="/image/add") Aggiungi immagine
+  a(href="/image/add") #{__('link-add-image')}
