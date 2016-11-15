@@ -5,20 +5,21 @@ block content
     if message.length > 0
       div(class="alert alert-danger") #{__(''+message)}
 
-  form(action="/login",method="post", data-toggle="validator", role="form", novalidate="true")
+  form.form-signin(action="/login",method="post", data-toggle="validator", role="form", novalidate="true")
+    h2.form-signin-heading
+      span.fa.fa-sign-in #{__('title-login')}
     div.form-group
-      label #{__('email')}
-      input(type="email", class="form-control", name="email" ,required, data-delay="1500", data-error=''+__('e-invalid-email'))
+      label.sr-only(for="email") #{__('email')}
+      input.form-control(type="email", name="email", placeholder=''+__('email'), required, data-delay="1500", data-error=''+__('e-invalid-email'))
       div.help-block.with-errors
     div.form-group
-      label #{__('password')}
-      input(type="password",class="form-control",name="password", required, data-delay="1500")
+      label.sr-only(for="password") #{__('password')}
+      input.form-control(type="password",name="password", placeholder=''+__('password'), required, data-delay="1500")
       div.help-block.with-errors
-    button(type="submit",class="btn btn-warning btn-lg") #{__('login-button-submit')}
+    button.btn.btn-primary.btn-lg.btn-block(type="submit") #{__('login-button-submit')}
 
     hr
-
     p #{__('p-need-account')}
-      a(href="/signup") #{__('signup')}
+      a(href="/signup") &nbsp;#{__('signup')}&nbsp;
     p #{__('p-or-go')}
-      a(href="/") #{__('home')}.
+      a(href="/") &nbsp;#{__('home')}&nbsp;

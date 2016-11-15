@@ -1,6 +1,8 @@
 {
   "title-auth" : "Login or Signup",
   "title-homepage" : "intervento",
+  "title-login" : "Login",
+  "title-signup" : "Signup",
 
   "index"     : "Index",
   "log-in" 	  : "Log In",
@@ -51,9 +53,9 @@
 
   "option-void"          : "Select one",
 
-  "p-need-account"  : "Need an account?",
+  "p-need-account"       : "Need an account?",
   "p-already-have-account" : "Already have an account?",
-  "p-or-go"         : "Or go",
+  "p-or-go"              : "Or go",
 
   "e-invalid-email" : "Invalid email address",
   "eb-minimum-6-character" : "Minimum of 6 characters",

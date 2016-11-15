@@ -1,34 +1,29 @@
 extends layout/auth-layout
 
 block content
-  div(class="col-sm-6 col-sm-offset-3")
-  h1
-    span(class="fa fa-sign-in") Signup
-
   if message != null
     if message.length > 0
       div(class="alert alert-danger") #{__(''+message)}
 
-  form(id="signupForm", action="signup", method="post", data-toggle="validator", role="form", novalidate="true")
-    div(class="form-group")
-      label #{__('email')}
-      input(type="email",class="form-control",name="email", required,data-error=''+__('e-invalid-email'))
+  form.form-signin(id="signupForm", action="signup", method="post", data-toggle="validator", role="form", novalidate="true")
+    h2.form-signin-heading
+      span.fa.fa-sign-in #{__('title-signup')}
+    div.form-group
+      label.sr-only(for="email") #{__('email')}
+      input.form-control(type="email",name="email",placeholder=''+__('email'), required,data-error=''+__('e-invalid-email'))
       div.help-block.with-errors
-    div(class="form-group")
-      label #{__('password')}
-      input(type="password", class="form-control", name="password", id="inputPassword", required, data-minlength="6" )
-      span.glyphicon.form-control-feedback(aria-hidden="true")
-      div.help-block #{__('eb-minimum-6-character')}
-    div(class="form-group")
-      label #{__('ripeti-password')}
-      input(type="password", class="form-control", name="confirmPassword", data-match="#inputPassword",data-match-error=''+__('e-these-dont-match'),required)
-      span.glyphicon.form-control-feedback(aria-hidden="true")
+    div.form-group
+      label.sr-only(for="password") #{__('password')}
+      input.form-control(type="password", name="password", id="inputPassword", placeholder=''+__('password'), required, data-minlength="6" )
+      div.help-block.with-errors #{__('eb-minimum-6-character')}
+    div.form-group
+      label.sr-only(for="confirmPassword") #{__('ripeti-password')}
+      input.form-control(type="password", name="confirmPassword", placeholder=''+__('ripeti-password'), data-match="#inputPassword",data-match-error=''+__('e-these-dont-match'),required)
       div.help-block.with-errors
-    button(type="submit", class="btn btn-warning btn-lg") #{__('signup-button-submit')}
+    button.btn.btn-primary.btn-lg.btn-block(type="submit") #{__('signup-button-submit')}
 
-  hr
-
-  p #{__('p-already-have-account')}
-    a(href="/login") #{__('login')}
-  p #{__('p-or-go')}
-    a(href="/") #{__('home')}.
+    hr
+    p #{__('p-already-have-account')}
+      a(href="/login") &nbsp;#{__('login')}&nbsp;
+    p #{__('p-or-go')}
+      a(href="/") &nbsp;#{__('home')}&nbsp;

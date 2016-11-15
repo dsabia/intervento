@@ -3,24 +3,17 @@ html
   head
     title #{__('title-auth')}
     meta(name="viewport",content="width=device-width, initial-scale=1")
+    link(rel="stylesheet", href="/stylesheets/bootstrap-examples.css")
     link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css")
     link(rel="stylesheet", href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css")
     script(src="https://code.jquery.com/jquery-1.11.3.min.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js")
   body
-    if user == null
-      p
-        a(href="/") #{__('index')} |
-        a(href="/login") #{__('log-in')}
-    else
-      p
-        a(href="/") #{__('index')}
-        a(href="/homepage") #{__('homepage')}  |
-        a(href="/profile") #{__('profile')} |
-        a(href="/logout") #{__('log out')} #{user.local.email}
-    p
-
 
     div(class="container")
       block content
+
+    footer.footer
+      div.container
+        p.text-muted 2016 @ Copyright info

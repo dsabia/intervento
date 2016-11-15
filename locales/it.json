@@ -1,6 +1,8 @@
 {
   "title-auth" : "Login o Registrati",
   "title-homepage" : "intervento",
+  "title-login" : "Login",
+  "title-signup" : "Registrazione",
 
   "index"     : "Index",
   "log-in" 	  : "Log In",
@@ -51,9 +53,9 @@
 
   "option-void"          : "Seleziona",
 
-  "p-need-account"  : "Vuoi creare un account?",
+  "p-need-account"       : "Vuoi creare un account?",
   "p-already-have-account" : "Hai giá un account?",
-  "p-or-go"         : "O torna a ",
+  "p-or-go"              : "O torna a ",
 
   "e-invalid-email" : "E-mail non valida",
   "eb-minimum-6-character" : "Minimo 6 caratteri",
