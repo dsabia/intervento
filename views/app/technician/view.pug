@@ -21,7 +21,7 @@ block content
           label #{technician.phone}
         td
           label #{technician.email}
-    a(href="/technician/edit/"+ technician.account_code) Modifica tecnico |
+    a(href="/technician/edit/"+ technician.account_code) Modifica tecnico |&nbsp;
     a(href="/technician/delete/"+ technician._id) Elimina tecnico
   else
     table(class="table table-striped table-responsive")
@@ -43,5 +43,5 @@ block content
           td #{item.email}
 
   br
-  a(href="/technician") Elenco tecnici |
+  a(href="/technician") Elenco tecnici |&nbsp;
   a(href="/technician/add") Aggiungi tecnico

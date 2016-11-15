@@ -7,8 +7,8 @@ block content
   if intervention != null
     p Dettaglio intervento #{intervention.code}
     +intervention(intervention)
-    a(href="/intervention/edit/"+intervention.code) Modifica intervento |
-    a(href="/intervention/delete/"+intervention._id) Elimina intervento |
+    a(href="/intervention/edit/"+intervention.code) Modifica intervento |&nbsp;
+    a(href="/intervention/delete/"+intervention._id) Elimina intervento
   else if list != null
     table(class="table table-striped table-responsive")
       tr
@@ -25,5 +25,5 @@ block content
           td #{item.start_time} - #{item.end_time}
 
   br
-  a(href="/intervention") Elenco interventi |
+  a(href="/intervention") Elenco interventi |&nbsp;
   a(href="/intervention/add") Aggiungi intervento

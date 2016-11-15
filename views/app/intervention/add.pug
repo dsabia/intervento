@@ -47,7 +47,7 @@ block content
     input(type="hidden",name='id', value=''+(intervention ? intervention._id : ''))
     button(type="submit").btn.btn-default #{intervention ? 'Modifica' : 'Aggiungi'} intervento
 
-  a(href="/intervention") Elenco interventi |
+  a(href="/intervention") Elenco interventi |&nbsp;
   a(href="/intervention/add") Aggiungi intervento
 
   script(src='/javascripts/intervention/add.js')
