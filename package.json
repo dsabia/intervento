@@ -7,7 +7,7 @@
     "test": "istanbul cover ./node_modules/mocha/bin/_mocha -R && cat ./coverage/lcov.info | ./node_modules/.bin/codecov"
   },
   "dependencies": {
-    "config" : "1.24.0",
+    "config": "1.24.0",
     "body-parser": "~1.15.1",
     "cookie-parser": "^1.1.0",
     "debug": "~2.2.0",
@@ -31,8 +31,9 @@
   },
   "devDependencies": {
     "mocha": "*",
-    "chai": "~3.5.0",
+    "chai": "~3.2.0",
     "istanbul": "0.4.5",
-    "codecov": "1.0.1"
+    "codecov": "1.0.1",
+    "chai-http": "~1.0.0"
   }
 }
