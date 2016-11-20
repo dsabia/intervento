@@ -15,6 +15,38 @@ angular.module('interventoController', [])
       $scope.template = $scope.templates[0];
     };
 
+    $scope.pagecontent='';
+    $scope.listMaterials = function(){
+      var page = '/material';
+      changePagecontent($scope, page);
+    };
+    $scope.addMaterial = function(){
+      var page = '/material/add';
+      changePagecontent($scope, page);
+    };
+    $scope.viewMaterial = function(code){
+      console.log("code: " + code);
+      var page = '/material/' + code;
+      changePagecontent($scope, page);
+    };
+    $scope.editMaterial = function(code){
+      var page = '/material/edit/' + code;
+      changePagecontent($scope, page);
+    };
+    $scope.deleteMaterial = function(_id){
+      var page = '/material/delete/' + _id;
+      changePagecontent($scope, page);
+    };
+    $scope.postMaterial = function(){
+      $http.post('/material/add', $scope.formData)
+           .success(function(data) {
+             console.log("posted successfully");
+           }).error(function(data) {
+             console.error("error in posting");
+           });
+    };
+
+
 
 // deprecated...
     $scope.addTecnico = function($window, $document){
@@ -33,6 +65,14 @@ angular.module('interventoController', [])
 			});
     };
   });
+
+function changePagecontent($scope, page){
+  if($scope.pagecontent === page){
+    $scope.pagecontent='';
+  }else{
+    $scope.pagecontent=page;
+  }
+}
 
 function redirect($window, url){
   $window.location.href = url;

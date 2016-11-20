@@ -1,39 +1,36 @@
-extends ../../layout/homepage-layout
+h1= title
+if material
+  p Dettaglio materiale #{material.code}
+  table(class="table table-striped")
+    tr
+      td
+        label #{material.product_name}
+      td
+        label #{material.code}
+    tr
+      td(colspan='2')
+        label #{material.description}
+    tr
+      td
+        label #{material.price}
+  a(ng-click="editMaterial('"+material.code+"')") Modifica materiale |&nbsp;
+  a(ng-click="deleteMaterial('"+material._id+"')") Elimina materiale
+else if list
+  table(class="table table-striped table-responsive")
+    tr
+      th #{__('product_name')}
+      th #{__('code')}
+      th #{__('description')}
+      th #{__('price')}
+    each item in list
+      tr
+        td
+          a(ng-click="viewMaterial('"+item.code+"')" ) #{item.product_name}
+        td
+          a(ng-click="viewMaterial('"+item.code+"')" ) #{item.code}
+        td #{item.description}
+        td #{item.price}
 
-block content
-  h1= title
-  if material
-    p Dettaglio materiale #{material.code}
-    table(class="table table-striped")
-      tr
-        td
-          label #{material.product_name}
-        td
-          label #{material.code}
-      tr
-        td(colspan='2')
-          label #{material.description}
-      tr
-        td
-          label #{material.price}
-    a(href="/material/edit/" + material.code) Modifica materiale |&nbsp;
-    a(href="/material/delete/" + material._id) Elimina materiale
-  else if list
-    table(class="table table-striped table-responsive")
-      tr
-        th #{__('product_name')}
-        th #{__('code')}
-        th #{__('description')}
-        th #{__('price')}
-      each item in list
-        tr
-          td
-            a(href="/material/" + item.code) #{item.product_name}
-          td
-            a(href="/material/" + item.code) #{item.code}
-          td #{item.description}
-          td #{item.price}
-
-  br
-  a(href="/material") Elenco materiali |&nbsp;
-  a(href="/material/add") Aggiungi materiale
+br
+a(ng-click="listMaterials()") Elenco materiali |&nbsp;
+a(ng-click="addMaterial()") Aggiungi materiale
