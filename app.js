@@ -76,6 +76,16 @@ app.use('/intervention', intervention);
 app.use('/work', work);
 app.use('/image', require('./routes/image')(mongo, db));
 
+//app.use("/angular", function (req, res) {
+//  res.render(req.path);
+//});
+router.get('/angular/home', function(req, res, next) {
+  res.render('angular/home', { title: 'App di Rocco' });
+});
+router.get('/angular/about', function(req, res, next) {
+  res.render('angular/about', { title: 'App di Rocco' });
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

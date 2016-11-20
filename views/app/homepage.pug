@@ -10,3 +10,7 @@ block content
   a(href="/image") #{__('link-image')}
   br
   a(href="/image/add") #{__('link-add-image')}
+
+  div(ng-view)
+    p debug: {{template.name}}
+    div(ng-include="template.url")
