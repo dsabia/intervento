@@ -11,7 +11,7 @@
     "body-parser": "~1.15.1",
     "cookie-parser": "^1.1.0",
     "debug": "~2.2.0",
-    "express": "~4.13.4",
+    "express": "~4.14.0",
     "express-session": "^1.10.1",
     "express-partials": ">= 0.0.0",
     "connect-flash": "~0.1.1",
