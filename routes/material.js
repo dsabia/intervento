@@ -5,13 +5,7 @@ var Material = require('../models/material');
 
 /* GET scheda */
 router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
-  Material.find({'owner' : req.user._id}, function(err, list_pojos) {
-    if (err){
-      console.log(err);
-      return;
-    }
-    res.render('app/material/view', { title: 'Elenco materiali', list:  list_pojos });
-  });
+  res.render('app/material/view');
 });
 
 /* open page add new material */
@@ -33,6 +27,28 @@ router.get('/delete/:id', appUtil.ensureAuthenticated, function(req, res, next) 
   });
 });
 
+
+// load detail page by code
+router.get('/get/:code', appUtil.ensureAuthenticated, function(req, res, next) {
+  Material.findOne({ 'code' :  req.params.code, 'owner' : req.user._id}, function(err, pojo) {
+    if (err){
+      console.log(err);
+      return;
+    }
+    res.json(pojo);
+  });
+});
+
+router.get('/all', appUtil.ensureAuthenticated, function(req, res, next) {
+  Material.find({'owner' : req.user._id}, function(err, list) {
+    if (err){
+      console.log(err);
+      return;
+    }
+    res.json(list);
+  });
+});
+
 // load detail page by code
 router.get('/:code', appUtil.ensureAuthenticated, function(req, res, next) {
   Material.findOne({ 'code' :  req.params.code, 'owner' : req.user._id}, function(err, pojo) {
@@ -44,17 +60,20 @@ router.get('/:code', appUtil.ensureAuthenticated, function(req, res, next) {
   });
 });
 
+
 // add form data on db
 router.post('/add', appUtil.ensureAuthenticated, function(req, res, next) {
-  if(req.body.id){
-    Material.findById(req.body.id, function(err, pojo){
+  if(req.body._id){
+    Material.findById(req.body._id, function(err, pojo){
       populateRequestAndSave(req, pojo);
-      res.redirect('/material/'+pojo.code);
+      res.json({"code": pojo.code});
+      //res.redirect('/material/'+pojo.code);
     });
   }else{
     var material = new Material();
     populateRequestAndSave(req, material);
-    res.redirect('/material/'+material.code);
+    res.json({"code": material.code});
+    //res.redirect('/material/'+material.code);
   }
 });
 

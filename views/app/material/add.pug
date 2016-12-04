@@ -4,23 +4,22 @@ form.form-horizontal
   div.form-group.row
     div.col-md-6.col-xs-12
       label(for='product_name') #{__('product_name')}
-      input(name='product_name',  ng-model="formData.product_name", value=''+(material ? material.product_name : '')).form-control
+      input(name='product_name',  ng-model="pojo.product_name").form-control
     div.col-md-6.col-xs-12
       label(for='code') #{__('code')}
-      input(name='code',  ng-model="formData.code", value=''+(material ? material.code : '')).form-control
+      input(name='code',  ng-model="pojo.code").form-control
   div.form-group.row
     div.col-md-12.col-xs-12
       label(for='description') #{__('description')}
-      input(name='description',  ng-model="formData.description", type='area', value=''+(material ? material.description : '')).form-control
+      input(name='description',  ng-model="pojo.description", type='area').form-control
   div.form-group.row
     div.col-md-6.col-xs-12
       label(for='price') #{__('price')}
       div.input-group
         span.input-group-addon
           span.fa.fa-euro
-        input(name='price',  ng-model="formData.price", type='number', min="0", step="0.01", data-number-to-fixed="2", value=''+(material ? material.price : '')).form-control.currency
-  input(type="hidden", name="id",  ng-model="formData.id", value=''+(material ? material._id : ''))
-  button(type="submit", ng-click="postMaterial()").btn.btn-default #{material ? 'Modifica' : 'Aggiungi'} materiale
+        input(name='price',  ng-model="pojo.price", type='number', min="0", step="0.01", data-number-to-fixed="2").form-control.currency
+  button(type="submit", ng-click="postMaterial()").btn.btn-default {{pojo._id ? 'Modifica' : 'Aggiungi'}} materiale
 
 a(ng-click="listMaterials()") Elenco materiali |&nbsp;
 a(ng-click="addMaterial()") Aggiungi materiale

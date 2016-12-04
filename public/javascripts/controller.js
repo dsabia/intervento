@@ -16,53 +16,68 @@ angular.module('interventoController', [])
     };
 
     $scope.pagecontent='';
+    $scope.pojo = null;
+    $scope.list = null;
+    $scope.title = '';
+
     $scope.listMaterials = function(){
-      var page = '/material';
-      changePagecontent($scope, page);
+      $http.get('/material/all')
+           .success(function(res) {
+             $scope.title= 'Elenco materiali';
+             $scope.list= res;
+             $scope.pojo = null;
+             var page = '/material';
+             changePagecontent($scope, page);
+           }).error(function(res) {
+             console.log("error in getAll");
+           });
     };
     $scope.addMaterial = function(){
+      $scope.pojo = {};
       var page = '/material/add';
       changePagecontent($scope, page);
     };
     $scope.viewMaterial = function(code){
       console.log("code: " + code);
-      var page = '/material/' + code;
-      changePagecontent($scope, page);
-    };
-    $scope.editMaterial = function(code){
-      var page = '/material/edit/' + code;
-      changePagecontent($scope, page);
-    };
-    $scope.deleteMaterial = function(_id){
-      var page = '/material/delete/' + _id;
-      changePagecontent($scope, page);
-    };
-    $scope.postMaterial = function(){
-      $http.post('/material/add', $scope.formData)
-           .success(function(data) {
-             console.log("posted successfully");
-           }).error(function(data) {
-             console.error("error in posting");
+      $http.get('/material/get/' + code)
+           .success(function(res, code) {
+             $scope.title= 'Dettaglio materiale';
+             $scope.pojo = res;
+             $scope.list = null;
+             var page = '/material/' + code;
+             changePagecontent($scope, page);
+           }).error(function(res) {
+             console.error("error in get");
            });
     };
-
-
-
-// deprecated...
-    $scope.addTecnico = function($window, $document){
-      console.log('Some validation... - nome:'+$scope.form.nome + ' cognome:'+$scope.form.cognome );
-      var tecnico = $scope.form;
-      return Intervento.addTecnico(tecnico).success(function(data) {
-          console.log('Success ' + $http);
-			});
+    $scope.editMaterial = function(code){
+      $http.get('/material/get/' + code)
+           .success(function(res, code) {
+             $scope.pojo = res;
+             var page = '/material/edit/' + code;
+             changePagecontent($scope, page);
+           }).error(function(res) {
+             console.error("error in get");
+           });
     };
-
-    $scope.addScheda = function($window, $document){
-      console.log('Some validation... - nome:');
-      var cliente = $scope.form;
-      return Intervento.addScheda(cliente).success(function(data) {
-          console.log('Success ' + $http);
-			});
+    $scope.deleteMaterial = function(_id){
+      $http.get('/material/delete/' + _id)
+           .success(function(res, code) {
+             $scope.listMaterials();
+           }).error(function(res) {
+             console.error("error in get");
+           });
+    };
+    $scope.postMaterial = function(){
+      console.log($scope.pojo);
+      console.log($scope.pojo.code);
+      $http.post('/material/add', $scope.pojo)
+           .success(function(res) {
+             $scope.pojo = null;
+             $scope.viewMaterial(res.code);
+           }).error(function(res) {
+             console.error("error in posting");
+           });
     };
   });
 
@@ -72,8 +87,4 @@ function changePagecontent($scope, page){
   }else{
     $scope.pagecontent=page;
   }
-}
-
-function redirect($window, url){
-  $window.location.href = url;
 }
