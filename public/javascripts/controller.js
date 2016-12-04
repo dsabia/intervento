@@ -21,12 +21,12 @@ angular.module('interventoController', [])
     $scope.title = '';
 
     $scope.listMaterials = function(){
-      $http.get('/material/all')
+      $http.get('/material/')
            .success(function(res) {
              $scope.title= 'Elenco materiali';
              $scope.list= res;
              $scope.pojo = null;
-             var page = '/material';
+             var page = '/material/view';
              changePagecontent($scope, page);
            }).error(function(res) {
              console.log("error in getAll");
@@ -34,34 +34,34 @@ angular.module('interventoController', [])
     };
     $scope.addMaterial = function(){
       $scope.pojo = {};
-      var page = '/material/add';
+      var page = '/material/form';
       changePagecontent($scope, page);
     };
     $scope.viewMaterial = function(code){
       console.log("code: " + code);
-      $http.get('/material/get/' + code)
+      $http.get('/material/' + code)
            .success(function(res, code) {
              $scope.title= 'Dettaglio materiale';
              $scope.pojo = res;
              $scope.list = null;
-             var page = '/material/' + code;
+             var page = '/material/view';
              changePagecontent($scope, page);
            }).error(function(res) {
              console.error("error in get");
            });
     };
     $scope.editMaterial = function(code){
-      $http.get('/material/get/' + code)
+      $http.get('/material/' + code)
            .success(function(res, code) {
              $scope.pojo = res;
-             var page = '/material/edit/' + code;
+             var page = '/material/form';
              changePagecontent($scope, page);
            }).error(function(res) {
              console.error("error in get");
            });
     };
     $scope.deleteMaterial = function(_id){
-      $http.get('/material/delete/' + _id)
+      $http.delete('/material/' + _id)
            .success(function(res, code) {
              $scope.listMaterials();
            }).error(function(res) {
@@ -82,6 +82,9 @@ angular.module('interventoController', [])
   });
 
 function changePagecontent($scope, page){
+  $scope.pagecontent=page;
+}
+function togglePagecontent($scope, page){
   if($scope.pagecontent === page){
     $scope.pagecontent='';
   }else{
