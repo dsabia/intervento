@@ -63,7 +63,7 @@ function populateRequestAndSave(req, material){
   material.product_name  = req.body.product_name;
   material.description   = req.body.description;
   material.price     		 = req.body.price;
-  material.owner           = req.user._id;
+  material.owner         = req.user._id;
 
   material.save(function(err) {
       console.log('save ' + err);
