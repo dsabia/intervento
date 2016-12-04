@@ -1,20 +1,6 @@
 angular.module('interventoController', [])
   .controller('mainController', function($scope, $http, $document, $window, Intervento) {
 
-    $scope.templates = [
-      { name: 'home', url: 'angular/home'},
-      { name: 'about', url: 'angular/about'}];
-    $scope.template = $scope.templates[0];
-
-    $scope.openAbout = function(){
-      console.log("To open About");
-      $scope.template = $scope.templates[1];
-    };
-    $scope.openHome = function(){
-      console.log("To open Home");
-      $scope.template = $scope.templates[0];
-    };
-
     $scope.pagecontent='';
     $scope.pojo = null;
     $scope.list = null;
