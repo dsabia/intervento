@@ -1,4 +1,4 @@
-h2= title
+h2 {{title}}
 
 form.form-horizontal
   div.form-group.row
@@ -19,7 +19,8 @@ form.form-horizontal
         span.input-group-addon
           span.fa.fa-euro
         input(name='price',  ng-model="pojo.price", type='number', min="0", step="0.01", data-number-to-fixed="2").form-control.currency
-  button(type="submit", ng-click="postMaterial()").btn.btn-default {{pojo._id ? 'Modifica' : 'Aggiungi'}} materiale
+  button(ng-hide="pojo._id", type="submit", ng-click="postMaterial()").btn.btn-default Aggiungi materiale
+  button(ng-show="pojo._id", type="submit", ng-click="putMaterial()").btn.btn-default Modifica materiale
 
 a(ng-click="listMaterials()") Elenco materiali |&nbsp;
 a(ng-click="addMaterial()") Aggiungi materiale

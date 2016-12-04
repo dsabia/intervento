@@ -20,6 +20,7 @@ angular.module('interventoController', [])
     };
     $scope.addMaterial = function(){
       $scope.pojo = {};
+      $scope.title= 'Aggiungi materiale';
       var page = '/material/form';
       changePagecontent($scope, page);
     };
@@ -40,24 +41,32 @@ angular.module('interventoController', [])
       $http.get('/material/' + code)
            .success(function(res, code) {
              $scope.pojo = res;
+             $scope.title= 'Modifica materiale';
              var page = '/material/form';
              changePagecontent($scope, page);
            }).error(function(res) {
              console.error("error in get");
            });
     };
-    $scope.deleteMaterial = function(_id){
-      $http.delete('/material/' + _id)
-           .success(function(res, code) {
+    $scope.deleteMaterial = function(id){
+      $http.delete('/material/' + id)
+           .success(function(res) {
              $scope.listMaterials();
            }).error(function(res) {
              console.error("error in get");
            });
     };
     $scope.postMaterial = function(){
-      console.log($scope.pojo);
-      console.log($scope.pojo.code);
-      $http.post('/material/add', $scope.pojo)
+      $http.post('/material/', $scope.pojo)
+           .success(function(res) {
+             $scope.pojo = null;
+             $scope.viewMaterial(res.code);
+           }).error(function(res) {
+             console.error("error in posting");
+           });
+    };
+    $scope.putMaterial = function(){
+      $http.put('/material/'+$scope.pojo._id, $scope.pojo)
            .success(function(res) {
              $scope.pojo = null;
              $scope.viewMaterial(res.code);

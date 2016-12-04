@@ -36,32 +36,26 @@ router.get('/:code', appUtil.ensureAuthenticated, function(req, res, next) {
   });
 });
 
-/* open page edit material */
-router.put('/:code', appUtil.ensureAuthenticated, function(req, res, next) {
-  Material.findOne({ 'code' :  req.params.code, 'owner' : req.user._id}, function(err, pojo){
-    res.render('app/material/add', { title: 'Modifica materiale', material : pojo});
-  });
-});
-
 /* open page delete material */
 router.delete('/:id', appUtil.ensureAuthenticated, function(req, res, next) {
   Material.remove({ '_id' :  req.params.id }, function(err){
-    res.redirect('/material');
+    res.end();
   });
 });
 
 // add form data on db
-router.post('/add', appUtil.ensureAuthenticated, function(req, res, next) {
-  if(req.body._id){
-    Material.findById(req.body._id, function(err, pojo){
-      populateRequestAndSave(req, pojo);
-      res.json({"code": pojo.code});
-    });
-  }else{
+router.post('/', appUtil.ensureAuthenticated, function(req, res, next) {
     var material = new Material();
     populateRequestAndSave(req, material);
     res.json({"code": material.code});
-  }
+});
+
+// add form data on db
+router.put('/:id', appUtil.ensureAuthenticated, function(req, res, next) {
+  Material.findById(req.params.id, function(err, pojo){
+    populateRequestAndSave(req, pojo);
+    res.json({"code": pojo.code});
+  });
 });
 
 function populateRequestAndSave(req, material){
