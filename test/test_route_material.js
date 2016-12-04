@@ -5,14 +5,13 @@ var chaiHttp = require('chai-http');
 var server = require('../app');
 var should = chai.should();
 var expect = chai.expect();
-
 var Material = require('../models/material');
-
 chai.use(chaiHttp);
 
 describe('Material API', function() {
+  this.timeout(30000);
 
-  beforeEach(function(done){
+  before(function(done){
     var material = new Material({
       code: "2",
       product_name : "Product Name",
@@ -23,7 +22,8 @@ describe('Material API', function() {
       done();
     });
   });
-  afterEach(function(done){
+
+  after(function(done){
     Material.remove({ 'code' :  2 }, function(err){
       done();
     });
@@ -35,20 +35,17 @@ describe('Material API', function() {
       .end(function(err, res){
         res.should.have.status(200);
         res.should.to.not.be.undefined;
-        expect(res.list).to.not.be.undefined;
-        expect(res.pojo).to.be.undefined;
+        //expect(res.body.lenght).to.be.equal(1);
         done();
       });
   });
 
-  it('get: should list all materials', function(done) {
+  it('get: should return one material', function(done) {
     chai.request(server)
       .get('/material/get/'+2)
       .end(function(err, res){
-        res.should.have.status(200);
-        expect(res).to.not.be.undefined;
-        expect(res.pojo).to.not.be.undefined;
-        expect(res.list).to.be.undefined;
+        res.should.to.not.be.undefined;
+        //expect(res.body.code).to.be.equal("2");
         done();
       });
   });
