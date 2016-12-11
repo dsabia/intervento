@@ -10,7 +10,7 @@ router.get('/page/view', appUtil.ensureAuthenticated, function(req, res, next) {
 
 /* PAGE FORM */
 router.get('/page/form', appUtil.ensureAuthenticated, function(req, res, next) {
-  res.render('app/material/add');
+  res.render('app/material/form');
 });
 
 /* REST API */
