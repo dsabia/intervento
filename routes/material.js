@@ -4,12 +4,12 @@ var appUtil = require('../services/app_util');
 var Material = require('../models/material');
 
 /* PAGE VIEW */
-router.get('/view', appUtil.ensureAuthenticated, function(req, res, next) {
+router.get('/page/view', appUtil.ensureAuthenticated, function(req, res, next) {
   res.render('app/material/view');
 });
 
 /* PAGE FORM */
-router.get('/form', appUtil.ensureAuthenticated, function(req, res, next) {
+router.get('/page/form', appUtil.ensureAuthenticated, function(req, res, next) {
   res.render('app/material/add');
 });
 

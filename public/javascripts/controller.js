@@ -12,8 +12,7 @@ angular.module('interventoController', [])
              $scope.title= 'Elenco materiali';
              $scope.list= res;
              $scope.pojo = null;
-             var page = '/material/view';
-             changePagecontent($scope, page);
+             changePagecontent($scope, '/material/page/view');
            }).error(function(res) {
              console.log("error in getAll");
            });
@@ -21,8 +20,7 @@ angular.module('interventoController', [])
     $scope.addMaterial = function(){
       $scope.pojo = {};
       $scope.title= 'Aggiungi materiale';
-      var page = '/material/form';
-      changePagecontent($scope, page);
+      changePagecontent($scope, '/material/page/form');
     };
     $scope.viewMaterial = function(code){
       console.log("code: " + code);
@@ -31,8 +29,7 @@ angular.module('interventoController', [])
              $scope.title= 'Dettaglio materiale';
              $scope.pojo = res;
              $scope.list = null;
-             var page = '/material/view';
-             changePagecontent($scope, page);
+             changePagecontent($scope, '/material/page/view');
            }).error(function(res) {
              console.error("error in get");
            });
@@ -42,8 +39,7 @@ angular.module('interventoController', [])
            .success(function(res, code) {
              $scope.pojo = res;
              $scope.title= 'Modifica materiale';
-             var page = '/material/form';
-             changePagecontent($scope, page);
+             changePagecontent($scope, '/material/page/form');
            }).error(function(res) {
              console.error("error in get");
            });
