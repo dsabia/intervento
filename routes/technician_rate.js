@@ -14,22 +14,22 @@ router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
     }
     if(list_results.length > 0){
       var pojo = list_results[0];
-      res.render('app/technician_rate/detail', { title: 'Dettaglio della tariffa', rate: pojo });
+      res.render('app/technician_rate/view', { title: 'Dettaglio della tariffa', rate: pojo });
     }else{
-      res.render('app/technician_rate/detail', { title: 'Tariffa non presente'});
+      res.render('app/technician_rate/view', { title: 'Tariffa non presente'});
     }
   });
 });
 
 /* open page add new tariffa */
 router.get('/add', appUtil.ensureAuthenticated, function(req, res, next) {
-  res.render('app/technician_rate/edit', { title: 'Aggiungi tariffa', frazioni_dora_option: frazioni_dora_option });
+  res.render('app/technician_rate/form', { title: 'Aggiungi tariffa', frazioni_dora_option: frazioni_dora_option });
 });
 
 /* open page add new tariffa */
 router.get('/edit', appUtil.ensureAuthenticated, function(req, res, next) {
   TechnicianRate.findOne({ 'owner' : req.user._id }, function(err, pojo){
-    res.render('app/technician_rate/edit', { title: 'Modifica tariffa',
+    res.render('app/technician_rate/form', { title: 'Modifica tariffa',
                                      rate: pojo,
                                      frazioni_dora_option: appUtil.setSelectedOption(frazioni_dora_option, pojo.fraction_of_hour) });
   });
