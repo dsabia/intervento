@@ -4,8 +4,6 @@ block content
   div(ng-view)
     h1= title
     p #{title}
-    a(href="/technician_rate") #{__('link-technician-rate')}
-    span &nbsp;
     a(href="/image") #{__('link-image')}
     span &nbsp;
     a(href="/image/add") #{__('link-add-image')}
@@ -15,4 +13,5 @@ block content
 
     a(ng-click="listMaterials()") #{__('link-list-materials')}
     span &nbsp;
+    a(ng-click="viewRate()") #{__('link-technician-rate')}
     div.content(ng-include="pagecontent")

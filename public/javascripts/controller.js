@@ -5,7 +5,9 @@ angular.module('interventoController', [])
     $scope.pojo = null;
     $scope.list = null;
     $scope.title = '';
+    $scope.frazioni_dora_option = null;
 
+    /* MATERIALS */
     $scope.listMaterials = function(){
       $http.get('/material/')
            .success(function(res) {
@@ -66,6 +68,59 @@ angular.module('interventoController', [])
            .success(function(res) {
              $scope.pojo = null;
              $scope.viewMaterial(res.code);
+           }).error(function(res) {
+             console.error("error in posting");
+           });
+    };
+
+    /* RATES*/
+    $scope.addRate = function(){
+      $http.get('/technician_rate/formData')
+           .success(function(res, code) {
+             $scope.pojo = {};
+             $scope.title= res.title;
+             $scope.frazioni_dora_option= res.frazioni_dora_option;
+             changePagecontent($scope, '/technician_rate/page/form');
+           }).error(function(res) {
+             console.error("error in get");
+           });
+    };
+    $scope.viewRate = function(){
+      $http.get('/technician_rate')
+           .success(function(res, code) {
+             $scope.title= res.title;
+             $scope.pojo = res.pojo;
+             $scope.list = null;
+             changePagecontent($scope, '/technician_rate/page/view');
+           }).error(function(res) {
+             console.error("error in get");
+           });
+    };
+    $scope.editRate = function(code){
+      $http.get('/technician_rate/formData')
+           .success(function(res, code) {
+             $scope.pojo = res.pojo;
+             $scope.title= res.title;
+             $scope.frazioni_dora_option= res.frazioni_dora_option;
+             changePagecontent($scope, '/technician_rate/page/form');
+           }).error(function(res) {
+             console.error("error in get");
+           });
+    };
+    $scope.postRate = function(){
+      $http.post('/technician_rate/', $scope.pojo)
+           .success(function(res) {
+             $scope.pojo = null;
+             $scope.viewRate();
+           }).error(function(res) {
+             console.error("error in posting");
+           });
+    };
+    $scope.putRate = function(){
+      $http.put('/technician_rate/'+$scope.pojo._id, $scope.pojo)
+           .success(function(res) {
+             $scope.pojo = null;
+             $scope.viewRate();
            }).error(function(res) {
              console.error("error in posting");
            });

@@ -16,7 +16,7 @@ router.get('/page/form', appUtil.ensureAuthenticated, function(req, res, next) {
   res.render('app/technician_rate/form');
 });
 
-/* GET dettaglio unica tariffa */
+/* GET for view */
 router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
   TechnicianRate.find({ 'owner' : req.user._id }, function(err, list_results) {
     if (err){
@@ -25,39 +25,39 @@ router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
     }
     if(list_results.length > 0){
       var pojo = list_results[0];
-      res.render('app/technician_rate/view', { title: 'Dettaglio della tariffa', rate: pojo });
+      res.json({ title: 'Dettaglio della tariffa', pojo: pojo });
     }else{
-      res.render('app/technician_rate/view', { title: 'Tariffa non presente'});
+      res.json({ title: 'Tariffa non presente'});
     }
   });
 });
 
-/* open page add new tariffa */
-router.get('/add', appUtil.ensureAuthenticated, function(req, res, next) {
-  res.render('app/technician_rate/form', { title: 'Aggiungi tariffa', frazioni_dora_option: frazioni_dora_option });
-});
-
-/* open page add new tariffa */
-router.get('/edit', appUtil.ensureAuthenticated, function(req, res, next) {
+/* GET for form */
+router.get('/formData', appUtil.ensureAuthenticated, function(req, res, next) {
   TechnicianRate.findOne({ 'owner' : req.user._id }, function(err, pojo){
-    res.render('app/technician_rate/form', { title: 'Modifica tariffa',
-                                     rate: pojo,
-                                     frazioni_dora_option: appUtil.setSelectedOption(frazioni_dora_option, pojo.fraction_of_hour) });
+    if(!pojo){
+      res.json({ title: 'Aggiungi tariffa',
+                 frazioni_dora_option: frazioni_dora_option });
+    }else{
+      res.json({ title: 'Modifica tariffa',
+                 pojo: pojo,
+                 frazioni_dora_option: frazioni_dora_option });
+    }
   });
 });
 
-// add form data on the db
-router.post('/edit', appUtil.ensureAuthenticated, function(req, res, next) {
-  if(req.body.id){
-    TechnicianRate.findById(req.body.id, function(err, rate){
-      populateRequestAndSave(req, rate);
-      res.redirect('/technician_rate/');
-    });
-  }else{
-    var rate = new TechnicianRate();
+
+router.post('/', appUtil.ensureAuthenticated, function(req, res, next) {
+  var rate = new TechnicianRate();
+  populateRequestAndSave(req, rate);
+  res.end();
+});
+
+router.put('/:id', appUtil.ensureAuthenticated, function(req, res, next) {
+  TechnicianRate.findById(req.params.id, function(err, rate){
     populateRequestAndSave(req, rate);
-    res.redirect('/technician_rate/');
-  }
+    res.end();
+  });
 });
 
 function populateRequestAndSave(req, rate){
