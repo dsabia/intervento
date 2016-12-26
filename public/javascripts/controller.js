@@ -101,11 +101,19 @@ angular.module('interventoController', [])
            .success(function(res, code) {
              $scope.pojo = res.pojo;
              $scope.title= res.title;
-             $scope.frazioni_dora_option= res.frazioni_dora_option;
+             $scope.frazioni_dora_option = res.frazioni_dora_option;
+             $scope.pojo.fraction_of_hour = $scope.findHourFraction($scope.pojo);
              changePagecontent($scope, '/technician_rate/page/form');
            }).error(function(res) {
              console.error("error in get");
            });
+    };
+    $scope.findHourFraction = function(pojo){
+      for(i = 0; i < $scope.frazioni_dora_option.length; i++){
+        if($scope.frazioni_dora_option[i] == pojo.fraction_of_hour){
+          return $scope.frazioni_dora_option[i];
+        }
+      }
     };
     $scope.postRate = function(){
       $http.post('/technician_rate/', $scope.pojo)

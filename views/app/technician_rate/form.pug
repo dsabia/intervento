@@ -14,9 +14,10 @@ form.form-horizontal
       input(name='hour_rate', type='number', ng-model="pojo.hour_rate").form-control
     div.col-md-6.col-xs-12
       label(for='fraction_of_hour') #{__('fraction_of_hour')}
-      select(name='fraction_of_hour', type='select', ng-model="pojo.fraction_of_hour").form-control
+      select(ng-hide="pojo._id", name='fraction_of_hour', type='select', ng-model="pojo.fraction_of_hour").form-control
         option(ng-hide="pojo._id", value="", disabled, selected) #{__('option-void')}
-        option(ng-repeat="frazione in frazioni_dora_option", ng-selected="{{pojo.fraction_of_hour}}", value="{{frazione}}") {{frazione}}
+        option(ng-hide="pojo._id",ng-repeat="frazione in frazioni_dora_option", value="{{frazione}}") {{frazione}}
+      select(ng-show="pojo._id", ng-model="pojo.fraction_of_hour", ng-options="f for f in frazioni_dora_option").form-control
   div.form-group.row
     div.col-md-6.col-xs-12
       label(for='km_rate') #{__('km_rate')}
