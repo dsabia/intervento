@@ -1,5 +1,18 @@
-angular.module('interventoController', [])
-  .controller('mainController', function($scope, $http, $document, $window, Intervento) {
+var app = angular.module('interventoController', ["ngRoute"]);
+app.config(function($routeProvider) {
+    $routeProvider
+    .when("/homepage", {
+        controller: "mainController"
+    })
+    .when("/technician_home", {
+        controller: "technicianController"
+    })
+    .when("/technician", {
+        controller: "technicianController"
+    });
+});
+
+app.controller('mainController', function($scope, $http) {
 
     $scope.pagecontent='';
     $scope.pojo = null;
@@ -108,13 +121,6 @@ angular.module('interventoController', [])
              console.error("error in get");
            });
     };
-    $scope.findHourFraction = function(pojo){
-      for(i = 0; i < $scope.frazioni_dora_option.length; i++){
-        if($scope.frazioni_dora_option[i] == pojo.fraction_of_hour){
-          return $scope.frazioni_dora_option[i];
-        }
-      }
-    };
     $scope.postRate = function(){
       $http.post('/technician_rate/', $scope.pojo)
            .success(function(res) {
@@ -133,7 +139,91 @@ angular.module('interventoController', [])
              console.error("error in posting");
            });
     };
-  });
+    /* RATES UTILS */
+    $scope.findHourFraction = function(pojo){
+      for(i = 0; i < $scope.frazioni_dora_option.length; i++){
+        if($scope.frazioni_dora_option[i] == pojo.fraction_of_hour){
+          return $scope.frazioni_dora_option[i];
+        }
+      }
+    };
+});
+
+
+
+app.controller('technicianController', function($scope, $http) {
+  $scope.pagecontent='';
+  $scope.pojo = null;
+  $scope.list = null;
+  $scope.title = '';
+
+  /* MATERIALS */
+  $scope.listTechnicians = function(){
+    $http.get('/technician/')
+         .success(function(res) {
+           $scope.title= 'Elenco tecnici';
+           $scope.list= res;
+           $scope.pojo = null;
+           changePagecontent($scope, '/technician/page/view');
+         }).error(function(res) {
+           console.log("error in getAll");
+         });
+  };
+  $scope.addTechnician = function(){
+    $scope.pojo = {};
+    $scope.title= 'Aggiungi un tecncio';
+    changePagecontent($scope, '/technician/page/form');
+  };
+  $scope.viewTechnician = function(code){
+    console.log("code: " + code);
+    $http.get('/technician/' + code)
+         .success(function(res, code) {
+           $scope.title= 'Dettaglio del tecnico';
+           $scope.pojo = res;
+           $scope.list = null;
+           changePagecontent($scope, '/technician/page/view');
+         }).error(function(res) {
+           console.error("error in get");
+         });
+  };
+  $scope.editTechnician = function(code){
+    $http.get('/technician/' + code)
+         .success(function(res, code) {
+           $scope.pojo = res;
+           $scope.title= 'Modifica il tecnico';
+           changePagecontent($scope, '/technician/page/form');
+         }).error(function(res) {
+           console.error("error in get");
+         });
+  };
+  $scope.deleteTechnician = function(id){
+    $http.delete('/technician/' + id)
+         .success(function(res) {
+           $scope.listTechnicians();
+         }).error(function(res) {
+           console.error("error in get");
+         });
+  };
+  $scope.postTechnician = function(){
+    $http.post('/technician/', $scope.pojo)
+         .success(function(res) {
+           $scope.pojo = null;
+           $scope.viewTechnician(res.account_code);
+         }).error(function(res) {
+           console.error("error in posting");
+         });
+  };
+  $scope.putTechnician = function(){
+    $http.put('/technician/'+$scope.pojo._id, $scope.pojo)
+         .success(function(res) {
+           $scope.pojo = null;
+           $scope.viewTechnician(res.account_code);
+         }).error(function(res) {
+           console.error("error in posting");
+         });
+  };
+
+});
 
 function changePagecontent($scope, page){
   $scope.pagecontent=page;

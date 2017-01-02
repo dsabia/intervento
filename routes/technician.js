@@ -3,66 +3,76 @@ var router = express.Router();
 var appUtil = require('../services/app_util');
 var Technician = require('../models/technician').model;
 
+/* PAGE VIEW */
+router.get('/page/view', appUtil.ensureAuthenticated, function(req, res, next) {
+  res.render('app/technician/view');
+});
+
+/* PAGE FORM */
+router.get('/page/form', appUtil.ensureAuthenticated, function(req, res, next) {
+  res.render('app/technician/form');
+});
+
 /* GET elenco tecnici */
 router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
-  Technician.find({'owner' : req.user._id}, function(err, list_pojos) {
+  Technician.find({'owner' : req.user._id}, function(err, list) {
     if (err){
       console.log(err);
       return;
     }
-    res.render('app/technician/view', { title: 'Elenco dei tecnici', list:  list_pojos });
+    res.json(list);
   });
 });
 
-/* open page add new tecnico */
-router.get('/add', appUtil.ensureAuthenticated, function(req, res, next) {
-  res.render('app/technician/add', { title: 'Aggiungi un tecnico'});
+/* GET for form */
+router.get('/formData', appUtil.ensureAuthenticated, function(req, res, next) {
+  Technician.findOne({ 'account_code' :  req.params.code , 'owner' : req.user._id}, function(err, pojo){
+    if(!pojo){
+      res.json({ title: 'Aggiungi un tecnico' });
+    }else{
+      res.json({ title: 'Modifica il tecnico',
+                 pojo: pojo });
+    }
+  });
 });
 
-// add form data on the db
-router.post('/add', appUtil.ensureAuthenticated, function(req, res, next) {
-  if(req.body.id){
-    // update
-    Technician.findById(req.body.id, function(err, technician){
-      populateRequestAndSave(req, technician);
-      res.redirect('/technician/'+technician.account_code);
-    });
-  }else{
-    // insert
-    var technician = new Technician();
-    populateRequestAndSave(req, technician);
-    res.redirect('/technician/'+technician.account_code);
-  }
+router.post('/', appUtil.ensureAuthenticated, function(req, res, next) {
+  var rate = new Technician();
+  populateRequestAndSave(req, rate);
+  res.end();
 });
 
-/* GET tecnico */
+
+// load detail page by code
 router.get('/:code', appUtil.ensureAuthenticated, function(req, res, next) {
-  Technician.findOne({ 'account_code' :  req.params.code , 'owner' : req.user._id}, function(err, pojo) {
-    if (err){
-      console.log(err);
-      return;
-    }
-    res.render('app/technician/view', { technician: pojo });
-  });
-});
-
-/* open page add new tecnico */
-router.get('/edit/:code', appUtil.ensureAuthenticated, function(req, res, next) {
   Technician.findOne({ 'account_code' :  req.params.code, 'owner' : req.user._id}, function(err, pojo) {
     if (err){
       console.log(err);
       return;
     }
-    res.render('app/technician/add', { title: 'Modifica il tecnico', technician : pojo });
+    res.json(pojo);
   });
 });
 
-/* open page add new tecnico */
-router.get('/delete/:id', appUtil.ensureAuthenticated, function(req, res, next) {
+router.delete('/:id', appUtil.ensureAuthenticated, function(req, res, next) {
   Technician.remove({ '_id' :  req.params.id}, function(err) {
-    res.redirect('/tecnico');
+    res.end();
   });
 });
+
+router.post('/', appUtil.ensureAuthenticated, function(req, res, next) {
+    var technician = new Technician();
+    populateRequestAndSave(req, technician);
+    res.json({"account_code": technician.account_code});
+});
+
+router.put('/:id', appUtil.ensureAuthenticated, function(req, res, next) {
+  Technician.findById(req.params.id, function(err, pojo){
+    populateRequestAndSave(req, pojo);
+    res.json({"account_code": pojo.account_code});
+  });
+});
+
 
 function populateRequestAndSave(req, technician){
   technician.name         = req.body.name;

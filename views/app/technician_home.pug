@@ -1,0 +1,7 @@
+extends ../layout/homepage-layout
+
+block content
+  div.row(ng-controller="technicianController")
+    h1= title
+    a(ng-click="listTechnicians()") #{__('technician')}
+    div.content(ng-include="pagecontent")

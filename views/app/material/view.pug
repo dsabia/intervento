@@ -22,13 +22,13 @@ div(ng-show="list.length")
       th #{__('code')}
       th #{__('description')}
       th #{__('price')}
-      tr(ng-repeat="item in list")
-        td
-          a(ng-click="viewMaterial(item.code)" ) {{item.product_name}}
-        td
-          a(ng-click="viewMaterial(item.code)" ) {{item.code}}
-        td {{item.description}}
-        td {{item.price}}
+    tr(ng-repeat="item in list")
+      td
+        a(ng-click="viewMaterial(item.code)" ) {{item.product_name}}
+      td
+        a(ng-click="viewMaterial(item.code)" ) {{item.code}}
+      td {{item.description}}
+      td {{item.price}}
 
 br
 a(ng-click="listMaterials()") Elenco materiali |&nbsp;

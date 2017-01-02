@@ -50,7 +50,7 @@ html(ng-app='interventoApp')
             li
               a(href="/homepage") Home
             li
-              a(href="/technician") #{__('technician')}
+              a(href="/technician_home") #{__('technician')}
             li
               a(href="/customer") #{__('customer')}
             li
@@ -63,9 +63,7 @@ html(ng-app='interventoApp')
               a(href="#about") About
 
     div.container
-      div.row(ng-controller="mainController")
-        block content
-
+      block content
 
     footer.footer
       div.footer_container

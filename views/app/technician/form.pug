@@ -1,0 +1,31 @@
+h2 {{title}}
+
+form.form-horizontal
+  div.form-group.row
+    div.col-md-6.col-xs-12
+      label(for='name') #{__('name')}
+      input(name='name', ng-model="pojo.name").form-control
+    div.col-md-6.col-xs-12
+      label(for='surname') #{__('surname')}
+      input(name='surname', ng-model="pojo.surname").form-control
+  div.form-group.row
+    div.col-md-6.col-xs-12
+      label(for='account_code') #{__('piva_cf')}
+      input(name='account_code', ng-model="pojo.account_code").form-control
+  div.form-group.row
+    div.col-md-12.col-xs-12
+      label(for='address') #{__('address')}
+      input(name='address', type='area', ng-model="pojo.address").form-control
+  div.form-group.row
+    div.col-md-6.col-xs-12
+      label(for='phone') #{__('phone')}
+      input(name='phone', ng-model="pojo.phone").form-control
+  div.form-group.row
+    div.col-md-6.col-xs-12
+      label(for='email') #{__('email')}
+      input(type='email',name='email', ng-model="pojo.email" ).form-control
+  button(ng-hide="pojo._id", type="submit", ng-click="postTechnician()").btn.btn-default Aggiungi tecnico
+  button(ng-show="pojo._id", type="submit", ng-click="putTechnician()").btn.btn-default Modifica tecnico
+
+a(ng-click="listTechnicians()") Elenco tecnici |&nbsp;
+a(ng-click="addTechnician()") Aggiungi tecnico

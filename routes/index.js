@@ -55,6 +55,11 @@ router.get('/homepage', isLoggedIn, function(req, res, next) {
   res.render('app/homepage', { title: 'App di Rocco' });
 });
 
+/* open homepage */
+router.get('/technician_home', isLoggedIn, function(req, res, next) {
+  res.render('app/technician_home', { title: 'Dati di Rocco' });
+});
+
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
     // if user is authenticated in the session, carry on

@@ -1,7 +1,7 @@
 extends ../layout/homepage-layout
 
 block content
-  div(ng-view)
+  div.row(ng-controller="mainController")
     h1= title
     p #{title}
     a(href="/image") #{__('link-image')}
