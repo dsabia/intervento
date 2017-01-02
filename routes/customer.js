@@ -3,59 +3,53 @@ var router = express.Router();
 var appUtil = require('../services/app_util');
 var Customer = require('../models/customer').model;
 
-/* GET scheda */
+/* PAGE VIEW */
+router.get('/page/view', appUtil.ensureAuthenticated, function(req, res, next) {
+  res.render('app/customer/view');
+});
+
+/* PAGE FORM */
+router.get('/page/form', appUtil.ensureAuthenticated, function(req, res, next) {
+  res.render('app/customer/form');
+});
+
 router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
-  Customer.find({'owner' : req.user._id}, function(err, list_pojos) {
+  Customer.find({'owner' : req.user._id}, function(err, list) {
     if (err){
       console.log(err);
       return;
     }
-    res.render('app/customer/dettaglio', { title: 'Elenco clienti', list:  list_pojos });
+    res.json(list);
   });
 });
-
-/* open page add new cliente */
-router.get('/add', appUtil.ensureAuthenticated, function(req, res, next) {
-  res.render('app/customer/scheda', { title: 'Aggiungi un cliente'});
-});
-
-// open page edit cliente
-router.get('/edit/:code', appUtil.ensureAuthenticated, function(req, res, next) {
-  Customer.findOne({ 'code' :  req.params.code, 'owner' : req.user._id}, function(err, customer) {
-    res.render('app/customer/scheda', { title: 'Modifica cliente', customer: customer});
-  });
-});
-
-// delete cliente
-router.get('/delete/:id', appUtil.ensureAuthenticated, function(req, res, next) {
-  Customer.remove({ '_id' :  req.params.id}, function(err, customer) {
-    res.redirect('/customer');
-  });
+router.post('/', appUtil.ensureAuthenticated, function(req, res, next) {
+  var customer = new Customer();
+  populateRequestAndSave(req, customer);
+    res.json({"code": customer.code});
 });
 
 // load detail page by code
 router.get('/:code', appUtil.ensureAuthenticated, function(req, res, next) {
-  Customer.findOne({ 'code' :  req.params.code, 'owner' : req.user._id}, function(err, customer) {
+  Customer.findOne({ 'code' :  req.params.code, 'owner' : req.user._id}, function(err, pojo) {
     if (err){
       console.log(err);
       return;
     }
-    res.render('app/customer/dettaglio', { 'customer': customer});
+    res.json(pojo);
   });
 });
 
-// add form data on db
-router.post('/add', appUtil.ensureAuthenticated, function(req, res, next) {
-  if(req.body.id){
-    Customer.findById(req.body.id, function(err, pojo) {
-      populateRequestAndSave(req, pojo);
-      res.redirect('/customer/'+pojo.code);
-    });
-  }else{
-    var customer = new Customer();
-    populateRequestAndSave(req, customer);
-    res.redirect('/customer/'+customer.code);
-  }
+router.delete('/:id', appUtil.ensureAuthenticated, function(req, res, next) {
+  Customer.remove({ '_id' :  req.params.id}, function(err) {
+    res.end();
+  });
+});
+
+router.put('/:id', appUtil.ensureAuthenticated, function(req, res, next) {
+    Customer.findById(req.params.id, function(err, pojo) {
+    populateRequestAndSave(req, pojo);
+    res.json({"code": pojo.code});
+  });
 });
 
 function populateRequestAndSave(req, customer){

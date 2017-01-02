@@ -1,0 +1,37 @@
+h2 {{title}}
+
+form.form-horizontal
+
+  div.form-group.row
+    div.col-md-6.col-xs-12
+      label(for='codecode') #{__('code')}
+      input(name='code', ng-model="pojo.code").form-control
+    div.col-md-6.col-xs-12
+      label(for='discount') #{__('discount')}
+      input(name='discount', ng-model="pojo.discount").form-control
+
+  div.form-group.row
+    div.col-md-6.col-xs-12
+      label(for='company_name') #{__('company_name')}
+      input(name='company_name', ng-model="pojo.company_name").form-control
+    div.col-md-6.col-xs-12
+      label(for='piva_cf') #{__('piva_cf')}
+      input(name='piva_cf', ng-model="pojo.piva_cf").form-control
+
+  div.form-group.row
+    div.col-md-12.col-xs-12
+      label(for='addressaddress') #{__('address')}
+      input(name='address', type='area', ng-model="pojo.address").form-control
+
+  div.form-group.row
+    div.col-md-6.col-xs-12
+      label(for='phone') #{__('phone')}
+      input(name='phone', ng-model="pojo.phone").form-control
+    div.col-md-6.col-xs-12
+      label(for='email') #{__('email')}
+      input(name='email', type='email', ng-model="pojo.email").form-control
+  button(ng-hide="pojo._id", type="submit", ng-click="postCustomer()").btn.btn-default Aggiungi cliente
+  button(ng-show="pojo._id", type="submit", ng-click="putCustomer()").btn.btn-default Modifica cliente
+
+a(ng-click="listCustomers()") Elenco clienti |&nbsp;
+a(ng-click="addCustomer()") Aggiungi clienti

@@ -1,0 +1,10 @@
+extends ../layout/homepage-layout
+
+block script
+  script(src='/javascripts/controller_customer.js')
+
+block content
+  div.row(ng-controller="customerController")
+    h1= title
+    a(ng-click="listCustomers()") #{__('customer')}
+    div.content(ng-include="pagecontent")

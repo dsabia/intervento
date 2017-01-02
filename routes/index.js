@@ -55,10 +55,16 @@ router.get('/homepage', isLoggedIn, function(req, res, next) {
   res.render('app/homepage', { title: 'App di Rocco' });
 });
 
-/* open homepage */
+/* open technician home */
 router.get('/technician_home', isLoggedIn, function(req, res, next) {
   res.render('app/technician_home', { title: 'Dati di Rocco' });
 });
+
+/* open customer home */
+router.get('/customer_home', isLoggedIn, function(req, res, next) {
+  res.render('app/customer_home', { title: 'Dati dei clienti di Rocco' });
+});
+
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {

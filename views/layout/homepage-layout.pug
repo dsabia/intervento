@@ -12,6 +12,9 @@ html(ng-app='interventoApp')
     script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js')
     script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js')
     script(src='/javascripts/controller.js')
+    block script
+    script(src='/javascripts/controller_home.js')
+    script(src='/javascripts/controller_technician.js')
     script(src='/javascripts/service.js')
     script(src='/javascripts/core.js')
     script(src="https://code.jquery.com/jquery-1.11.3.min.js")
@@ -52,7 +55,7 @@ html(ng-app='interventoApp')
             li
               a(href="/technician_home") #{__('technician')}
             li
-              a(href="/customer") #{__('customer')}
+              a(href="/customer_home") #{__('customer')}
             li
               a(href="/work") #{__('work_record')}
             li
