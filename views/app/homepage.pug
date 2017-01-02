@@ -1,5 +1,8 @@
 extends ../layout/homepage-layout
 
+block script
+  script(src='/javascripts/controller_home.js')
+
 block content
   div.row(ng-controller="mainController")
     h1= title
