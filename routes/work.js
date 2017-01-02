@@ -5,6 +5,7 @@ var Customer = require('../models/customer').model;
 var Technician = require('../models/technician').model;
 var appUtil = require('../services/app_util');
 
+// To RESTify
 
 /* GET elenco lavori */
 router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {

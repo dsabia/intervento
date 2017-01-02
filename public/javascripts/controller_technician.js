@@ -71,14 +71,3 @@ var app = angular.module('interventoController').controller('technicianControlle
   };
 
 });
-
-function changePagecontent($scope, page){
-  $scope.pagecontent=page;
-}
-function togglePagecontent($scope, page){
-  if($scope.pagecontent === page){
-    $scope.pagecontent='';
-  }else{
-    $scope.pagecontent=page;
-  }
-}

@@ -69,16 +69,4 @@ var app = angular.module('interventoController').controller('customerController'
            console.error("error in posting");
          });
   };
-
 });
-
-function changePagecontent($scope, page){
-  $scope.pagecontent=page;
-}
-function togglePagecontent($scope, page){
-  if($scope.pagecontent === page){
-    $scope.pagecontent='';
-  }else{
-    $scope.pagecontent=page;
-  }
-}

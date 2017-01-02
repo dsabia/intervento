@@ -3,6 +3,8 @@ var router = express.Router();
 var Intervention = require('../models/intervention').model;
 var appUtil = require('../services/app_util');
 
+// To RESTify
+
 var intervention_type_option = [
   "o-tipo-intervento-sopralluogo" ,
   "o-tipo-intervento-installazione" ,

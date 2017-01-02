@@ -72,6 +72,8 @@ var app = angular.module('interventoController').controller('mainController', fu
            });
     };
 
+
+
     /* RATES*/
     $scope.addRate = function(){
       $http.get('/technician_rate/formData')
@@ -134,14 +136,3 @@ var app = angular.module('interventoController').controller('mainController', fu
       }
     };
 });
-
-function changePagecontent($scope, page){
-  $scope.pagecontent=page;
-}
-function togglePagecontent($scope, page){
-  if($scope.pagecontent === page){
-    $scope.pagecontent='';
-  }else{
-    $scope.pagecontent=page;
-  }
-}
