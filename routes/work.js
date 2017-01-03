@@ -27,7 +27,7 @@ router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
 
 /* open page add new lavoro */
 router.get('/add', appUtil.ensureAuthenticated, function(req, res, next) {
-  res.render('app/work/add', { title: 'Nuovo lavoro'});
+  res.render('app/work/form', { title: 'Nuovo lavoro'});
 });
 
 /* edit lavoro */
@@ -40,7 +40,7 @@ router.get('/edit/:code', appUtil.ensureAuthenticated, function(req, res, next) 
           console.log(err);
           return;
         }
-        res.render('app/work/add',{ title: 'Modifica lavoro', work : pojo });
+        res.render('app/work/form',{ title: 'Modifica lavoro', work : pojo });
       });
 });
 

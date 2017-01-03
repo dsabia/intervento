@@ -35,7 +35,7 @@ router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
 
 /* open page add new intervento */
 router.get('/add', appUtil.ensureAuthenticated, function(req, res, next) {
-  res.render('app/intervention/add', { title: 'Aggiungi un intervento tecnico',
+  res.render('app/intervention/form', { title: 'Aggiungi un intervento tecnico',
                                        tipo_intervento_option: intervention_type_option });
 });
 
@@ -46,7 +46,7 @@ router.get('/edit/:code', appUtil.ensureAuthenticated, function(req, res, next) 
       console.log(err);
       return;
     }
-    res.render('app/intervention/add',{ title: 'Modifica intervento',
+    res.render('app/intervention/form',{ title: 'Modifica intervento',
                                       intervention : pojo,
                                       tipo_intervento_option: appUtil.setSelectedOption(intervention_type_option, pojo.type_of_intervention) });
   });
