@@ -1,0 +1,25 @@
+extends ../../layout/homepage-layout
+
+block content
+  h2= title
+  form(action='/work/add',method='POST').form-horizontal
+    div.form-group.row
+      div.col-md-6.col-xs-12
+        label(for='code') #{__('code')}
+        input(name='code', value=''+(work ? work.code : '')).form-control
+      div.col-md-6.col-xs-12
+        label(for='customer') #{__('customer')}
+        input.typeahead(id='customer_th', name='customer', required, value=''+(work ? work.customer.company_name : '')).form-control
+    div.form-group.row
+      div.col-md-6.col-xs-12
+        label(for='technician') #{__('technician')}
+        input.typeahead(id='technician_th',  name='technician', required, value=''+(work ? work.technician.name : '')).form-control
+
+    input(type="hidden", name="id", value=''+(work ? work._id : ''))
+    button(type="submit").btn.btn-default #{work ? 'Modifica' : 'Aggiungi'} lavoro
+
+  br
+  a(href="/work") Elenco lavori |&nbsp;
+  a(href="/work/add") Aggiungi lavoro
+
+  script(src='/javascripts/work/add.js')
