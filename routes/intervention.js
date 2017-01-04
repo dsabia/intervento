@@ -3,8 +3,6 @@ var router = express.Router();
 var Intervention = require('../models/intervention').model;
 var appUtil = require('../services/app_util');
 
-// To RESTify
-
 var intervention_type_option = [
   "o-tipo-intervento-sopralluogo" ,
   "o-tipo-intervento-installazione" ,
@@ -14,48 +12,62 @@ var intervention_type_option = [
   "o-tipo-intervento-preventivo"
 ];
 
+/* PAGE VIEW */
+router.get('/page/view', appUtil.ensureAuthenticated, function(req, res, next) {
+  res.render('app/intervention/view');
+});
 
-/* GET elenco tecnici */
-router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
-  Intervention.find({'owner' : req.user._id}, function(err, list_results) {
-    if (err){
-      console.log(err);
-      return;
-    }
-    if(list_results.length > 0){
-      res.render('app/intervention/view', { title: 'Elenco interventi', list:  list_results });
-//    }else if(list_results.length == 1){
-//      var pojo = list_results[0];
-//      res.render('app/intervento/view', { title: 'Dettaglio intervento', intervento: pojo });
-    }else{
-      res.render('app/intervention/view', { title: 'Nessun intervento presente'});
-    }
+/* PAGE FORM */
+router.get('/page/form', appUtil.ensureAuthenticated, function(req, res, next) {
+  res.render('app/intervention/form');
+});
+
+/* GET form datas */
+router.get('/formAdd', appUtil.ensureAuthenticated, function(req, res, next) {
+  res.json({ title: 'Aggiungi un intervento tecnico',
+             intervention_type_option: intervention_type_option });
+});
+
+/* GET form datas */
+router.get('/formEdit/:code', appUtil.ensureAuthenticated, function(req, res, next) {
+  Intervention.findOne({ 'code' :  req.params.code, 'owner' : req.user._id }, function(err, pojo){
+    res.json({  title: 'Modifica intervento',
+                pojo : pojo,
+                intervention_type_option: intervention_type_option });
   });
 });
 
-/* open page add new intervento */
-router.get('/add', appUtil.ensureAuthenticated, function(req, res, next) {
-  res.render('app/intervention/form', { title: 'Aggiungi un intervento tecnico',
-                                       tipo_intervento_option: intervention_type_option });
-});
 
-/* edit intervento */
-router.get('/edit/:code', appUtil.ensureAuthenticated, function(req, res, next) {
-  Intervention.findOne({ 'code' :  req.params.code, 'owner' : req.user._id}, function(err, pojo) {
+/* GET elenco tecnici */
+router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
+  Intervention.find({'owner' : req.user._id}, function(err, list) {
     if (err){
       console.log(err);
       return;
     }
-    res.render('app/intervention/form',{ title: 'Modifica intervento',
-                                      intervention : pojo,
-                                      tipo_intervento_option: appUtil.setSelectedOption(intervention_type_option, pojo.type_of_intervention) });
+    res.json(list);
   });
 });
 
 /* delete intervento */
-router.get('/delete/:id', appUtil.ensureAuthenticated, function(req, res, next) {
+router.delete('/:id', appUtil.ensureAuthenticated, function(req, res, next) {
   Intervention.remove({ '_id' :  req.params.id }, function(err, pojo) {
-    res.redirect('/intervention');
+    res.end();
+  });
+});
+
+// add form data on the db
+router.post('/', appUtil.ensureAuthenticated, function(req, res, next) {
+  var intervention = new Intervention();
+  populateRequestAndSave(req, intervention);
+  res.json({'code' : intervention.code});
+});
+
+// add form data on the db
+router.put('/:id', appUtil.ensureAuthenticated, function(req, res, next) {
+  Intervention.findById(req.params.id, function(err, pojo) {
+    populateRequestAndSave(req, pojo);
+    res.json({'code' : pojo.code});
   });
 });
 
@@ -66,22 +78,8 @@ router.get('/:code', appUtil.ensureAuthenticated, function(req, res, next) {
       console.log(err);
       return;
     }
-    res.render('app/intervention/view', { title: 'Dettaglio intervento', intervention: pojo });
+    res.json(pojo);
   });
-});
-
-// add form data on the db
-router.post('/add', appUtil.ensureAuthenticated, function(req, res, next) {
-  if(req.body.id){
-    Intervention.findById(req.body.id, function(err, pojo) {
-      populateRequestAndSave(req, pojo);
-      res.redirect('/intervention/'+pojo.code);
-    });
-  }else{
-    var intervention = new Intervention();
-    populateRequestAndSave(req, intervention);
-    res.redirect('/intervention/'+intervention.code);
-  }
 });
 
 function populateRequestAndSave(req, intervention){

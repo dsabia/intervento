@@ -15,7 +15,15 @@ app.config(function($routeProvider) {
     })
     .when("/customer", {
         controller: "customerController"
-    });
+    })
+    .when("/intervention_home", {
+        controller: "interventionController"
+    })
+    .when("/intervention", {
+        controller: "interventionController"
+    })
+
+    ;
 });
 
 function changePagecontent($scope, page){

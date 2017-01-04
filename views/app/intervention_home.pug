@@ -1,0 +1,10 @@
+extends ../layout/homepage-layout
+
+block script
+  script(src='/javascripts/controller_intervention.js')
+
+block content
+  div.row(ng-controller="interventionController")
+    h1= title
+    a(ng-click="listInterventions()") #{__('intervention')}
+    div.content(ng-include="pagecontent")

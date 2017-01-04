@@ -65,6 +65,10 @@ router.get('/customer_home', isLoggedIn, function(req, res, next) {
   res.render('app/customer_home', { title: 'Dati dei clienti di Rocco' });
 });
 
+/* open intervention home */
+router.get('/intervention_home', isLoggedIn, function(req, res, next) {
+  res.render('app/intervention_home', { title: 'Dati degli interventi di Rocco' });
+});
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
