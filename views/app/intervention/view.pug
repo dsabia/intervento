@@ -6,7 +6,7 @@ div(ng-show="pojo")
       td
         label {{pojo.code}}
       td
-        label {{pojo.type_of_intervention}} TODO to i18n
+        label {{pojo.type_of_intervention}}
     tr
       td
         label {{pojo.date.toISOString().substring(0, 10)}}
@@ -28,7 +28,7 @@ div(ng-show="list.length")
     tr(ng-repeat="item in list")
       td
         a(ng-click="viewIntervention(item.code)") {{item.code}}
-      td {{item.type_of_intervention}} TODO to i18n
+      td {{item.type_of_intervention}}
       td {{item.date.toISOString().substring(0, 10)}}
       td {{item.start_time}} - {{item.end_time}}
 

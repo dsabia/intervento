@@ -63,7 +63,7 @@ var technician = require('./routes/technician');
 var customer = require('./routes/customer');
 var material = require('./routes/material');
 var technician_rate = require('./routes/technician_rate');
-var intervention = require('./routes/intervention');
+var intervention = require('./routes/intervention')(i18n);
 var work = require('./routes/work');
 require('./services/passport')(passport);
 
