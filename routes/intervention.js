@@ -12,9 +12,9 @@ var intervention_type_option = [
   "o-tipo-intervento-preventivo"
 ];
 
-module.exports = function(appI18N){
+module.exports = function(_i18n){
+  var i18n = _i18n;
 
-  var i18n = appI18N;
   /* PAGE VIEW */
   router.get('/page/view', appUtil.ensureAuthenticated, function(req, res, next) {
     res.render('app/intervention/view');
