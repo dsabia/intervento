@@ -4,7 +4,7 @@ var app = angular.module('interventoController').controller('technicianControlle
   $scope.list = null;
   $scope.title = '';
 
-  /* MATERIALS */
+  /* TECHNICIANS */
   $scope.listTechnicians = function(){
     $http.get('/technician/')
          .success(function(res) {

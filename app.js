@@ -64,7 +64,7 @@ var customer = require('./routes/customer')(i18n);
 var material = require('./routes/material')(i18n);
 var technician_rate = require('./routes/technician_rate')(i18n);
 var intervention = require('./routes/intervention')(i18n);
-var work = require('./routes/work')(i18n);
+var work_folder = require('./routes/work_folder')(i18n);
 require('./services/passport')(passport);
 
 app.use('/', router);
@@ -73,18 +73,8 @@ app.use('/customer', customer);
 app.use('/material', material);
 app.use('/technician_rate', technician_rate);
 app.use('/intervention', intervention);
-app.use('/work', work);
+app.use('/work_folder', work_folder);
 app.use('/image', require('./routes/image')(mongo, db));
-
-//app.use("/angular", function (req, res) {
-//  res.render(req.path);
-//});
-router.get('/angular/home', function(req, res, next) {
-  res.render('angular/home', { title: 'App di Rocco' });
-});
-router.get('/angular/about', function(req, res, next) {
-  res.render('angular/about', { title: 'App di Rocco' });
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

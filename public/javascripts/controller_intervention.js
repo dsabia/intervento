@@ -1,11 +1,12 @@
 var app = angular.module('interventoController').controller('interventionController', function($scope, $http) {
+
   $scope.pagecontent='';
   $scope.pojo = null;
   $scope.list = null;
   $scope.title = '';
   $scope.intervention_type_option = null;
 
-  /* MATERIALS */
+  /* INTERVENTIONS */
   $scope.listInterventions = function(){
     $http.get('/intervention/')
          .success(function(res) {

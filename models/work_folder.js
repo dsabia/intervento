@@ -4,8 +4,10 @@ var mongoose = require('mongoose');
 var interventoSchema = require('../models/intervention').schema;
 
 // define the schema for our user model
-var workSchema = mongoose.Schema({
+var workFolderSchema = mongoose.Schema({
     code              : String,
+    status            : String,
+    note              : String,
     customer          : {type: mongoose.Schema.Types.ObjectId, ref: 'Customer'},
     technician        : {type: mongoose.Schema.Types.ObjectId, ref: 'Technician'},
     interventions     : [interventoSchema],
@@ -15,4 +17,4 @@ var workSchema = mongoose.Schema({
 // methods ======================
 
 // create the model for users and expose it to our app
-module.exports = mongoose.model('Work', workSchema);
+module.exports = mongoose.model('WorkFolder', workFolderSchema);

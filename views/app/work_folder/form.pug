@@ -1,0 +1,30 @@
+h2 {{title}}
+
+form.form-horizontal
+  div.form-group.row
+    div.col-md-6.col-xs-12
+      label(for='code') #{__('code')}
+      input(name='code', ng-model="pojo.code").form-control
+    div.col-md-6.col-xs-12
+      label(for='customer') #{__('customer')}
+      input.typeahead(id='customer_th', name='customer', required, ng-model="pojo.customer.company_name").form-control
+  div.form-group.row
+    div.col-md-6.col-xs-12
+      label(for='technician') #{__('technician')}
+      input.typeahead(id='technician_th',  name='technician', required, ng-model="pojo.technician.name").form-control
+    div.col-md-6.col-xs-12
+      label(for='status') #{__('status')}
+      input(name='status', ng-model="pojo.status").form-control
+  div.form-group.row
+    div.col-md-12.col-xs-12
+      label(for='note') #{__('note')}
+      input(name='note', ng-model="pojo.note").form-control
+
+  button(ng-hide="pojo._id", type="submit", ng-click="postWorkFolder()").btn.btn-default Aggiungi lavoro
+  button(ng-show="pojo._id", type="submit", ng-click="putWorkFolder()").btn.btn-default Modifica lavoro
+
+br
+a(ng-click="listWorkFolders()") Elenco lavori |&nbsp;
+a(ng-click="addWorkFolder()") Aggiungi lavori
+
+script(src='/javascripts/work/add.js')

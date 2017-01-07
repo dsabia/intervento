@@ -4,7 +4,7 @@ var app = angular.module('interventoController').controller('customerController'
   $scope.list = null;
   $scope.title = '';
 
-  /* MATERIALS */
+  /* CUSTOMERS */
   $scope.listCustomers = function(){
     $http.get('/customer/')
          .success(function(res) {

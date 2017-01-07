@@ -22,7 +22,12 @@ app.config(function($routeProvider) {
     .when("/intervention", {
         controller: "interventionController"
     })
-
+    .when("/work_folder_home", {
+        controller: "workFolderController"
+    })
+    .when("/work_folder", {
+        controller: "workFolderController"
+    })
     ;
 });
 

@@ -73,6 +73,11 @@ module.exports = function(_i18n){
     res.render('app/intervention_home', { title: 'Dati degli interventi di Rocco' });
   });
 
+  /* open work folder home */
+  router.get('/work_folder_home', isLoggedIn, function(req, res, next) {
+    res.render('app/work_folder_home', { title: 'Dati delle cartelle lavoro di Rocco' });
+  });
+
   // route middleware to make sure a user is logged in
   function isLoggedIn(req, res, next) {
       // if user is authenticated in the session, carry on
