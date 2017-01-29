@@ -55,6 +55,7 @@
   "status"               : "Stato",
 
   "option-void"          : "Seleziona",
+  "no-result-found"      : "Nessun rusultato trovato",
 
   "p-need-account"       : "Vuoi creare un account?",
   "p-already-have-account" : "Hai giá un account?",

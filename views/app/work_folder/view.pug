@@ -10,9 +10,8 @@ div(ng-show="pojo")
     tr
       td
         label {{pojo.customer.company_name}}
-    tr
       td
-        label {{pojo.technician.name}}
+        label {{pojo.technician.name}} {{pojo.technician.surname}}
     tr
       td(colspan="2") {{pojo.note}}
   a(ng-click="editWorkFolder(pojo.code)") Modifica lavoro |&nbsp;
@@ -30,7 +29,7 @@ div(ng-show="list.length")
         a(ng-click="viewWorkFolder(item.code)" ) {{item.code}}
       td {{item.customer.company_name}}
       td {{item.status}}
-      td {{item.technician.name}}
+      td {{item.technician.name}} {{item.technician.surname}}
 
 br
 a(ng-click="listWorkFolder()") Elenco lavori |&nbsp;

@@ -74,7 +74,7 @@ module.exports = function(_i18n){
   });
 
   router.post('/', appUtil.ensureAuthenticated, function(req, res, next) {
-    var work = new Work();
+    var work = new WorkFolder();
     populateRequestAndSave(req, work);
     res.json({'code' : work.code});
   });
@@ -92,38 +92,11 @@ module.exports = function(_i18n){
     });
   });
 
-
-  /* TYPEAHEAD - GET CUSTOMER BY company_name*/
-  router.get('/customer/:q', appUtil.ensureAuthenticated, function(req, res, next) {
-    Customer.find({
-      "owner" : req.user._id,
-      "company_name" : new RegExp(req.params.q, "i")
-    }, function(err, list_results){
-      if (err){
-        console.log(err);
-        return;
-      }
-      res.json(list_results);
-    });
-  });
-
-  /* TYPEAHEAD - GET CUSTOMER BY name*/
-  router.get('/technician/:q', appUtil.ensureAuthenticated, function(req, res, next) {
-    Technician.find({
-      "owner" : req.user._id,
-      "name" : new RegExp(req.params.q, "i")
-    }, function(err, list_results){
-      if (err){
-        console.log(err);
-        return;
-      }
-      res.json(list_results);
-    });
-  });
-
   function populateRequestAndSave(req, work){
     work.code        = req.body.code;
     work.owner       = req.user._id;
+    work.status      = req.body.status;
+    work.note        = req.body.note;
 
     Customer.findOne({"company_name":req.body.customer, "owner":req.user._id}, function (err, customer){
       work.customer    = customer;

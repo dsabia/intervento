@@ -15,6 +15,9 @@ var customerSchema = mongoose.Schema({
 });
 
 // methods ======================
+customerSchema.methods.label = function() {
+    return company_name;
+};
 
 // create the model for users and expose it to our app
 module.exports = {

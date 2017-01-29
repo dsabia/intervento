@@ -14,6 +14,9 @@ var technicianSchema = mongoose.Schema({
 });
 
 // methods ======================
+technicianSchema.methods.label = function() {
+    return name + ' ' + surname;
+};
 
 // create the model for users and expose it to our app
 module.exports = {

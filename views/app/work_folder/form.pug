@@ -6,12 +6,18 @@ form.form-horizontal
       label(for='code') #{__('code')}
       input(name='code', ng-model="pojo.code").form-control
     div.col-md-6.col-xs-12
-      label(for='customer') #{__('customer')}
-      input.typeahead(id='customer_th', name='customer', required, ng-model="pojo.customer.company_name").form-control
+      label(for='customer') #{__('customer')} {{customerSelected | json}}
+      input.form-control(type="text", ng-model="pojo.customer", uib-typeahead="customer.company_name for customer in getCustomers($viewValue)", typeahead-loading="loadingCustomer", typeahead-no-results="noResults")
+      i.glyphicon.glyphicon-refresh(ng-show="loadingCustomer")
+      div(ng-show="noResults")
+        i.glyphicon.glyphicon-remove No Results Found
   div.form-group.row
     div.col-md-6.col-xs-12
       label(for='technician') #{__('technician')}
-      input.typeahead(id='technician_th',  name='technician', required, ng-model="pojo.technician.name").form-control
+      input.form-control(type="text", ng-model="pojo.technician", uib-typeahead="technician.name for technician in getTechnicians($viewValue)", typeahead-loading="loadingTechnician", typeahead-no-results="noResults")
+      i.glyphicon.glyphicon-refresh(ng-show="loadingTechnician")
+      div(ng-show="noResults")
+        i.glyphicon.glyphicon-remove #{__('no-result-found')}
     div.col-md-6.col-xs-12
       label(for='status') #{__('status')}
       input(name='status', ng-model="pojo.status").form-control
@@ -26,5 +32,3 @@ form.form-horizontal
 br
 a(ng-click="listWorkFolders()") Elenco lavori |&nbsp;
 a(ng-click="addWorkFolder()") Aggiungi lavori
-
-script(src='/javascripts/work/add.js')

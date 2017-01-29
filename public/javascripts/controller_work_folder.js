@@ -72,7 +72,7 @@ var app = angular.module('interventoController').controller('workFolderControlle
            console.error("error in posting");
          });
   };
-  $scope.putIntervention = function(){
+  $scope.putWorkFolder = function(){
     $http.put('/work_folder/'+$scope.pojo._id, $scope.pojo)
          .success(function(res) {
            $scope.pojo = null;
@@ -88,6 +88,19 @@ var app = angular.module('interventoController').controller('workFolderControlle
         return $scope.options_status[i];
       }
     }
+  };
+
+  //$scope.customerSelected = undefined;
+  //$scope.technicianSelected = undefined;
+  $scope.getCustomers = function(query) {
+    return $http.get('/typeahead/customers').then(function(response) {
+      return response.data;
+    });
+  };
+  $scope.getTechnicians = function(query) {
+    return $http.get('/typeahead/technicians').then(function(resp) {
+      return resp.data;
+    });
   };
 
 });

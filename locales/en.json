@@ -55,6 +55,7 @@
   "status"               : "Status",
 
   "option-void"          : "Select one",
+  "no-result-found"      : "No Results Found",
 
   "p-need-account"       : "Need an account?",
   "p-already-have-account" : "Already have an account?",

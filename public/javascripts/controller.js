@@ -1,4 +1,4 @@
-var app = angular.module('interventoController', ["ngRoute"]);
+var app = angular.module('interventoController', ['ngRoute', 'ui.bootstrap']);
 app.config(function($routeProvider) {
     $routeProvider
     .when("/homepage", {
