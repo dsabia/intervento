@@ -27,7 +27,8 @@
     "bcrypt-nodejs": "latest",
     "multer": "~1.2.0",
     "i18n": "~0.8.3",
-    "codecov.io": "~0.1.6"
+    "codecov.io": "~0.1.6",
+    "promise": "~7.1.1"
   },
   "devDependencies": {
     "mocha": "*",

@@ -1,29 +1,37 @@
-extends ../../layout/homepage-layout
-include intervention
+h1 {{title}}
 
-block content
-  h1= title
+div(ng-show="pojo")
+  table(class="table table-striped")
+    tr
+      td
+        label {{pojo.code}}
+      td
+        label {{pojo.type_of_intervention}}
+    tr
+      td
+        label {{pojo.date.toISOString().substring(0, 10)}}
+      td
+        label {{pojo.start_time}} - {{pojo.end_time}}
+    tr
+      td(colspan='2')
+        label {{pojo.notes}}
+  a(ng-click="editIntervention(pojo.code)") Modifica intervento |&nbsp;
+  a(ng-click="deleteIntervention(pojo._id)") Elimina intervento
 
-  if intervention != null
-    p Dettaglio intervento #{intervention.code}
-    +intervention(intervention)
-    a(href="/intervention/edit/"+intervention.code) Modifica intervento |&nbsp;
-    a(href="/intervention/delete/"+intervention._id) Elimina intervento
-  else if list != null
-    table(class="table table-striped table-responsive")
-      tr
-        th #{__('codice')}
-        th #{__('tipo-intervento')}
-        th #{__('date')}
-        th #{__('time')}
-      each item in list
-        tr
-          td
-            a(href='/intervention/'+ item.code) #{item.code}
-          td #{__(item.type_of_intervention)}
-          td #{item.date.toDateString()}
-          td #{item.start_time} - #{item.end_time}
+div(ng-show="list.length")
+  table(class="table table-striped table-responsive")
+    tr
+      th #{__('codice')}
+      th #{__('tipo-intervento')}
+      th #{__('date')}
+      th #{__('time')}
+    tr(ng-repeat="item in list")
+      td
+        a(ng-click="viewIntervention(item.code)") {{item.code}}
+      td {{item.type_of_intervention}}
+      td {{item.date.toISOString().substring(0, 10)}}
+      td {{item.start_time}} - {{item.end_time}}
 
-  br
-  a(href="/intervention") Elenco interventi |&nbsp;
-  a(href="/intervention/add") Aggiungi intervento
+br
+a(ng-click="listInterventions()") Elenco interventi |&nbsp;
+a(ng-click="addIntervention()") Aggiungi interventi

@@ -1,0 +1,46 @@
+h2 {{title}}
+div(ng-show="pojo")
+  table(class="table table-striped")
+    tr
+      td
+        label #{__('code')}           : {{pojo.code}}
+      td
+        label #{__('discount')}       : {{pojo.discount}}
+    tr
+      td
+        label #{__('company_name')}   : {{pojo.company_name}}
+      td
+        label  #{__('piva_cf')}       : {{pojo.piva_cf}}
+    tr
+      td(colspan='2')
+        label #{__('address')}        : {{pojo.address}}
+    tr
+      td
+        label #{__('phone_no')}       : {{pojo.phone}}
+      td
+        label #{__('email')}          : {{pojo.email}}
+  a(ng-click="editCustomer(pojo.code)") Modifica cliente |&nbsp;
+  a(ng-click="deleteCustomer(pojo._id)") Elimina cliente
+div(ng-show="list.length")
+  table(class="table table-striped table-responsive")
+    tr
+      th #{__('code')}
+      th #{__('discount')}
+      th #{__('company_name')}
+      th #{__('piva_cf')}
+      th #{__('address')}
+      th #{__('phone_no')}
+      th #{__('email')}
+    tr(ng-repeat="item in list")
+      td
+        a(ng-click="viewCustomer(item.code)" ) {{item.code}}
+      td {{item.discount}}
+      td
+        a(ng-click="viewCustomer(item.code)" ) {{item.company_name}}
+      td {{item.piva_cf}}
+      td {{item.address}}
+      td {{item.phone}}
+      td {{item.email}}
+br
+a(ng-click="listCustomers()") Elenco clienti |&nbsp;
+a(ng-click="addCustomer()") Aggiungi cliente

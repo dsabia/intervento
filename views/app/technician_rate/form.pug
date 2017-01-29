@@ -1,0 +1,28 @@
+h2 {{title}}
+
+form.form-horizontal
+  div.form-group.row
+    div.col-md-6.col-xs-12
+      label(for='consultancy_fee') #{__('consultancy_fee')}
+      input(name='consultancy_fee', type='number', ng-model="pojo.consultancy_fee").form-control
+    div.col-md-6.col-xs-12
+      label(for='fixed_rate') #{__('fixed_rate')}
+      input(name='fixed_rate', type='number', ng-model="pojo.fixed_rate").form-control
+  div.form-group.row
+    div.col-md-6.col-xs-12
+      label(for='hour_rate') #{__('hour_rate')}
+      input(name='hour_rate', type='number', ng-model="pojo.hour_rate").form-control
+    div.col-md-6.col-xs-12
+      label(for='fraction_of_hour') #{__('fraction_of_hour')}
+      select(ng-hide="pojo._id", name='fraction_of_hour', type='select', ng-model="pojo.fraction_of_hour").form-control
+        option(ng-hide="pojo._id", value="", disabled, selected) #{__('option-void')}
+        option(ng-hide="pojo._id",ng-repeat="frazione in frazioni_dora_option", value="{{frazione}}") {{frazione}}
+      select(ng-show="pojo._id", ng-model="pojo.fraction_of_hour", ng-options="f for f in frazioni_dora_option").form-control
+  div.form-group.row
+    div.col-md-6.col-xs-12
+      label(for='km_rate') #{__('km_rate')}
+      input(name='km_rate', type='number', ng-model="pojo.km_rate").form-control
+  button(ng-hide="pojo._id", type="submit", ng-click="postRate()").btn.btn-default Salva tariffa
+  button(ng-show="pojo._id", type="submit", ng-click="putRate()").btn.btn-default Modifica tariffa
+
+a(ng-click="viewRate()") Visualizza tariffa

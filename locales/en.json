@@ -52,8 +52,10 @@
   "hour_rate"            : "Hour rate",
   "fraction_of_hour"     : "Fraction of hour",
   "km_rate"              : "Kilometric charge",
+  "status"               : "Status",
 
   "option-void"          : "Select one",
+  "no-result-found"      : "No Results Found",
 
   "p-need-account"       : "Need an account?",
   "p-already-have-account" : "Already have an account?",
@@ -76,6 +78,10 @@
   "o-tipo-intervento-assistenza" : "Assistance",
   "o-tipo-intervento-fornitura-materiale" : "Material supply",
   "o-tipo-intervento-preventivo": "Quote",
+
+  "o-status-aperto" : "Open",
+  "o-status-chiuso" : "Closed",
+  "o-status-chiuso-non-pagato" : "Closed, not payed yet",
 
   "link-list-materials" : "Material list",
   "link-technician-rate" : "Technician rate",

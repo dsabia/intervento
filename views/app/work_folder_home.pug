@@ -1,0 +1,11 @@
+extends ../layout/homepage-layout
+
+block script
+  link(rel='stylesheet', href='/stylesheets/typeahead.css')
+  script(src='/javascripts/controller_work_folder.js')
+
+block content
+  div.row(ng-controller="workFolderController")
+    h1= title
+    //a(ng-click="listWorkFolders()") #{__('work_record')}
+    div.content(ng-include="pagecontent")

@@ -1,0 +1,21 @@
+h1 {{title}}
+div(ng-show="pojo")
+  table(class="table table-striped")
+    tr
+      td
+        label #{__('consultancy_fee')}: {{pojo.consultancy_fee}}
+      td
+        label #{__('fixed_rate')}: {{pojo.fixed_rate}}
+    tr
+      td
+        label #{__('hour_rate')}: {{pojo.hour_rate}}
+      td
+        label #{__('fraction_of_hour')}: {{pojo.fraction_of_hour}}
+    tr
+      td
+        label #{__('km_rate')}: {{pojo.km_rate}}
+      td
+  a(ng-click="editRate()") Modifica tariffa
+div(ng-hide="pojo")
+  p Aggiungere il piano tariffario
+  a(ng-click="addRate()") Aggiungi tariffa

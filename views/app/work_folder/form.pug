@@ -1,0 +1,43 @@
+h2 {{title}}
+
+form.form-horizontal
+  div.form-group.row
+    div.col-md-6.col-xs-12
+      label(for='code') #{__('code')}
+      input(name='code', ng-model="pojo.code").form-control
+    div.col-md-6.col-xs-12
+      label(for='customer') #{__('customer')} {{customerSelected | json}}
+      input.form-control(type="text", ng-model="pojo.customer.company_name", uib-typeahead="customer.company_name for customer in getCustomers($viewValue)", typeahead-loading="loadingCustomer", typeahead-no-results="noResultsCustomer")
+      i.glyphicon.glyphicon-refresh(ng-show="loadingCustomer")
+      div(ng-show="noResultsCustomer")
+        i.glyphicon.glyphicon-remove No Results Found
+  div.form-group.row
+    div.col-md-6.col-xs-12
+      label(for='technician') #{__('technician')}
+      input.form-control(type="text", ng-model="pojo.technician.name", uib-typeahead="technician.name for technician in getTechnicians($viewValue)", typeahead-loading="loadingTechnician", typeahead-no-results="noResultsTechnician")
+      i.glyphicon.glyphicon-refresh(ng-show="loadingTechnician")
+      div(ng-show="noResultsTechnician")
+        i.glyphicon.glyphicon-remove #{__('no-result-found')}
+    div.col-md-6.col-xs-12
+      label(for='status') #{__('status')}
+      div.form-control
+        label.radio-inline
+          input(type='radio',  ng-model="pojo.status", value="o-status-aperto" )
+          | #{__('o-status-aperto')}
+        label.radio-inline
+          input(type='radio',  ng-model="pojo.status", value="o-status-chiuso-non-pagato")
+          | #{__('o-status-chiuso-non-pagato')}
+        label.radio-inline
+          input(type='radio',  ng-model="pojo.status", value="o-status-chiuso")
+          | #{__('o-status-chiuso')}
+  div.form-group.row
+    div.col-md-12.col-xs-12
+      label(for='note') #{__('note')}
+      input(name='note', ng-model="pojo.note").form-control
+
+  button(ng-hide="pojo._id", type="submit", ng-click="postWorkFolder()").btn.btn-default Aggiungi lavoro
+  button(ng-show="pojo._id", type="submit", ng-click="putWorkFolder()").btn.btn-default Modifica lavoro
+
+br
+a(ng-click="listWorkFolders()") Elenco lavori |&nbsp;
+a(ng-click="addWorkFolder()") Aggiungi lavori

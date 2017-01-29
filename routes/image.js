@@ -4,6 +4,8 @@ var multer = require('multer');
 var appUtil = require('../services/app_util');
 var Image = require('../models/image');
 
+// To RESTify
+
 /*
 var upload = multer({
   dest: __dirname + '/../public/upload/',

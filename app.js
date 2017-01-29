@@ -58,13 +58,14 @@ app.use(passport.session());
 app.use(flash());
 
 // routes
-var router = require('./routes/index');
-var technician = require('./routes/technician');
-var customer = require('./routes/customer');
-var material = require('./routes/material');
-var technician_rate = require('./routes/technician_rate');
-var intervention = require('./routes/intervention');
-var work = require('./routes/work');
+var router = require('./routes/index')(i18n);
+var technician = require('./routes/technician')(i18n);
+var customer = require('./routes/customer')(i18n);
+var material = require('./routes/material')(i18n);
+var technician_rate = require('./routes/technician_rate')(i18n);
+var intervention = require('./routes/intervention')(i18n);
+var work_folder = require('./routes/work_folder')(i18n);
+var typeahead = require('./routes/typeahead')(i18n);
 require('./services/passport')(passport);
 
 app.use('/', router);
@@ -73,7 +74,8 @@ app.use('/customer', customer);
 app.use('/material', material);
 app.use('/technician_rate', technician_rate);
 app.use('/intervention', intervention);
-app.use('/work', work);
+app.use('/work_folder', work_folder);
+app.use('/typeahead', typeahead);
 app.use('/image', require('./routes/image')(mongo, db));
 
 // catch 404 and forward to error handler

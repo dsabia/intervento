@@ -1,0 +1,42 @@
+h2 {{title}}
+
+form.form-horizontal
+  div.form-group.row
+    div.col-md-6.col-xs-12
+      label(for='code') #{__('code')}
+      input(name='code', ng-model="pojo.code").form-control
+    div.col-md-6.col-xs-12
+      label(for='type_of_intervention') #{__('type_of_intervention')}
+      select(ng-hide="pojo._id", name='type_of_intervention', type='select', ng-model="pojo.type_of_intervention").form-control
+        option(ng-hide="pojo._id", value="", disabled, selected) #{__('option-void')}
+        option(ng-hide="pojo._id",ng-repeat="typo in intervention_type_option", value="{{typo}}") {{typo}}
+      select(ng-show="pojo._id", ng-model="pojo.type_of_intervention", ng-options="typo for typo in intervention_type_option").form-control
+  div.form-group.row
+    div.col-md-6.col-xs-12
+      label(for='date') #{__('date')}
+      input(name='date', type="date", required, ng-model="pojo.date").form-control
+    div.col-md-3.col-xs-6
+      label(for='start_time') #{__('start_time')}
+      div.input-group.clockpicker
+        input.form-control(id="id-ora_inizio", name='start_time',type='text', ng-model="pojo.start_time")
+        span.input-group-addon
+          span.glyphicon.glyphicon-time
+    div.col-md-3.col-xs-6
+      label(for='end_time') #{__('end_time')}
+      div.input-group.clockpicker
+        input.form-control(id="id-ora_fine", name='end_time',type='text', ng-model="pojo.end_time")
+        span.input-group-addon
+          span.glyphicon.glyphicon-time
+
+  div.form-group.row
+    div.col-md-12.col-xs-12
+      label(for='notes') #{__('notes')}
+      textarea(name='notes', rows="3").form-control {{pojo.notes}}
+
+  button(ng-hide="pojo._id", type="submit", ng-click="postIntervention()").btn.btn-default Aggiungi intervento
+  button(ng-show="pojo._id", type="submit", ng-click="putIntervention()").btn.btn-default Modifica intervento
+
+a(ng-click="listInterventions()") Elenco interventi |&nbsp;
+a(ng-click="addIntervention()") Aggiungi interventi
+
+script(src='/javascripts/intervention/add.js')

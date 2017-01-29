@@ -52,8 +52,10 @@
   "hour_rate"            : "Tariffa oraria",
   "fraction_of_hour"     : "Frazioni d'ora",
   "km_rate"              : "Tariffa kilometrica",
+  "status"               : "Stato",
 
   "option-void"          : "Seleziona",
+  "no-result-found"      : "Nessun rusultato trovato",
 
   "p-need-account"       : "Vuoi creare un account?",
   "p-already-have-account" : "Hai giá un account?",
@@ -76,6 +78,10 @@
   "o-tipo-intervento-assistenza" : "Assistenza",
   "o-tipo-intervento-fornitura-materiale" : "Fornitura Materiale",
   "o-tipo-intervento-preventivo": "Preventivo",
+
+  "o-status-aperto" : "Aperto",
+  "o-status-chiuso" : "Chiuso",
+  "o-status-chiuso-non-pagato" : "Chiuso, non pagato",
 
   "link-list-materials"  : "Elenco materiali",
   "link-technician-rate" : "Pagina tariffe",

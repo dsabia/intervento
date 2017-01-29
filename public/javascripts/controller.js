@@ -1,23 +1,43 @@
-angular.module('interventoController', [])
-  .controller('mainController', function($scope, $http, $document, $window, Intervento) {
+var app = angular.module('interventoController', ['ngRoute', 'ui.bootstrap']);
+app.config(function($routeProvider) {
+    $routeProvider
+    .when("/homepage", {
+        controller: "mainController"
+    })
+    .when("/technician_home", {
+        controller: "technicianController"
+    })
+    .when("/technician", {
+        controller: "technicianController"
+    })
+    .when("/customer_home", {
+        controller: "customerController"
+    })
+    .when("/customer", {
+        controller: "customerController"
+    })
+    .when("/intervention_home", {
+        controller: "interventionController"
+    })
+    .when("/intervention", {
+        controller: "interventionController"
+    })
+    .when("/work_folder_home", {
+        controller: "workFolderController"
+    })
+    .when("/work_folder", {
+        controller: "workFolderController"
+    })
+    ;
+});
 
-    $scope.addTecnico = function($window, $document){
-      console.log('Some validation... - nome:'+$scope.form.nome + ' cognome:'+$scope.form.cognome );
-      var tecnico = $scope.form;
-      return Intervento.addTecnico(tecnico).success(function(data) {
-          console.log('Success ' + $http);
-			});
-    }
-
-    $scope.addScheda = function($window, $document){
-      console.log('Some validation... - nome:');
-      var cliente = $scope.form;
-      return Intervento.addScheda(cliente).success(function(data) {
-          console.log('Success ' + $http);
-			});
-    }
-  });
-
-function redirect($window, url){
-  $window.location.href = url;
+function changePagecontent($scope, page){
+  $scope.pagecontent=page;
+}
+function togglePagecontent($scope, page){
+  if($scope.pagecontent === page){
+    $scope.pagecontent='';
+  }else{
+    $scope.pagecontent=page;
+  }
 }

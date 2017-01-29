@@ -6,33 +6,24 @@ html(ng-app='interventoApp')
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/nav.css')
     link(rel="stylesheet", href="/stylesheets/bootstrap-examples.css")
-    link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css")
     link(rel="stylesheet", href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css")
-    link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css")
+    //link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css")
+    link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
     script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js')
     script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js')
+    //script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js")
+    script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-sanitize.js")
+    script(src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js")
     script(src='/javascripts/controller.js')
+    block script
     script(src='/javascripts/service.js')
     script(src='/javascripts/core.js')
-    script(src="https://code.jquery.com/jquery-1.11.3.min.js")
-    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
-    script(src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js")
-
-
-    link(rel="stylesheet", href="/typeahead/typeahead.css")
-    script(src="/typeahead/bloodhound.js")
-    //-  script(src="/typeahead/bloodhound.min.js")
-    script(src="/typeahead/typeahead.bundle.js")
-    //-  script(src="/typeahead/typeahead.bundle.min.js")
-    script(src="/typeahead/typeahead.jquery.js")
-    //- script(src="/typeahead/typeahead.jquery.min.js")
-    script(src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js")
-
-    link(rel='stylesheet', href='/clockpicker/bootstrap-clockpicker.css')
-    script(src='/clockpicker/bootstrap-clockpicker.js')
-    link(rel='stylesheet', href='/clockpicker/bootstrap-clockpicker.min.css')
-    script(src='/clockpicker/bootstrap-clockpicker.min.js')
-
+    //script(src="https://code.jquery.com/jquery-1.11.3.min.js")
+    //script(src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js")
+    //link(rel='stylesheet', href='/clockpicker/bootstrap-clockpicker.css')
+    //script(src='/clockpicker/bootstrap-clockpicker.js')
+    //link(rel='stylesheet', href='/clockpicker/bootstrap-clockpicker.min.css')
+    //script(src='/clockpicker/bootstrap-clockpicker.min.js')
 
   body
     nav#myNavbar.navbar.navbar-default.navbar-inverse.navbar-fixed-top(role="navigation")
@@ -50,23 +41,21 @@ html(ng-app='interventoApp')
             li
               a(href="/homepage") Home
             li
-              a(href="/technician") #{__('technician')}
+              a(href="/technician_home") #{__('technician')}
             li
-              a(href="/customer") #{__('customer')}
+              a(href="/customer_home") #{__('customer')}
             li
-              a(href="/work") #{__('work_record')}
+              a(href="/intervention_home") #{__('intervention')}
             li
-              a(href="/intervention") #{__('intervention')}
+              a(href="/work_folder_home") #{__('work_record')}
             li
               a(href="/profile") My account
             li
               a(href="#about") About
 
     div.container
-      div.row(ng-controller="mainController")
-        block content
-
+      block content
 
     footer.footer
       div.footer_container
-        p.text-muted 2016 @ Copyright info
+        p.text-muted 2016-2017 @ Copyright info

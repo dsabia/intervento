@@ -12,91 +12,95 @@ var intervention_type_option = [
   "o-tipo-intervento-preventivo"
 ];
 
+module.exports = function(_i18n){
+  var i18n = _i18n;
 
-/* GET elenco tecnici */
-router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
-  Intervention.find({'owner' : req.user._id}, function(err, list_results) {
-    if (err){
-      console.log(err);
-      return;
-    }
-    if(list_results.length > 0){
-      res.render('app/intervention/view', { title: 'Elenco interventi', list:  list_results });
-//    }else if(list_results.length == 1){
-//      var pojo = list_results[0];
-//      res.render('app/intervento/view', { title: 'Dettaglio intervento', intervento: pojo });
-    }else{
-      res.render('app/intervention/view', { title: 'Nessun intervento presente'});
-    }
+  /* PAGE VIEW */
+  router.get('/page/view', appUtil.ensureAuthenticated, function(req, res, next) {
+    res.render('app/intervention/view');
   });
-});
 
-/* open page add new intervento */
-router.get('/add', appUtil.ensureAuthenticated, function(req, res, next) {
-  res.render('app/intervention/add', { title: 'Aggiungi un intervento tecnico',
-                                       tipo_intervento_option: intervention_type_option });
-});
-
-/* edit intervento */
-router.get('/edit/:code', appUtil.ensureAuthenticated, function(req, res, next) {
-  Intervention.findOne({ 'code' :  req.params.code, 'owner' : req.user._id}, function(err, pojo) {
-    if (err){
-      console.log(err);
-      return;
-    }
-    res.render('app/intervention/add',{ title: 'Modifica intervento',
-                                      intervention : pojo,
-                                      tipo_intervento_option: appUtil.setSelectedOption(intervention_type_option, pojo.type_of_intervention) });
+  /* PAGE FORM */
+  router.get('/page/form', appUtil.ensureAuthenticated, function(req, res, next) {
+    res.render('app/intervention/form');
   });
-});
 
-/* delete intervento */
-router.get('/delete/:id', appUtil.ensureAuthenticated, function(req, res, next) {
-  Intervention.remove({ '_id' :  req.params.id }, function(err, pojo) {
-    res.redirect('/intervention');
+  /* GET form datas */
+  router.get('/formAdd', appUtil.ensureAuthenticated, function(req, res, next) {
+    res.json({ title: 'Aggiungi un intervento tecnico',
+               intervention_type_option: appUtil.applyI18NforCollection(i18n, intervention_type_option) });
   });
-});
 
-/* GET intervento */
-router.get('/:code', appUtil.ensureAuthenticated, function(req, res, next) {
-  Intervention.findOne({ 'code' :  req.params.code, 'owner' : req.user._id}, function(err, pojo) {
-    if (err){
-      console.log(err);
-      return;
-    }
-    res.render('app/intervention/view', { title: 'Dettaglio intervento', intervention: pojo });
-  });
-});
-
-// add form data on the db
-router.post('/add', appUtil.ensureAuthenticated, function(req, res, next) {
-  if(req.body.id){
-    Intervention.findById(req.body.id, function(err, pojo) {
-      populateRequestAndSave(req, pojo);
-      res.redirect('/intervention/'+pojo.code);
+  /* GET form datas */
+  router.get('/formEdit/:code', appUtil.ensureAuthenticated, function(req, res, next) {
+    Intervention.findOne({ 'code' :  req.params.code, 'owner' : req.user._id }, function(err, pojo){
+      res.json({  title: 'Modifica intervento',
+                  pojo : pojo,
+                  intervention_type_option: appUtil.applyI18NforCollection(i18n, intervention_type_option) });
     });
-  }else{
+  });
+
+
+  /* GET elenco tecnici */
+  router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
+    Intervention.find({'owner' : req.user._id}, function(err, list) {
+      if (err){
+        console.log(err);
+        return;
+      }
+      res.json(list);
+    });
+  });
+
+  /* delete intervento */
+  router.delete('/:id', appUtil.ensureAuthenticated, function(req, res, next) {
+    Intervention.remove({ '_id' :  req.params.id }, function(err, pojo) {
+      res.end();
+    });
+  });
+
+  // add form data on the db
+  router.post('/', appUtil.ensureAuthenticated, function(req, res, next) {
     var intervention = new Intervention();
     populateRequestAndSave(req, intervention);
-    res.redirect('/intervention/'+intervention.code);
-  }
-});
-
-function populateRequestAndSave(req, intervention){
-  intervention.code                     = req.body.code;
-  intervention.type_of_intervention     = req.body.type_of_intervention;
-  intervention.date                     = req.body.date;
-  intervention.start_time               = req.body.start_time;
-  intervention.end_time                 = req.body.end_time;
-  intervention.notes                    = req.body.notes;
-  intervention.owner                    = req.user._id;
-
-  intervention.save(function(err) {
-      console.log('save ' + err);
-      if (err)
-          throw err;
-      return;
+    res.json({'code' : intervention.code});
   });
-}
 
-module.exports = router;
+  // add form data on the db
+  router.put('/:id', appUtil.ensureAuthenticated, function(req, res, next) {
+    Intervention.findById(req.params.id, function(err, pojo) {
+      populateRequestAndSave(req, pojo);
+      res.json({'code' : pojo.code});
+    });
+  });
+
+  /* GET intervento */
+  router.get('/:code', appUtil.ensureAuthenticated, function(req, res, next) {
+    Intervention.findOne({ 'code' :  req.params.code, 'owner' : req.user._id}, function(err, pojo) {
+      if (err){
+        console.log(err);
+        return;
+      }
+      res.json(pojo);
+    });
+  });
+
+  function populateRequestAndSave(req, intervention){
+    intervention.code                     = req.body.code;
+    intervention.type_of_intervention     = req.body.type_of_intervention;
+    intervention.date                     = req.body.date;
+    intervention.start_time               = req.body.start_time;
+    intervention.end_time                 = req.body.end_time;
+    intervention.notes                    = req.body.notes;
+    intervention.owner                    = req.user._id;
+
+    intervention.save(function(err) {
+        console.log('save ' + err);
+        if (err)
+            throw err;
+        return;
+    });
+  };
+
+  return router;
+}
