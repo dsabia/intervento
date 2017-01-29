@@ -24,11 +24,7 @@ module.exports = function(_i18n){
       res.json(list);
     });
   });
-  router.post('/', appUtil.ensureAuthenticated, function(req, res, next) {
-    var customer = new Customer();
-    populateRequestAndSave(req, customer);
-      res.json({"code": customer.code});
-  });
+
 
   // load detail page by code
   router.get('/:code', appUtil.ensureAuthenticated, function(req, res, next) {
@@ -47,14 +43,20 @@ module.exports = function(_i18n){
     });
   });
 
+  router.post('/', appUtil.ensureAuthenticated, function(req, res, next) {
+    var customer = new Customer();
+    populateRequestAndSave(req, res, customer);
+      //res.json({"code": customer.code});
+  });
+
   router.put('/:id', appUtil.ensureAuthenticated, function(req, res, next) {
       Customer.findById(req.params.id, function(err, pojo) {
-      populateRequestAndSave(req, pojo);
-      res.json({"code": pojo.code});
+      populateRequestAndSave(req, res, pojo);
+      //res.json({"code": pojo.code});
     });
   });
 
-  function populateRequestAndSave(req, customer){
+  function populateRequestAndSave(req, res, customer){
       customer.code               = req.body.code;
       customer.discount           = req.body.discount;
       customer.company_name       = req.body.company_name;
@@ -68,6 +70,7 @@ module.exports = function(_i18n){
           console.log('save ' + err);
           if (err)
               throw err;
+          res.json({"code": customer.code});
           return;
       });
   }

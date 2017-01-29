@@ -49,15 +49,15 @@ module.exports = function(_i18n){
   // add form data on db
   router.post('/', appUtil.ensureAuthenticated, function(req, res, next) {
       var material = new Material();
-      populateRequestAndSave(req, material);
-      res.json({"code": material.code});
+      populateRequestAndSave(req, res, material);
+//      res.json({"code": material.code});
   });
 
   // add form data on db
   router.put('/:id', appUtil.ensureAuthenticated, function(req, res, next) {
     Material.findById(req.params.id, function(err, pojo){
-      populateRequestAndSave(req, pojo);
-      res.json({"code": pojo.code});
+      populateRequestAndSave(req, res, pojo);
+//      res.json({"code": pojo.code});
     });
   });
 
@@ -72,6 +72,7 @@ module.exports = function(_i18n){
         console.log('save ' + err);
         if (err)
             throw err;
+        res.json({"code": material.code});
         return;
     });
   }

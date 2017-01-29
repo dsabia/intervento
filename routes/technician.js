@@ -65,14 +65,14 @@ module.exports = function(_i18n){
 
   router.post('/', appUtil.ensureAuthenticated, function(req, res, next) {
       var technician = new Technician();
-      populateRequestAndSave(req, technician);
-      res.json({"account_code": technician.account_code});
+      populateRequestAndSave(req, res, technician);
+      //res.json({"account_code": technician.account_code});
   });
 
   router.put('/:id', appUtil.ensureAuthenticated, function(req, res, next) {
     Technician.findById(req.params.id, function(err, pojo){
-      populateRequestAndSave(req, pojo);
-      res.json({"account_code": pojo.account_code});
+      populateRequestAndSave(req, res, pojo);
+      //res.json({"account_code": pojo.account_code});
     });
   });
 
@@ -90,6 +90,7 @@ module.exports = function(_i18n){
       console.log('save ' + err);
       if (err)
         throw err;
+      res.json({"account_code": technician.account_code});
       return;
     });
   }

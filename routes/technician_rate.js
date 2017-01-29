@@ -52,18 +52,18 @@ module.exports = function(_i18n){
 
   router.post('/', appUtil.ensureAuthenticated, function(req, res, next) {
     var rate = new TechnicianRate();
-    populateRequestAndSave(req, rate);
-    res.end();
+    populateRequestAndSave(req, res, rate);
+    //res.end();
   });
 
   router.put('/:id', appUtil.ensureAuthenticated, function(req, res, next) {
     TechnicianRate.findById(req.params.id, function(err, rate){
-      populateRequestAndSave(req, rate);
-      res.end();
+      populateRequestAndSave(req, res, rate);
+      //res.end();
     });
   });
 
-  function populateRequestAndSave(req, rate){
+  function populateRequestAndSave(req, res, rate){
     rate.consultancy_fee    = req.body.consultancy_fee;
     rate.fixed_rate         = req.body.fixed_rate;
     rate.km_rate            = req.body.km_rate;
@@ -75,6 +75,7 @@ module.exports = function(_i18n){
         console.log('save ' + err);
         if (err)
             throw err;
+        res.end();
         return;
     });
   }

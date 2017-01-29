@@ -62,15 +62,15 @@ module.exports = function(_i18n){
   // add form data on the db
   router.post('/', appUtil.ensureAuthenticated, function(req, res, next) {
     var intervention = new Intervention();
-    populateRequestAndSave(req, intervention);
-    res.json({'code' : intervention.code});
+    populateRequestAndSave(req, res, intervention);
+    // res.json({'code' : intervention.code});
   });
 
   // add form data on the db
   router.put('/:id', appUtil.ensureAuthenticated, function(req, res, next) {
     Intervention.findById(req.params.id, function(err, pojo) {
-      populateRequestAndSave(req, pojo);
-      res.json({'code' : pojo.code});
+      populateRequestAndSave(req, res, pojo);
+      // res.json({'code' : pojo.code});
     });
   });
 
@@ -85,7 +85,7 @@ module.exports = function(_i18n){
     });
   });
 
-  function populateRequestAndSave(req, intervention){
+  function populateRequestAndSave(req, res, intervention){
     intervention.code                     = req.body.code;
     intervention.type_of_intervention     = req.body.type_of_intervention;
     intervention.date                     = req.body.date;
@@ -98,6 +98,7 @@ module.exports = function(_i18n){
         console.log('save ' + err);
         if (err)
             throw err;
+        res.json({'code' : intervention.code});
         return;
     });
   };
