@@ -4,11 +4,12 @@ var WorkFolder = require('../models/work_folder');
 var Customer = require('../models/customer').model;
 var Technician = require('../models/technician').model;
 var appUtil = require('../services/app_util');
+var Promise = require('promise');
 
 var options_status = [
   "o-status-aperto" ,
-  "o-status-chiuso" ,
-  "o-status-chiuso-non-pagato"
+  "o-status-chiuso-non-pagato",
+  "o-status-chiuso"
 ];
 
 module.exports = function(_i18n){
@@ -26,8 +27,8 @@ module.exports = function(_i18n){
 
   /* open form add */
   router.get('/formAdd', appUtil.ensureAuthenticated, function(req, res, next) {
-    res.json({ title: 'Nuovo lavoro',
-               options_status : appUtil.applyI18NforCollection(i18n, options_status)});
+    var pojo = new WorkFolder();
+    res.json({ title: 'Nuovo lavoro' });
   });
 
   /* open form edit */
@@ -56,6 +57,9 @@ module.exports = function(_i18n){
           console.log(err);
           return;
         }
+        list.forEach(function(pojo) {
+          pojo.status = appUtil.applyI18N(i18n, pojo.status);
+        });
         res.json(list);
       });
   });
@@ -69,20 +73,19 @@ module.exports = function(_i18n){
             console.log(err);
             return;
           }
+          pojo.status = appUtil.applyI18N(i18n, pojo.status);
           res.json(pojo);
         });
   });
 
   router.post('/', appUtil.ensureAuthenticated, function(req, res, next) {
     var work = new WorkFolder();
-    populateRequestAndSave(req, work);
-    res.json({'code' : work.code});
+    populateRequestAndSave(req, res, work);
   });
 
   router.put('/:id', appUtil.ensureAuthenticated, function(req, res, next) {
     WorkFolder.findById(req.params.id, function(err, pojo) {
-      populateRequestAndSave(req, pojo);
-      res.json({'code' : pojo.code});
+      populateRequestAndSave(req, res, pojo);
     });
   });
 
@@ -92,16 +95,16 @@ module.exports = function(_i18n){
     });
   });
 
-  function populateRequestAndSave(req, work){
+  function populateRequestAndSave(req, res, work){
     work.code        = req.body.code;
     work.owner       = req.user._id;
     work.status      = req.body.status;
     work.note        = req.body.note;
 
-    Customer.findOne({"company_name":req.body.customer, "owner":req.user._id}, function (err, customer){
+    Customer.findOne({"company_name":req.body.customer.company_name, "owner":req.user._id}, function (err, customer){
       work.customer    = customer;
 
-      Technician.findOne({"name" : req.body.technician, "owner":req.user._id}, function (err, technician){
+      Technician.findOne({"name" : req.body.technician.name, "owner":req.user._id}, function (err, technician){
         work.technician    = technician;
 
         // follows the other elements to save, like interventions etc....
@@ -110,6 +113,7 @@ module.exports = function(_i18n){
           console.log('save ' + err);
           if (err)
             throw err;
+          res.json({'code' : work.code});
           return;
         });
       });

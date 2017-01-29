@@ -4,7 +4,6 @@ var app = angular.module('interventoController').controller('workFolderControlle
   $scope.pojo = null;
   $scope.list = null;
   $scope.title = '';
-  $scope.options_status = null;
 
   /* FOLDERS */
   $scope.listWorkFolders = function(){
@@ -22,10 +21,11 @@ var app = angular.module('interventoController').controller('workFolderControlle
     $http.get('/work_folder/formAdd')
            .success(function(res, code) {
              $scope.pojo = {};
+             $scope.pojo.date = new Date();
+             $scope.pojo.customer = {};
+             $scope.pojo.technician = {};
              $scope.list = null;
              $scope.title= res.title;
-             $scope.options_status = res.options_status;
-             $scope.pojo.date = new Date();
              changePagecontent($scope, '/work_folder/page/form');
            }).error(function(res) {
              console.error("error in get");
@@ -48,8 +48,6 @@ var app = angular.module('interventoController').controller('workFolderControlle
            .success(function(res, code) {
              $scope.pojo = res.pojo;
              $scope.title= res.title;
-             $scope.options_status = res.options_status;
-             $scope.pojo.status = $scope.findOptionStatus($scope.pojo);
              changePagecontent($scope, '/work_folder/page/form');
            }).error(function(res) {
              console.error("error in get");
@@ -82,16 +80,7 @@ var app = angular.module('interventoController').controller('workFolderControlle
          });
   };
 
-  $scope.findOptionStatus = function(pojo){
-    for(i = 0; i < $scope.options_status.length; i++){
-      if($scope.options_status[i] == pojo.status){
-        return $scope.options_status[i];
-      }
-    }
-  };
-
-  //$scope.customerSelected = undefined;
-  //$scope.technicianSelected = undefined;
+  // typeahead
   $scope.getCustomers = function(query) {
     var url = '/typeahead/customers' + (query == null ? '' : '/'+query);
     return $http.get(url).then(function(response) {
@@ -105,4 +94,6 @@ var app = angular.module('interventoController').controller('workFolderControlle
     });
   };
 
+  // onload
+  $scope.listWorkFolders();
 });

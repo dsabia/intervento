@@ -10,6 +10,10 @@ exports.setSelectedOption = function (options, value){
   return result;
 }
 
+exports.applyI18N = function(i18n, key){
+  return i18n.__(key);
+}
+
 exports.applyI18NforCollection = function(i18n, collection){
   var returnCollection = [];
   for (var i = 0; i < collection.length; i++) {

@@ -92,4 +92,7 @@ var app = angular.module('interventoController').controller('interventionControl
     }
   };
 
+
+  // on load
+  $scope.listInterventions();
 });

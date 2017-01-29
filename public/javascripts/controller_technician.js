@@ -70,4 +70,7 @@ var app = angular.module('interventoController').controller('technicianControlle
          });
   };
 
+
+  // on load
+  $scope.listTechnicians();
 });

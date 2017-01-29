@@ -69,4 +69,7 @@ var app = angular.module('interventoController').controller('customerController'
            console.error("error in posting");
          });
   };
+
+  // on load
+  $scope.listCustomers();
 });
