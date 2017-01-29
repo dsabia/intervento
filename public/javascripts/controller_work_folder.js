@@ -93,12 +93,14 @@ var app = angular.module('interventoController').controller('workFolderControlle
   //$scope.customerSelected = undefined;
   //$scope.technicianSelected = undefined;
   $scope.getCustomers = function(query) {
-    return $http.get('/typeahead/customers').then(function(response) {
+    var url = '/typeahead/customers' + (query == null ? '' : '/'+query);
+    return $http.get(url).then(function(response) {
       return response.data;
     });
   };
   $scope.getTechnicians = function(query) {
-    return $http.get('/typeahead/technicians').then(function(resp) {
+    var url = '/typeahead/technicians' + (query == null ? '' : '/'+query);
+    return $http.get(url).then(function(resp) {
       return resp.data;
     });
   };
