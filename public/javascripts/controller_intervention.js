@@ -26,6 +26,8 @@ var app = angular.module('interventoController').controller('interventionControl
              $scope.title= res.title;
              $scope.intervention_type_option = res.intervention_type_option;
              $scope.pojo.date = new Date();
+             $scope.pojo.start_time = new Date();
+             $scope.pojo.end_time = new Date();
              changePagecontent($scope, '/intervention/page/form');
            }).error(function(res) {
              console.error("error in get");
@@ -38,6 +40,8 @@ var app = angular.module('interventoController').controller('interventionControl
            $scope.title= 'Dettaglio intervento';
            $scope.pojo = res;
            $scope.pojo.date = new Date($scope.pojo.date);
+           $scope.pojo.start_time = new Date($scope.pojo.start_time);
+           $scope.pojo.end_time = new Date($scope.pojo.end_time);
            $scope.list = null;
            changePagecontent($scope, '/intervention/page/view');
          }).error(function(res) {
@@ -52,6 +56,8 @@ var app = angular.module('interventoController').controller('interventionControl
              $scope.intervention_type_option= res.intervention_type_option;
              $scope.pojo.type_of_intervention = $scope.findInterventionType($scope.pojo);
              $scope.pojo.date = new Date($scope.pojo.date);
+             $scope.pojo.start_time = new Date($scope.pojo.start_time);
+             $scope.pojo.end_time = new Date($scope.pojo.end_time);
              changePagecontent($scope, '/intervention/page/form');
            }).error(function(res) {
              console.error("error in get");
@@ -92,6 +98,14 @@ var app = angular.module('interventoController').controller('interventionControl
     }
   };
 
+
+  // timepicker settings
+  $scope.hstep = 1;
+  $scope.mstep = 5;
+  $scope.ismeridian = false;
+  $scope.changed = function () {
+    $log.log('Time changed to: ' + $scope.mytime);
+  };
 
   // on load
   $scope.listInterventions();

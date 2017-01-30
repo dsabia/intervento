@@ -5,6 +5,7 @@
   "title-signup" : "Registrazione",
   "title-profile" : "Profilo Utente",
   "profile-title-local" : "Locale",
+  "title"  : "Gestione intervento",
 
   "index"     : "Index",
   "log-in" 	  : "Log In",
@@ -38,6 +39,7 @@
   "time"                 : "Orario",
   "orario-inizio"        : "Orario inizio",
   "orario-fine"          : "Orario fine",
+  "note"                 : "Note",
   "notes"                : "Note",
   "discount"             : "Sconto",
   "company_name"         : "Ragione sociale",

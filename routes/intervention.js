@@ -91,7 +91,7 @@ module.exports = function(_i18n){
     intervention.date                     = req.body.date;
     intervention.start_time               = req.body.start_time;
     intervention.end_time                 = req.body.end_time;
-    intervention.notes                    = req.body.notes;
+    intervention.note                     = req.body.note;
     intervention.owner                    = req.user._id;
 
     intervention.save(function(err) {

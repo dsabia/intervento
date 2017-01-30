@@ -9,12 +9,12 @@ div(ng-show="pojo")
         label {{pojo.type_of_intervention}}
     tr
       td
-        label {{pojo.date.toISOString().substring(0, 10)}}
+        label {{pojo.date | date:'shortDate'}}
       td
-        label {{pojo.start_time}} - {{pojo.end_time}}
+        label {{pojo.start_time | date:'shortTime'}} - {{pojo.end_time | date:'shortTime'}}
     tr
       td(colspan='2')
-        label {{pojo.notes}}
+        label {{pojo.note}}
   a(ng-click="editIntervention(pojo.code)") Modifica intervento |&nbsp;
   a(ng-click="deleteIntervention(pojo._id)") Elimina intervento
 
@@ -29,8 +29,8 @@ div(ng-show="list.length")
       td
         a(ng-click="viewIntervention(item.code)") {{item.code}}
       td {{item.type_of_intervention}}
-      td {{item.date.toISOString().substring(0, 10)}}
-      td {{item.start_time}} - {{item.end_time}}
+      td {{item.date  | date:'shortDate'}}
+      td {{item.start_time | date:'shortTime'}} - {{item.end_time | date:'shortTime'}}
 
 br
 a(ng-click="listInterventions()") Elenco interventi |&nbsp;

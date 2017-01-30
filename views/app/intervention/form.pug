@@ -17,26 +17,17 @@ form.form-horizontal
       input(name='date', type="date", required, ng-model="pojo.date").form-control
     div.col-md-3.col-xs-6
       label(for='start_time') #{__('start_time')}
-      div.input-group.clockpicker
-        input.form-control(id="id-ora_inizio", name='start_time',type='text', ng-model="pojo.start_time")
-        span.input-group-addon
-          span.glyphicon.glyphicon-time
+      div(uib-timepicker, id="id-ora_inizio", ng-model="pojo.start_time", ng-change="changed()", hour-step="hstep", minute-step="mstep", show-meridian="ismeridian")
     div.col-md-3.col-xs-6
       label(for='end_time') #{__('end_time')}
-      div.input-group.clockpicker
-        input.form-control(id="id-ora_fine", name='end_time',type='text', ng-model="pojo.end_time")
-        span.input-group-addon
-          span.glyphicon.glyphicon-time
-
+      div(uib-timepicker, id="id-ora_fine", ng-model="pojo.end_time", ng-change="changed()", hour-step="hstep", minute-step="mstep", show-meridian="ismeridian")
   div.form-group.row
     div.col-md-12.col-xs-12
-      label(for='notes') #{__('notes')}
-      textarea(name='notes', rows="3").form-control {{pojo.notes}}
+      label(for='note') #{__('note')}
+      textarea(name='note', ng-model="pojo.note", rows="3").form-control
 
   button(ng-hide="pojo._id", type="submit", ng-click="postIntervention()").btn.btn-default Aggiungi intervento
   button(ng-show="pojo._id", type="submit", ng-click="putIntervention()").btn.btn-default Modifica intervento
 
 a(ng-click="listInterventions()") Elenco interventi |&nbsp;
 a(ng-click="addIntervention()") Aggiungi interventi
-
-script(src='/javascripts/intervention/add.js')

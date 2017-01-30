@@ -5,6 +5,7 @@
   "title-signup" : "Signup",
   "title-profile" : "Profile Page",
   "profile-title-local" : "Local",
+  "title"  : "Handle intervention",
 
   "index"     : "Index",
   "log-in" 	  : "Log In",
@@ -38,6 +39,7 @@
   "time"                 : "Time",
   "start_time"           : "Start time",
   "end_time"             : "End time",
+  "note"                 : "Note",
   "notes"                : "Notes",
   "discount"             : "Discount",
   "company_name"         : "Company name",

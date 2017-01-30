@@ -7,9 +7,9 @@ var interventoSchema = mongoose.Schema({
     code                  : String,
     type_of_intervention  : String,
     date                  : Date,
-    start_time            : String,
-    end_time              : String,
-    notes                 : String,
+    start_time            : Date,
+    end_time              : Date,
+    note                  : String,
     owner                 : mongoose.Schema.Types.ObjectId
 });
 
