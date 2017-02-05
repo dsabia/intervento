@@ -6,8 +6,7 @@ var appUtil = require('../services/app_util');
 var frazioni_dora_option = [1,  5, 15, 30, 60];
 
 
-module.exports = function(_i18n){
-  var i18n = _i18n;
+module.exports = function(){
 
   /* PAGE VIEW */
   router.get('/page/view', appUtil.ensureAuthenticated, function(req, res, next) {

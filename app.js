@@ -58,14 +58,14 @@ app.use(passport.session());
 app.use(flash());
 
 // routes
-var router = require('./routes/index')(i18n);
-var technician = require('./routes/technician')(i18n);
-var customer = require('./routes/customer')(i18n);
-var material = require('./routes/material')(i18n);
-var technician_rate = require('./routes/technician_rate')(i18n);
-var intervention = require('./routes/intervention')(i18n);
-var work_folder = require('./routes/work_folder')(i18n);
-var typeahead = require('./routes/typeahead')(i18n);
+var router = require('./routes/index')();
+var technician = require('./routes/technician')();
+var customer = require('./routes/customer')();
+var material = require('./routes/material')();
+var technician_rate = require('./routes/technician_rate')();
+var intervention = require('./routes/intervention')();
+var work_folder = require('./routes/work_folder')();
+var typeahead = require('./routes/typeahead')();
 require('./services/passport')(passport);
 
 app.use('/', router);

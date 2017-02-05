@@ -3,8 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var User = require('../models/user');
 
-module.exports = function(_i18n){
-  var i18n = _i18n;
+module.exports = function(){
 
   // open root application
   router.get('/', function(req, res, next) {

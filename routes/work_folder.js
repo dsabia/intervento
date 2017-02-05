@@ -4,7 +4,6 @@ var WorkFolder = require('../models/work_folder');
 var Customer = require('../models/customer').model;
 var Technician = require('../models/technician').model;
 var appUtil = require('../services/app_util');
-var Promise = require('promise');
 
 var options_status = [
   "o-status-aperto" ,
@@ -12,8 +11,7 @@ var options_status = [
   "o-status-chiuso"
 ];
 
-module.exports = function(_i18n){
-  var i18n = _i18n;
+module.exports = function(){
 
   /* PAGE VIEW */
   router.get('/page/view', appUtil.ensureAuthenticated, function(req, res, next) {
@@ -43,7 +41,7 @@ module.exports = function(_i18n){
           }
           res.json({ title: 'Modifica lavoro',
                      pojo : pojo,
-                     options_status : appUtil.applyI18NforCollection(i18n, options_status) });
+                     options_status : appUtil.translateCollection(res, options_status) });
         });
   });
 
@@ -58,7 +56,7 @@ module.exports = function(_i18n){
           return;
         }
         list.forEach(function(pojo) {
-          pojo.status = appUtil.applyI18N(i18n, pojo.status);
+          pojo.status = res.__(pojo.status);
         });
         res.json(list);
       });
@@ -73,7 +71,7 @@ module.exports = function(_i18n){
             console.log(err);
             return;
           }
-          pojo.status = appUtil.applyI18N(i18n, pojo.status);
+          pojo.status = res.__(pojo.status);
           res.json(pojo);
         });
   });

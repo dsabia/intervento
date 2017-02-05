@@ -3,8 +3,8 @@ var router = express.Router();
 var appUtil = require('../services/app_util');
 var Customer = require('../models/customer').model;
 
-module.exports = function(_i18n){
-  var i18n = _i18n;
+module.exports = function(){
+
   /* PAGE VIEW */
   router.get('/page/view', appUtil.ensureAuthenticated, function(req, res, next) {
     res.render('app/customer/view');

@@ -1,6 +1,6 @@
 var exports = {};
 
-// not in use
+// not in use - confirmed
 exports.setSelectedOption = function (options, value){
   var result = [];
   for (var i = 0; i < options.length; i++) {
@@ -10,14 +10,10 @@ exports.setSelectedOption = function (options, value){
   return result;
 }
 
-exports.applyI18N = function(i18n, key){
-  return i18n.__(key);
-}
-
-exports.applyI18NforCollection = function(i18n, collection){
+exports.translateCollection = function(res, collection){
   var returnCollection = [];
   for (var i = 0; i < collection.length; i++) {
-    returnCollection.push(i18n.__(collection[i]));
+    returnCollection.push(res.__(collection[i]));
   }
   return returnCollection;
 }

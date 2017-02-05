@@ -4,8 +4,7 @@ var appUtil = require('../services/app_util');
 var Customer = require('../models/customer').model;
 var Technician = require('../models/technician').model;
 
-module.exports = function(_i18n){
-  var i18n = _i18n;
+module.exports = function(){
 
   /* TYPEAHEAD - GET CUSTOMER BY company_name*/
   router.get('/customers/:q', appUtil.ensureAuthenticated, function(req, res, next) {

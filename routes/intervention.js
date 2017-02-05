@@ -12,8 +12,7 @@ var intervention_type_option = [
   "o-tipo-intervento-preventivo"
 ];
 
-module.exports = function(_i18n){
-  var i18n = _i18n;
+module.exports = function(){
 
   /* PAGE VIEW */
   router.get('/page/view', appUtil.ensureAuthenticated, function(req, res, next) {
@@ -28,7 +27,7 @@ module.exports = function(_i18n){
   /* GET form datas */
   router.get('/formAdd', appUtil.ensureAuthenticated, function(req, res, next) {
     res.json({ title: 'Aggiungi un intervento tecnico',
-               intervention_type_option: appUtil.applyI18NforCollection(i18n, intervention_type_option) });
+               intervention_type_option: appUtil.translateCollection(res, intervention_type_option) });
   });
 
   /* GET form datas */
@@ -36,7 +35,7 @@ module.exports = function(_i18n){
     Intervention.findOne({ 'code' :  req.params.code, 'owner' : req.user._id }, function(err, pojo){
       res.json({  title: 'Modifica intervento',
                   pojo : pojo,
-                  intervention_type_option: appUtil.applyI18NforCollection(i18n, intervention_type_option) });
+                  intervention_type_option: appUtil.translateCollection(res, intervention_type_option) });
     });
   });
 
