@@ -7,6 +7,28 @@
   "profile-title-local" : "Locale",
   "title"  : "Gestione intervento",
 
+  "title-home"      : "App di Rocco",
+  "title-technician-home" : "Dati del tecnico",
+  "title-customer-home": "Dati dei clienti",
+  "title-intervention-home":"Dati degli interventi",
+  "title-work-folder-home": "Dati delle cartelle lavoro",
+
+  "title-list-image" : "Elenco immagini",
+  "title-det-image"  : "Dettaglio immagini",
+  "title-np-image"   : "Immagini non presenti",
+  "title-add-image" :  "Aggiungi immagine",
+
+  "title-add-intervention" : "Aggiungi un intervento tecnico",
+  "title-edit-intervention" : "Modifica intervento",
+
+  "title-det-technician-rate"  : "Dettaglio della tariffa",
+  "title-np-technician-rate"   : "Tariffa non presente",
+  "title-add-technician-rate" :  "Aggiungi tariffa",
+  "title-mod-technician-rate" : "Modifica tariffa",
+
+  "title-add-technician" : "Aggiungi un tecnico",
+  "title-edit-technician" : "Modifica il tecnico",
+
   "index"     : "Index",
   "log-in" 	  : "Log In",
   "login" 	  : "Login",
@@ -88,5 +110,5 @@
   "link-list-materials"  : "Elenco materiali",
   "link-technician-rate" : "Pagina tariffe",
   "link-image"           : "Immagini",
-  "link-add-image"       : "Aggiungi immagine"
+  "link-add-image"       : "Aggiungi immagine",
 }

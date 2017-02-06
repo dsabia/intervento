@@ -26,19 +26,19 @@ module.exports = function(mongo, db){
         return;
       }
       if(list_results.length > 0){
-        res.render('app/image/view', { title: 'Elenco immagini', list: list_results });
+        res.render('app/image/view', { title: res.__('title-list-image'), list: list_results });
       }else if(list_results.length == 1){
         var pojo = list_results[0];
-        res.render('app/image/view', { title: 'Dettaglio immagine', image: pojo });
+        res.render('app/image/view', { title: res.__('title-det-image'), image: pojo });
       }else{
-        res.render('app/image/view', { title: 'Imamgini non presenti'});
+        res.render('app/image/view', { title: res.__('title-np-image')});
       }
     });
   });
 
   /* open page add immagine */
   router.get('/add', appUtil.ensureAuthenticated, function(req, res, next) {
-    res.render('app/image/add', { title: 'Aggiungi immagine' });
+    res.render('app/image/add', { title: res.__('title-add-image')});
   });
 
   // add form data on the db
@@ -68,7 +68,7 @@ module.exports = function(mongo, db){
         console.log(err);
         return;
       }
-      res.render('app/image/view', { title: 'Dettaglio immagine', image: pojo });
+      res.render('app/image/view', { title: res.__('title-det-image'), image: pojo });
     });
   });
 

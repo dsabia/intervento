@@ -54,27 +54,27 @@ module.exports = function(){
 
   /* open homepage */
   router.get('/homepage', isLoggedIn, function(req, res, next) {
-    res.render('app/homepage', { title: 'App di Rocco' });
+    res.render('app/homepage', { title: res.__('title-home') });
   });
 
   /* open technician home */
   router.get('/technician_home', isLoggedIn, function(req, res, next) {
-    res.render('app/technician_home', { title: 'Dati di Rocco' });
+    res.render('app/technician_home', { title: res.__('title-technician-home') });
   });
 
   /* open customer home */
   router.get('/customer_home', isLoggedIn, function(req, res, next) {
-    res.render('app/customer_home', { title: 'Dati dei clienti di Rocco' });
+    res.render('app/customer_home', { title: res.__('title-customer-home')});
   });
 
   /* open intervention home */
   router.get('/intervention_home', isLoggedIn, function(req, res, next) {
-    res.render('app/intervention_home', { title: 'Dati degli interventi di Rocco' });
+    res.render('app/intervention_home', { title: res.__('title-intervention-home') });
   });
 
   /* open work folder home */
   router.get('/work_folder_home', isLoggedIn, function(req, res, next) {
-    res.render('app/work_folder_home', { title: 'Dati delle cartelle lavoro di Rocco' });
+    res.render('app/work_folder_home', { title:  res.__('title-work-folder-home') });
   });
 
   // route middleware to make sure a user is logged in

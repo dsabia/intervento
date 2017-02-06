@@ -26,14 +26,14 @@ module.exports = function(){
 
   /* GET form datas */
   router.get('/formAdd', appUtil.ensureAuthenticated, function(req, res, next) {
-    res.json({ title: 'Aggiungi un intervento tecnico',
+    res.json({ title: res.__('title-add-intervention'),
                intervention_type_option: appUtil.translateCollection(res, intervention_type_option) });
   });
 
   /* GET form datas */
   router.get('/formEdit/:code', appUtil.ensureAuthenticated, function(req, res, next) {
     Intervention.findOne({ 'code' :  req.params.code, 'owner' : req.user._id }, function(err, pojo){
-      res.json({  title: 'Modifica intervento',
+      res.json({  title: res.__('title-edit-intervention'),
                   pojo : pojo,
                   intervention_type_option: appUtil.translateCollection(res, intervention_type_option) });
     });

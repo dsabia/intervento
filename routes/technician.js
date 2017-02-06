@@ -30,9 +30,9 @@ module.exports = function(){
   router.get('/formData', appUtil.ensureAuthenticated, function(req, res, next) {
     Technician.findOne({ 'account_code' :  req.params.code , 'owner' : req.user._id}, function(err, pojo){
       if(!pojo){
-        res.json({ title: 'Aggiungi un tecnico' });
+        res.json({ title: res.__('title-add-technician') });
       }else{
-        res.json({ title: 'Modifica il tecnico',
+        res.json({ title: res.__('title-edit-technician'),
                    pojo: pojo });
       }
     });

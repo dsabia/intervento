@@ -7,6 +7,28 @@
   "profile-title-local" : "Local",
   "title"  : "Intervento",
 
+  "title-home"      : "Rocco's app",
+  "title-technician-home" : "Technicians data",
+  "title-customer-home": "Customers data",
+  "title-intervention-home":"Interventions data",
+  "title-work-folder-home": "Work folder data",
+
+  "title-list-image" : "List images",
+  "title-det-image"  : "Image detail",
+  "title-np-image"   : "Image not present",
+  "title-add-image" :  "Add image",
+
+  "title-add-intervention" : "Add intervention",
+  "title-edit-intervention" : "Edit intervention",
+
+  "title-det-technician-rate"  : "Rates detail",
+  "title-np-technician-rate"   : "Rates not present",
+  "title-add-technician-rate" :  "Add rates",
+  "title-mod-technician-rate" : "Edit rates",
+
+  "title-add-technician" : "Add technician",
+  "title-edit-technician" : "Edit technician",
+
   "index"     : "Index",
   "log-in" 	  : "Log In",
   "login" 	  : "Login",

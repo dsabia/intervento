@@ -27,9 +27,9 @@ module.exports = function(){
       }
       if(list_results.length > 0){
         var pojo = list_results[0];
-        res.json({ title: 'Dettaglio della tariffa', pojo: pojo });
+        res.json({ title:  res.__('title-det-technician-rate'), pojo: pojo });
       }else{
-        res.json({ title: 'Tariffa non presente'});
+        res.json({ title:  res.__('title-np-technician-rate')});
       }
     });
   });
@@ -38,10 +38,10 @@ module.exports = function(){
   router.get('/formData', appUtil.ensureAuthenticated, function(req, res, next) {
     TechnicianRate.findOne({ 'owner' : req.user._id }, function(err, pojo){
       if(!pojo){
-        res.json({ title: 'Aggiungi tariffa',
+        res.json({ title: res.__('title-add-technician-rate'),
                    frazioni_dora_option: frazioni_dora_option });
       }else{
-        res.json({ title: 'Modifica tariffa',
+        res.json({ title: res.__('title-mod-technician-rate'),
                    pojo: pojo,
                    frazioni_dora_option: frazioni_dora_option });
       }
