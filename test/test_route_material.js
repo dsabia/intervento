@@ -29,9 +29,9 @@ describe('Material API', function() {
     });
   });
 
-  it('/get : should list all materials', function(done) {
+  it('/ should list all materials', function(done) {
     chai.request(server)
-      .get('/material/getAll')
+      .get('/material/')
       .end(function(err, res){
         res.should.have.status(200);
         res.should.to.not.be.undefined;
@@ -40,7 +40,7 @@ describe('Material API', function() {
       });
   });
 
-  it('/get/code : should return one material', function(done) {
+  it('/:code should return the corrispondent material', function(done) {
     chai.request(server)
       .get('/material/'+2)
       .end(function(err, res){
