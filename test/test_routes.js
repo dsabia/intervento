@@ -7,8 +7,8 @@ var should = chai.should();
 
 chai.use(chaiHttp);
 
-describe('Index', function() {
-  it('should list index if not authenticate GET', function(done) {
+describe('Routes Index', function() {
+  it('/ should open index page', function(done) {
     chai.request(server)
       .get('/')
       .end(function(err, res){

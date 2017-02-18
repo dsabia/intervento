@@ -6,8 +6,8 @@ var Image = require("../models/image");
 /**
  * @ignore
  */
-describe('Image', function() {
-  it('findAll() should not return null or undefined', function() {
+describe('MongoDB Image', function() {
+  it('find({}) shouldn\'t return null or undefined', function() {
     var listImages = Image.find({});
     expect(listImages).to.not.be.null;
     expect(listImages).to.not.be.undefined;
