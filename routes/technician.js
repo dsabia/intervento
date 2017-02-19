@@ -5,16 +5,6 @@ var Technician = require('../models/technician').model;
 
 module.exports = function(){
 
-  /* PAGE VIEW */
-  router.get('/page/view', appUtil.ensureAuthenticated, function(req, res, next) {
-    res.render('app/technician/view');
-  });
-
-  /* PAGE FORM */
-  router.get('/page/form', appUtil.ensureAuthenticated, function(req, res, next) {
-    res.render('app/technician/form');
-  });
-
   /* GET elenco tecnici */
   router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
     Technician.find({'owner' : req.user._id}, function(err, list) {

@@ -10,7 +10,7 @@ module.exports = function(){
     res.render('app/technician_rate/form');
   });
 
-  /* MATERIALS */
+  /* MATERIAL */
   router.get('/material/view', appUtil.ensureAuthenticated, function(req, res, next) {
     res.render('app/material/view');
   });
@@ -18,4 +18,14 @@ module.exports = function(){
     res.render('app/material/form');
   });
 
+
+  /* TECHNICIAN */
+  router.get('/technician/view', appUtil.ensureAuthenticated, function(req, res, next) {
+    res.render('app/technician/view');
+  });
+  router.get('/technician/form', appUtil.ensureAuthenticated, function(req, res, next) {
+    res.render('app/technician/form');
+  });
+
+  
 };
