@@ -21,6 +21,9 @@
   "title-add-intervention" : "Add intervention",
   "title-edit-intervention" : "Edit intervention",
 
+  "title-add-work-folder" : "Add work folder",
+  "title-edit-work_folder" : "Edit work folder",
+
   "title-det-technician-rate"  : "Rates detail",
   "title-np-technician-rate"   : "Rates not present",
   "title-add-technician-rate" :  "Add rates",

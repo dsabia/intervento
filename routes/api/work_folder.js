@@ -16,7 +16,7 @@ module.exports = function(){
   /* open form add */
   router.get('/formAdd', appUtil.ensureAuthenticated, function(req, res, next) {
     var pojo = new WorkFolder();
-    res.json({ title: 'Nuovo lavoro' });
+    res.json({ title: res.__('title-add-work-folder') });
   });
 
   /* open form edit */
@@ -29,7 +29,7 @@ module.exports = function(){
             console.log(err);
             return;
           }
-          res.json({ title: 'Modifica lavoro',
+          res.json({ title: res.__('title-edit-work-folder'),
                      pojo : pojo,
                      options_status : appUtil.translateCollection(res, options_status) });
         });

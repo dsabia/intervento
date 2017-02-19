@@ -21,6 +21,9 @@
   "title-add-intervention" : "Aggiungi un intervento tecnico",
   "title-edit-intervention" : "Modifica intervento",
 
+  "title-add-work-folder" : "Aggiungi lavoro",
+  "title-edit-work_folder" : "Modifica lavoro",
+
   "title-det-technician-rate"  : "Dettaglio della tariffa",
   "title-np-technician-rate"   : "Tariffa non presente",
   "title-add-technician-rate" :  "Aggiungi tariffa",
