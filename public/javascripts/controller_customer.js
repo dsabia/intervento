@@ -11,7 +11,7 @@ var app = angular.module('interventoController').controller('customerController'
            $scope.title= 'Elenco clienti';
            $scope.list= res;
            $scope.pojo = null;
-           changePagecontent($scope, '/page/customer/view');
+           changePagecontent($scope, '/fragment/customer/view');
          }).error(function(res) {
            console.log("error in getAll");
          });
@@ -19,7 +19,7 @@ var app = angular.module('interventoController').controller('customerController'
   $scope.addCustomer = function(){
     $scope.pojo = {};
     $scope.title= 'Aggiungi un nuovo cliente';
-    changePagecontent($scope, '/page/customer/form');
+    changePagecontent($scope, '/fragment/customer/form');
   };
   $scope.viewCustomer = function(code){
     console.log("code: " + code);
@@ -28,7 +28,7 @@ var app = angular.module('interventoController').controller('customerController'
            $scope.title= 'Dettaglio del cliente';
            $scope.pojo = res;
            $scope.list = null;
-           changePagecontent($scope, '/page/customer/view');
+           changePagecontent($scope, '/fragment/customer/view');
          }).error(function(res) {
            console.error("error in get");
          });
@@ -38,7 +38,7 @@ var app = angular.module('interventoController').controller('customerController'
          .success(function(res, code) {
            $scope.pojo = res;
            $scope.title= 'Modifica il cliente';
-           changePagecontent($scope, '/page/customer/form');
+           changePagecontent($scope, '/fragment/customer/form');
          }).error(function(res) {
            console.error("error in get");
          });

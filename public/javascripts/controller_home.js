@@ -13,7 +13,7 @@ var app = angular.module('interventoController').controller('mainController', fu
              $scope.title= 'Elenco materiali';
              $scope.list= res;
              $scope.pojo = null;
-             changePagecontent($scope, '/page/material/view');
+             changePagecontent($scope, '/fragment/material/view');
            }).error(function(res) {
              console.log("error in getAll");
            });
@@ -21,7 +21,7 @@ var app = angular.module('interventoController').controller('mainController', fu
     $scope.addMaterial = function(){
       $scope.pojo = {};
       $scope.title= 'Aggiungi materiale';
-      changePagecontent($scope, '/page/material/form');
+      changePagecontent($scope, '/fragment/material/form');
     };
     $scope.viewMaterial = function(code){
       console.log("code: " + code);
@@ -30,7 +30,7 @@ var app = angular.module('interventoController').controller('mainController', fu
              $scope.title= 'Dettaglio materiale';
              $scope.pojo = res;
              $scope.list = null;
-             changePagecontent($scope, '/page/material/view');
+             changePagecontent($scope, '/fragment/material/view');
            }).error(function(res) {
              console.error("error in get");
            });
@@ -40,7 +40,7 @@ var app = angular.module('interventoController').controller('mainController', fu
            .success(function(res, code) {
              $scope.pojo = res;
              $scope.title= 'Modifica materiale';
-             changePagecontent($scope, '/page/material/form');
+             changePagecontent($scope, '/fragment/material/form');
            }).error(function(res) {
              console.error("error in get");
            });
@@ -81,7 +81,7 @@ var app = angular.module('interventoController').controller('mainController', fu
              $scope.pojo = {};
              $scope.title= res.title;
              $scope.frazioni_dora_option= res.frazioni_dora_option;
-             changePagecontent($scope, '/page/technician_rate/form');
+             changePagecontent($scope, '/fragment/technician_rate/form');
            }).error(function(res) {
              console.error("error in get");
            });
@@ -92,7 +92,7 @@ var app = angular.module('interventoController').controller('mainController', fu
              $scope.title= res.title;
              $scope.pojo = res.pojo;
              $scope.list = null;
-             changePagecontent($scope, '/page/technician_rate/view');
+             changePagecontent($scope, '/fragment/technician_rate/view');
            }).error(function(res) {
              console.error("error in get");
            });
@@ -104,7 +104,7 @@ var app = angular.module('interventoController').controller('mainController', fu
              $scope.title= res.title;
              $scope.frazioni_dora_option = res.frazioni_dora_option;
              $scope.pojo.fraction_of_hour = $scope.findHourFraction($scope.pojo);
-             changePagecontent($scope, '/page/technician_rate/form');
+             changePagecontent($scope, '/fragment/technician_rate/form');
            }).error(function(res) {
              console.error("error in get");
            });

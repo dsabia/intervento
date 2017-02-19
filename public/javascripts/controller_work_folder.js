@@ -12,7 +12,7 @@ var app = angular.module('interventoController').controller('workFolderControlle
            $scope.title= 'Elenco lavori';
            $scope.list= res;
            $scope.pojo = null;
-           changePagecontent($scope, '/page/work_folder/view');
+           changePagecontent($scope, '/fragment/work_folder/view');
          }).error(function(res) {
            console.log("error in getAll");
          });
@@ -26,7 +26,7 @@ var app = angular.module('interventoController').controller('workFolderControlle
              $scope.pojo.technician = {};
              $scope.list = null;
              $scope.title= res.title;
-             changePagecontent($scope, '/page/work_folder/form');
+             changePagecontent($scope, '/fragment/work_folder/form');
            }).error(function(res) {
              console.error("error in get");
            });
@@ -38,7 +38,7 @@ var app = angular.module('interventoController').controller('workFolderControlle
            $scope.title= 'Dettaglio lavoro';
            $scope.pojo = res;
            $scope.list = null;
-           changePagecontent($scope, '/page/work_folder/view');
+           changePagecontent($scope, '/fragment/work_folder/view');
          }).error(function(res) {
            console.error("error in get");
          });
@@ -48,7 +48,7 @@ var app = angular.module('interventoController').controller('workFolderControlle
            .success(function(res, code) {
              $scope.pojo = res.pojo;
              $scope.title= res.title;
-             changePagecontent($scope, '/page/work_folder/form');
+             changePagecontent($scope, '/fragment/work_folder/form');
            }).error(function(res) {
              console.error("error in get");
            });

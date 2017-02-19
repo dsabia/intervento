@@ -11,7 +11,7 @@ var app = angular.module('interventoController').controller('technicianControlle
            $scope.title= 'Elenco tecnici';
            $scope.list= res;
            $scope.pojo = null;
-           changePagecontent($scope, '/page/technician/view');
+           changePagecontent($scope, '/fragment/technician/view');
          }).error(function(res) {
            console.log("error in getAll");
          });
@@ -19,7 +19,7 @@ var app = angular.module('interventoController').controller('technicianControlle
   $scope.addTechnician = function(){
     $scope.pojo = {};
     $scope.title= 'Aggiungi un tecncio';
-    changePagecontent($scope, '/page/technician/form');
+    changePagecontent($scope, '/fragment/technician/form');
   };
   $scope.viewTechnician = function(code){
     console.log("code: " + code);
@@ -28,7 +28,7 @@ var app = angular.module('interventoController').controller('technicianControlle
            $scope.title= 'Dettaglio del tecnico';
            $scope.pojo = res;
            $scope.list = null;
-           changePagecontent($scope, '/page/technician/view');
+           changePagecontent($scope, '/fragment/technician/view');
          }).error(function(res) {
            console.error("error in get");
          });
@@ -38,7 +38,7 @@ var app = angular.module('interventoController').controller('technicianControlle
          .success(function(res, code) {
            $scope.pojo = res;
            $scope.title= 'Modifica il tecnico';
-           changePagecontent($scope, '/page/technician/form');
+           changePagecontent($scope, '/fragment/technician/form');
          }).error(function(res) {
            console.error("error in get");
          });

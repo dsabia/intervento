@@ -13,7 +13,7 @@ var app = angular.module('interventoController').controller('interventionControl
            $scope.title= 'Elenco interventi';
            $scope.list= res;
            $scope.pojo = null;
-           changePagecontent($scope, '/page/intervention/view');
+           changePagecontent($scope, '/fragment/intervention/view');
          }).error(function(res) {
            console.log("error in getAll");
          });
@@ -28,7 +28,7 @@ var app = angular.module('interventoController').controller('interventionControl
              $scope.pojo.date = new Date();
              $scope.pojo.start_time = new Date();
              $scope.pojo.end_time = new Date();
-             changePagecontent($scope, '/page/intervention/form');
+             changePagecontent($scope, '/fragment/intervention/form');
            }).error(function(res) {
              console.error("error in get");
            });
@@ -43,7 +43,7 @@ var app = angular.module('interventoController').controller('interventionControl
            $scope.pojo.start_time = new Date($scope.pojo.start_time);
            $scope.pojo.end_time = new Date($scope.pojo.end_time);
            $scope.list = null;
-           changePagecontent($scope, '/page/intervention/view');
+           changePagecontent($scope, '/fragment/intervention/view');
          }).error(function(res) {
            console.error("error in get");
          });
@@ -58,7 +58,7 @@ var app = angular.module('interventoController').controller('interventionControl
              $scope.pojo.date = new Date($scope.pojo.date);
              $scope.pojo.start_time = new Date($scope.pojo.start_time);
              $scope.pojo.end_time = new Date($scope.pojo.end_time);
-             changePagecontent($scope, '/page/intervention/form');
+             changePagecontent($scope, '/fragment/intervention/form');
            }).error(function(res) {
              console.error("error in get");
            });

@@ -49,5 +49,4 @@ module.exports = function(){
   router.get('/work_folder/form', appUtil.ensureAuthenticated, function(req, res, next) {
     res.render('app/work_folder/form');
   });
-  
 };
