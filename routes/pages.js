@@ -18,7 +18,6 @@ module.exports = function(){
     res.render('app/material/form');
   });
 
-
   /* TECHNICIAN */
   router.get('/technician/view', appUtil.ensureAuthenticated, function(req, res, next) {
     res.render('app/technician/view');
@@ -27,5 +26,12 @@ module.exports = function(){
     res.render('app/technician/form');
   });
 
-  
+  /* CUSTOMER */
+  router.get('/customer/view', appUtil.ensureAuthenticated, function(req, res, next) {
+    res.render('app/customer/view');
+  });
+  router.get('/customer/form', appUtil.ensureAuthenticated, function(req, res, next) {
+    res.render('app/customer/form');
+  });
+
 };

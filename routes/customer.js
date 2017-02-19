@@ -5,16 +5,6 @@ var Customer = require('../models/customer').model;
 
 module.exports = function(){
 
-  /* PAGE VIEW */
-  router.get('/page/view', appUtil.ensureAuthenticated, function(req, res, next) {
-    res.render('app/customer/view');
-  });
-
-  /* PAGE FORM */
-  router.get('/page/form', appUtil.ensureAuthenticated, function(req, res, next) {
-    res.render('app/customer/form');
-  });
-
   router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
     Customer.find({'owner' : req.user._id}, function(err, list) {
       if (err){

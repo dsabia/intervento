@@ -74,7 +74,7 @@ app.use('/page', pages);
 app.use('/api/material', material);
 app.use('/api/technician_rate', technician_rate);
 app.use('/api/technician', technician);
-app.use('/customer', customer);
+app.use('/api/customer', customer);
 app.use('/intervention', intervention);
 app.use('/work_folder', work_folder);
 app.use('/typeahead', typeahead);
