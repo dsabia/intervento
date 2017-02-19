@@ -14,16 +14,6 @@ var intervention_type_option = [
 
 module.exports = function(){
 
-  /* PAGE VIEW */
-  router.get('/page/view', appUtil.ensureAuthenticated, function(req, res, next) {
-    res.render('app/intervention/view');
-  });
-
-  /* PAGE FORM */
-  router.get('/page/form', appUtil.ensureAuthenticated, function(req, res, next) {
-    res.render('app/intervention/form');
-  });
-
   /* GET form datas */
   router.get('/formAdd', appUtil.ensureAuthenticated, function(req, res, next) {
     res.json({ title: res.__('title-add-intervention'),

@@ -34,4 +34,11 @@ module.exports = function(){
     res.render('app/customer/form');
   });
 
+  /* INTERVENTION */
+  router.get('/intervention/view', appUtil.ensureAuthenticated, function(req, res, next) {
+    res.render('app/intervention/view');
+  });
+  router.get('/intervention/form', appUtil.ensureAuthenticated, function(req, res, next) {
+    res.render('app/intervention/form');
+  });
 };

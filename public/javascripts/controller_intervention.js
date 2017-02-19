@@ -8,18 +8,18 @@ var app = angular.module('interventoController').controller('interventionControl
 
   /* INTERVENTIONS */
   $scope.listInterventions = function(){
-    $http.get('/intervention/')
+    $http.get('/api/intervention/')
          .success(function(res) {
            $scope.title= 'Elenco interventi';
            $scope.list= res;
            $scope.pojo = null;
-           changePagecontent($scope, '/intervention/page/view');
+           changePagecontent($scope, '/page/intervention/view');
          }).error(function(res) {
            console.log("error in getAll");
          });
   };
   $scope.addIntervention = function(){
-    $http.get('/intervention/formAdd')
+    $http.get('/api/intervention/formAdd')
            .success(function(res, code) {
              $scope.pojo = {};
              $scope.list = null;
@@ -28,14 +28,14 @@ var app = angular.module('interventoController').controller('interventionControl
              $scope.pojo.date = new Date();
              $scope.pojo.start_time = new Date();
              $scope.pojo.end_time = new Date();
-             changePagecontent($scope, '/intervention/page/form');
+             changePagecontent($scope, '/page/intervention/form');
            }).error(function(res) {
              console.error("error in get");
            });
   };
   $scope.viewIntervention = function(code){
     console.log("code: " + code);
-    $http.get('/intervention/' + code)
+    $http.get('/api/intervention/' + code)
          .success(function(res, code) {
            $scope.title= 'Dettaglio intervento';
            $scope.pojo = res;
@@ -43,13 +43,13 @@ var app = angular.module('interventoController').controller('interventionControl
            $scope.pojo.start_time = new Date($scope.pojo.start_time);
            $scope.pojo.end_time = new Date($scope.pojo.end_time);
            $scope.list = null;
-           changePagecontent($scope, '/intervention/page/view');
+           changePagecontent($scope, '/page/intervention/view');
          }).error(function(res) {
            console.error("error in get");
          });
   };
   $scope.editIntervention = function(code){
-    $http.get('/intervention/formEdit/' + code)
+    $http.get('/api/intervention/formEdit/' + code)
            .success(function(res, code) {
              $scope.pojo = res.pojo;
              $scope.title= res.title;
@@ -58,13 +58,13 @@ var app = angular.module('interventoController').controller('interventionControl
              $scope.pojo.date = new Date($scope.pojo.date);
              $scope.pojo.start_time = new Date($scope.pojo.start_time);
              $scope.pojo.end_time = new Date($scope.pojo.end_time);
-             changePagecontent($scope, '/intervention/page/form');
+             changePagecontent($scope, '/page/intervention/form');
            }).error(function(res) {
              console.error("error in get");
            });
   };
   $scope.deleteIntervention = function(id){
-    $http.delete('/intervention/' + id)
+    $http.delete('/api/intervention/' + id)
          .success(function(res) {
            $scope.listInterventions();
          }).error(function(res) {
@@ -72,7 +72,7 @@ var app = angular.module('interventoController').controller('interventionControl
          });
   };
   $scope.postIntervention = function(){
-    $http.post('/intervention/', $scope.pojo)
+    $http.post('/api/intervention/', $scope.pojo)
          .success(function(res) {
            $scope.pojo = null;
            $scope.viewIntervention(res.code);
@@ -81,7 +81,7 @@ var app = angular.module('interventoController').controller('interventionControl
          });
   };
   $scope.putIntervention = function(){
-    $http.put('/intervention/'+$scope.pojo._id, $scope.pojo)
+    $http.put('/api/intervention/'+$scope.pojo._id, $scope.pojo)
          .success(function(res) {
            $scope.pojo = null;
            $scope.viewIntervention(res.code);
