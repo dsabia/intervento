@@ -60,13 +60,13 @@ app.use(flash());
 // routes
 var router = require('./routes/index')();
 var fragment = require('./routes/fragment')();
-var technician = require('./routes/technician')();
-var customer = require('./routes/customer')();
-var material = require('./routes/material')();
-var technician_rate = require('./routes/technician_rate')();
-var intervention = require('./routes/intervention')();
-var work_folder = require('./routes/work_folder')();
-var typeahead = require('./routes/typeahead')();
+var technician = require('./routes/api/technician')();
+var customer = require('./routes/api/customer')();
+var material = require('./routes/api/material')();
+var technician_rate = require('./routes/api/technician_rate')();
+var intervention = require('./routes/api/intervention')();
+var work_folder = require('./routes/api/work_folder')();
+var typeahead = require('./routes/api/typeahead')();
 require('./services/passport')(passport);
 
 app.use('/', router);
