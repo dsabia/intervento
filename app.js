@@ -59,6 +59,7 @@ app.use(flash());
 
 // routes
 var router = require('./routes/index')();
+var pages = require('./routes/pages')();
 var technician = require('./routes/technician')();
 var customer = require('./routes/customer')();
 var material = require('./routes/material')();
@@ -69,10 +70,11 @@ var typeahead = require('./routes/typeahead')();
 require('./services/passport')(passport);
 
 app.use('/', router);
+app.use('/page', pages);
+app.use('/api/material', material);
+app.use('/api/technician_rate', technician_rate);
 app.use('/technician', technician);
 app.use('/customer', customer);
-app.use('/material', material);
-app.use('/technician_rate', technician_rate);
 app.use('/intervention', intervention);
 app.use('/work_folder', work_folder);
 app.use('/typeahead', typeahead);

@@ -5,18 +5,7 @@ var Material = require('../models/material');
 
 module.exports = function(){
 
-  /* PAGE VIEW */
-  router.get('/page/view', appUtil.ensureAuthenticated, function(req, res, next) {
-    res.render('app/material/view');
-  });
-
-  /* PAGE FORM */
-  router.get('/page/form', appUtil.ensureAuthenticated, function(req, res, next) {
-    res.render('app/material/form');
-  });
-
   /* REST API */
-
   router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
     Material.find({'owner' : req.user._id}, function(err, list) {
       if (err){

@@ -8,16 +8,6 @@ var frazioni_dora_option = [1,  5, 15, 30, 60];
 
 module.exports = function(){
 
-  /* PAGE VIEW */
-  router.get('/page/view', appUtil.ensureAuthenticated, function(req, res, next) {
-    res.render('app/technician_rate/view');
-  });
-
-  /* PAGE FORM */
-  router.get('/page/form', appUtil.ensureAuthenticated, function(req, res, next) {
-    res.render('app/technician_rate/form');
-  });
-
   /* GET for view */
   router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
     TechnicianRate.find({ 'owner' : req.user._id }, function(err, list_results) {

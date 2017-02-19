@@ -8,12 +8,12 @@ var app = angular.module('interventoController').controller('mainController', fu
 
     /* MATERIALS */
     $scope.listMaterials = function(){
-      $http.get('/material/')
+      $http.get('/api/material/')
            .success(function(res) {
              $scope.title= 'Elenco materiali';
              $scope.list= res;
              $scope.pojo = null;
-             changePagecontent($scope, '/material/page/view');
+             changePagecontent($scope, '/page/material/view');
            }).error(function(res) {
              console.log("error in getAll");
            });
@@ -21,32 +21,32 @@ var app = angular.module('interventoController').controller('mainController', fu
     $scope.addMaterial = function(){
       $scope.pojo = {};
       $scope.title= 'Aggiungi materiale';
-      changePagecontent($scope, '/material/page/form');
+      changePagecontent($scope, '/page/material/form');
     };
     $scope.viewMaterial = function(code){
       console.log("code: " + code);
-      $http.get('/material/' + code)
+      $http.get('/api/material/' + code)
            .success(function(res, code) {
              $scope.title= 'Dettaglio materiale';
              $scope.pojo = res;
              $scope.list = null;
-             changePagecontent($scope, '/material/page/view');
+             changePagecontent($scope, '/page/material/view');
            }).error(function(res) {
              console.error("error in get");
            });
     };
     $scope.editMaterial = function(code){
-      $http.get('/material/' + code)
+      $http.get('/api/material/' + code)
            .success(function(res, code) {
              $scope.pojo = res;
              $scope.title= 'Modifica materiale';
-             changePagecontent($scope, '/material/page/form');
+             changePagecontent($scope, '/page/material/form');
            }).error(function(res) {
              console.error("error in get");
            });
     };
     $scope.deleteMaterial = function(id){
-      $http.delete('/material/' + id)
+      $http.delete('/api/material/' + id)
            .success(function(res) {
              $scope.listMaterials();
            }).error(function(res) {
@@ -54,7 +54,7 @@ var app = angular.module('interventoController').controller('mainController', fu
            });
     };
     $scope.postMaterial = function(){
-      $http.post('/material/', $scope.pojo)
+      $http.post('/api/material/', $scope.pojo)
            .success(function(res) {
              $scope.pojo = null;
              $scope.viewMaterial(res.code);
@@ -63,7 +63,7 @@ var app = angular.module('interventoController').controller('mainController', fu
            });
     };
     $scope.putMaterial = function(){
-      $http.put('/material/'+$scope.pojo._id, $scope.pojo)
+      $http.put('/api/material/'+$scope.pojo._id, $scope.pojo)
            .success(function(res) {
              $scope.pojo = null;
              $scope.viewMaterial(res.code);
@@ -76,41 +76,41 @@ var app = angular.module('interventoController').controller('mainController', fu
 
     /* RATES*/
     $scope.addRate = function(){
-      $http.get('/technician_rate/formData')
+      $http.get('/api/technician_rate/formData')
            .success(function(res, code) {
              $scope.pojo = {};
              $scope.title= res.title;
              $scope.frazioni_dora_option= res.frazioni_dora_option;
-             changePagecontent($scope, '/technician_rate/page/form');
+             changePagecontent($scope, '/page/technician_rate/form');
            }).error(function(res) {
              console.error("error in get");
            });
     };
     $scope.viewRate = function(){
-      $http.get('/technician_rate')
+      $http.get('/api/technician_rate')
            .success(function(res, code) {
              $scope.title= res.title;
              $scope.pojo = res.pojo;
              $scope.list = null;
-             changePagecontent($scope, '/technician_rate/page/view');
+             changePagecontent($scope, '/page/technician_rate/view');
            }).error(function(res) {
              console.error("error in get");
            });
     };
     $scope.editRate = function(code){
-      $http.get('/technician_rate/formData')
+      $http.get('/api/technician_rate/formData')
            .success(function(res, code) {
              $scope.pojo = res.pojo;
              $scope.title= res.title;
              $scope.frazioni_dora_option = res.frazioni_dora_option;
              $scope.pojo.fraction_of_hour = $scope.findHourFraction($scope.pojo);
-             changePagecontent($scope, '/technician_rate/page/form');
+             changePagecontent($scope, '/page/technician_rate/form');
            }).error(function(res) {
              console.error("error in get");
            });
     };
     $scope.postRate = function(){
-      $http.post('/technician_rate/', $scope.pojo)
+      $http.post('/api/technician_rate/', $scope.pojo)
            .success(function(res) {
              $scope.pojo = null;
              $scope.viewRate();
@@ -119,7 +119,7 @@ var app = angular.module('interventoController').controller('mainController', fu
            });
     };
     $scope.putRate = function(){
-      $http.put('/technician_rate/'+$scope.pojo._id, $scope.pojo)
+      $http.put('/api/technician_rate/'+$scope.pojo._id, $scope.pojo)
            .success(function(res) {
              $scope.pojo = null;
              $scope.viewRate();
