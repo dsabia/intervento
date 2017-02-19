@@ -72,8 +72,6 @@ var app = angular.module('interventoController').controller('mainController', fu
            });
     };
 
-
-
     /* RATES*/
     $scope.addRate = function(){
       $http.get('/api/technician_rate/formData')
