@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var TechnicianRate = require('../models/technician_rate');
-var appUtil = require('../services/app_util');
+var TechnicianRate = require('../../models/technician_rate');
+var appUtil = require('../../services/app_util');
 
 var frazioni_dora_option = [1,  5, 15, 30, 60];
 

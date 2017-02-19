@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var Intervention = require('../models/intervention').model;
-var appUtil = require('../services/app_util');
+var Intervention = require('../../models/intervention').model;
+var appUtil = require('../../services/app_util');
 
 var intervention_type_option = [
   "o-tipo-intervento-sopralluogo" ,

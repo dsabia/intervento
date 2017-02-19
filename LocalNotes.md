@@ -4,9 +4,11 @@ debug
 `node-debug ./bin/www`
 
 test application _(only local)_  
+`mocha test --NODE_ENV=test_local`
+or
 `mocha test --watch`
 
-starting mongoDB manually:
+starting MongoDB process without a service:
 ```
 cd C:\Program Files\MongoDB\Server\3.2\bin
 mongod --dbpath c:/DB/mongo/test

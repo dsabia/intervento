@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var appUtil = require('../services/app_util');
 
 module.exports = function(){
   /* TECHNICIAN RATES */
@@ -49,4 +50,6 @@ module.exports = function(){
   router.get('/work_folder/form', appUtil.ensureAuthenticated, function(req, res, next) {
     res.render('app/work_folder/form');
   });
-};
+  
+  return router;
+}

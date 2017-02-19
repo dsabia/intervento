@@ -1,4 +1,4 @@
-process.env.NODE_ENV = 'test';
+//process.env.NODE_ENV = 'test';
 
 var chai = require('chai');
 var chaiHttp = require('chai-http');
@@ -31,7 +31,7 @@ describe('Material API', function() {
 
   it('/ should list all materials', function(done) {
     chai.request(server)
-      .get('/material/')
+      .get('/api/material/')
       .end(function(err, res){
         res.should.have.status(200);
         res.should.to.not.be.undefined;
@@ -42,7 +42,7 @@ describe('Material API', function() {
 
   it('/:code should return the corrispondent material', function(done) {
     chai.request(server)
-      .get('/material/'+2)
+      .get('/api/material/'+2)
       .end(function(err, res){
         res.should.to.not.be.undefined;
         //expect(res.body.code).to.be.equal("2");

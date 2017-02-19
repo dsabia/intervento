@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var appUtil = require('../services/app_util');
-var Material = require('../models/material');
+var appUtil = require('../../services/app_util');
+var Material = require('../../models/material');
 
 module.exports = function(){
 

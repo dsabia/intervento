@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var WorkFolder = require('../models/work_folder');
-var Customer = require('../models/customer').model;
-var Technician = require('../models/technician').model;
-var appUtil = require('../services/app_util');
+var WorkFolder = require('../../models/work_folder');
+var Customer = require('../../models/customer').model;
+var Technician = require('../../models/technician').model;
+var appUtil = require('../../services/app_util');
 
 var options_status = [
   "o-status-aperto" ,

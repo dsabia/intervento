@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var appUtil = require('../services/app_util');
-var Customer = require('../models/customer').model;
+var appUtil = require('../../services/app_util');
+var Customer = require('../../models/customer').model;
 
 module.exports = function(){
 
