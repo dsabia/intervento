@@ -41,4 +41,13 @@ module.exports = function(){
   router.get('/intervention/form', appUtil.ensureAuthenticated, function(req, res, next) {
     res.render('app/intervention/form');
   });
+
+  /* WORK FOLDER */
+  router.get('/work_folder/view', appUtil.ensureAuthenticated, function(req, res, next) {
+    res.render('app/work_folder/view');
+  });
+  router.get('/work_folder/form', appUtil.ensureAuthenticated, function(req, res, next) {
+    res.render('app/work_folder/form');
+  });
+  
 };

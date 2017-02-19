@@ -13,16 +13,6 @@ var options_status = [
 
 module.exports = function(){
 
-  /* PAGE VIEW */
-  router.get('/page/view', appUtil.ensureAuthenticated, function(req, res, next) {
-    res.render('app/work_folder/view');
-  });
-
-  /* PAGE FORM */
-  router.get('/page/form', appUtil.ensureAuthenticated, function(req, res, next) {
-    res.render('app/work_folder/form');
-  });
-
   /* open form add */
   router.get('/formAdd', appUtil.ensureAuthenticated, function(req, res, next) {
     var pojo = new WorkFolder();

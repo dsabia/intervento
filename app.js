@@ -76,8 +76,8 @@ app.use('/api/technician_rate', technician_rate);
 app.use('/api/technician', technician);
 app.use('/api/customer', customer);
 app.use('/api/intervention', intervention);
-app.use('/work_folder', work_folder);
-app.use('/typeahead', typeahead);
+app.use('/api/work_folder', work_folder);
+app.use('/api/typeahead', typeahead);
 app.use('/image', require('./routes/image')(mongo, db));
 
 // catch 404 and forward to error handler
