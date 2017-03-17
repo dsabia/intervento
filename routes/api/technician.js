@@ -5,6 +5,18 @@ var Technician = require('../../models/technician').model;
 
 module.exports = function(){
 
+  /* GET for form */
+  router.get('/formAdd', appUtil.ensureAuthenticated, function(req, res, next) {
+    res.json({ title: res.__('title-add-technician') });
+  });
+
+  router.get('/formEdit/:code', appUtil.ensureAuthenticated, function(req, res, next) {
+    Technician.findOne({ 'account_code' :  req.params.code , 'owner' : req.user._id}, function(err, pojo){
+      res.json({ title: res.__('title-edit-technician'),
+                 pojo: pojo });
+    });
+  });
+
   /* GET elenco tecnici */
   router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
     Technician.find({'owner' : req.user._id}, function(err, list) {
@@ -12,19 +24,8 @@ module.exports = function(){
         console.log(err);
         return;
       }
-      res.json(list);
-    });
-  });
-
-  /* GET for form */
-  router.get('/formData', appUtil.ensureAuthenticated, function(req, res, next) {
-    Technician.findOne({ 'account_code' :  req.params.code , 'owner' : req.user._id}, function(err, pojo){
-      if(!pojo){
-        res.json({ title: res.__('title-add-technician') });
-      }else{
-        res.json({ title: res.__('title-edit-technician'),
-                   pojo: pojo });
-      }
+      res.json({list:list,
+                title:res.__('title-list-technician')});
     });
   });
 
@@ -42,7 +43,8 @@ module.exports = function(){
         console.log(err);
         return;
       }
-      res.json(pojo);
+      res.json({pojo:pojo,
+                title:res.__('title-det-technician')});
     });
   });
 
@@ -55,13 +57,11 @@ module.exports = function(){
   router.post('/', appUtil.ensureAuthenticated, function(req, res, next) {
       var technician = new Technician();
       populateRequestAndSave(req, res, technician);
-      //res.json({"account_code": technician.account_code});
   });
 
   router.put('/:id', appUtil.ensureAuthenticated, function(req, res, next) {
     Technician.findById(req.params.id, function(err, pojo){
       populateRequestAndSave(req, res, pojo);
-      //res.json({"account_code": pojo.account_code});
     });
   });
 

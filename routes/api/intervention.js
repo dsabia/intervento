@@ -30,14 +30,14 @@ module.exports = function(){
   });
 
 
-  /* GET elenco tecnici */
   router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
     Intervention.find({'owner' : req.user._id}, function(err, list) {
       if (err){
         console.log(err);
         return;
       }
-      res.json(list);
+      res.json({ title : res.__('title-list-intervention'),
+                 list  : list});
     });
   });
 
@@ -70,7 +70,9 @@ module.exports = function(){
         console.log(err);
         return;
       }
-      res.json(pojo);
+      res.json(
+        { title : res.__('title-det-intervention'),
+          pojo  : pojo} );
     });
   });
 

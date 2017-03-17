@@ -10,8 +10,8 @@ var app = angular.module('interventoController').controller('interventionControl
   $scope.listInterventions = function(){
     $http.get('/api/intervention/')
          .success(function(res) {
-           $scope.title= 'Elenco interventi';
-           $scope.list= res;
+           $scope.title= res.title;
+           $scope.list= res.list;
            $scope.pojo = null;
            changePagecontent($scope, '/fragment/intervention/view');
          }).error(function(res) {
@@ -37,8 +37,8 @@ var app = angular.module('interventoController').controller('interventionControl
     console.log("code: " + code);
     $http.get('/api/intervention/' + code)
          .success(function(res, code) {
-           $scope.title= 'Dettaglio intervento';
-           $scope.pojo = res;
+           $scope.title= res.title;
+           $scope.pojo = res.pojo;
            $scope.pojo.date = new Date($scope.pojo.date);
            $scope.pojo.start_time = new Date($scope.pojo.start_time);
            $scope.pojo.end_time = new Date($scope.pojo.end_time);

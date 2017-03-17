@@ -8,8 +8,8 @@ var app = angular.module('interventoController').controller('technicianControlle
   $scope.listTechnicians = function(){
     $http.get('/api/technician/')
          .success(function(res) {
-           $scope.title= 'Elenco tecnici';
-           $scope.list= res;
+           $scope.title= res.title;
+           $scope.list= res.list;
            $scope.pojo = null;
            changePagecontent($scope, '/fragment/technician/view');
          }).error(function(res) {
@@ -17,16 +17,22 @@ var app = angular.module('interventoController').controller('technicianControlle
          });
   };
   $scope.addTechnician = function(){
-    $scope.pojo = {};
-    $scope.title= 'Aggiungi un tecncio';
-    changePagecontent($scope, '/fragment/technician/form');
+    $http.get('/api/technician/formAdd')
+         .success(function(res, code) {
+           $scope.pojo = {};
+           $scope.list = null;
+           $scope.title= res.title;
+           changePagecontent($scope, '/fragment/technician/form');
+         }).error(function(res) {
+           console.error("error in get");
+         });
   };
   $scope.viewTechnician = function(code){
     console.log("code: " + code);
     $http.get('/api/technician/' + code)
          .success(function(res, code) {
-           $scope.title= 'Dettaglio del tecnico';
-           $scope.pojo = res;
+           $scope.title= res.title;
+           $scope.pojo = res.pojo;
            $scope.list = null;
            changePagecontent($scope, '/fragment/technician/view');
          }).error(function(res) {
@@ -34,10 +40,10 @@ var app = angular.module('interventoController').controller('technicianControlle
          });
   };
   $scope.editTechnician = function(code){
-    $http.get('/api/technician/' + code)
+    $http.get('/api/technician/formEdit/' + code)
          .success(function(res, code) {
-           $scope.pojo = res;
-           $scope.title= 'Modifica il tecnico';
+           $scope.pojo = res.pojo;
+           $scope.title= res.title;
            changePagecontent($scope, '/fragment/technician/form');
          }).error(function(res) {
            console.error("error in get");

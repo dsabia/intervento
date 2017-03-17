@@ -9,8 +9,8 @@ var app = angular.module('interventoController').controller('workFolderControlle
   $scope.listWorkFolders = function(){
     $http.get('/api/work_folder/')
          .success(function(res) {
-           $scope.title= 'Elenco lavori';
-           $scope.list= res;
+           $scope.title= res.title;
+           $scope.list= res.list;
            $scope.pojo = null;
            changePagecontent($scope, '/fragment/work_folder/view');
          }).error(function(res) {

@@ -18,9 +18,13 @@
   "title-np-image"   : "Immagini non presenti",
   "title-add-image" :  "Aggiungi immagine",
 
+  "title-list-intervention" : "Elenco interventi",
+  "title-det-intervention" : "Dettaglio intervento",
   "title-add-intervention" : "Aggiungi un intervento tecnico",
   "title-edit-intervention" : "Modifica intervento",
 
+  "title-list-work-folder" : "Elenco lavori",
+  "title-det-work-folder" : "Dettaglio lavoro",
   "title-add-work-folder" : "Aggiungi lavoro",
   "title-edit-work_folder" : "Modifica lavoro",
 
@@ -29,6 +33,8 @@
   "title-add-technician-rate" :  "Aggiungi tariffa",
   "title-mod-technician-rate" : "Modifica tariffa",
 
+  "title-list-technician" : "Elenco tecnici",
+  "title-det-technician" : "Dettaglio del tecnico",
   "title-add-technician" : "Aggiungi un tecnico",
   "title-edit-technician" : "Modifica il tecnico",
 

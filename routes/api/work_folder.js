@@ -48,7 +48,8 @@ module.exports = function(){
         list.forEach(function(pojo) {
           pojo.status = res.__(pojo.status);
         });
-        res.json(list);
+        res.json({list:list,
+                  title:res.__('title-list-work-folder')});
       });
   });
 
@@ -62,7 +63,8 @@ module.exports = function(){
             return;
           }
           pojo.status = res.__(pojo.status);
-          res.json(pojo);
+          res.json({pojo:pojo,
+                    title:res.__('title-det-work-folder'));
         });
   });
 

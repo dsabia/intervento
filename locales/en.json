@@ -18,9 +18,13 @@
   "title-np-image"   : "Image not present",
   "title-add-image" :  "Add image",
 
+  "title-list-intervention" : "List interventions",
+  "title-det-intervention" :"Detail intervention",
   "title-add-intervention" : "Add intervention",
   "title-edit-intervention" : "Edit intervention",
 
+  "title-list-work-folder" : "list work folders",
+  "title-det-work-folder" : "Detail work folder",
   "title-add-work-folder" : "Add work folder",
   "title-edit-work_folder" : "Edit work folder",
 
@@ -29,6 +33,8 @@
   "title-add-technician-rate" :  "Add rates",
   "title-mod-technician-rate" : "Edit rates",
 
+  "title-list-technician" : "List technicians",
+  "title-det-technician" : "Detail technician",
   "title-add-technician" : "Add technician",
   "title-edit-technician" : "Edit technician",
 
