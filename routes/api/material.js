@@ -61,7 +61,7 @@ module.exports = function(){
     });
   });
 
-  function populateRequestAndSave(req, material){
+  function populateRequestAndSave(req, res, material){
     material.code    		   = req.body.code;
     material.product_name  = req.body.product_name;
     material.description   = req.body.description;
