@@ -19,8 +19,8 @@ div(ng-show="pojo")
         label #{__('phone_no')}       : {{pojo.phone}}
       td
         label #{__('email')}          : {{pojo.email}}
-  a(ng-click="editCustomer(pojo.code)") Modifica cliente |&nbsp;
-  a(ng-click="deleteCustomer(pojo._id)") Elimina cliente
+  a(ng-click="editCustomer(pojo.code)") #{__('edit-customer')} |&nbsp;
+  a(ng-click="deleteCustomer(pojo._id)")  #{__('del-customer')}
 div(ng-show="list.length")
   table(class="table table-striped table-responsive")
     tr
@@ -42,5 +42,5 @@ div(ng-show="list.length")
       td {{item.phone}}
       td {{item.email}}
 br
-a(ng-click="listCustomers()") Elenco clienti |&nbsp;
-a(ng-click="addCustomer()") Aggiungi cliente
+a(ng-click="listCustomers()")  #{__('list-customer')} |&nbsp;
+a(ng-click="addCustomer()") #{__('add-customer')}	

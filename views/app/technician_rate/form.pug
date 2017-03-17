@@ -22,7 +22,7 @@ form.form-horizontal
     div.col-md-6.col-xs-12
       label(for='km_rate') #{__('km_rate')}
       input(name='km_rate', type='number', ng-model="pojo.km_rate").form-control
-  button(ng-hide="pojo._id", type="submit", ng-click="postRate()").btn.btn-default Salva tariffa
-  button(ng-show="pojo._id", type="submit", ng-click="putRate()").btn.btn-default Modifica tariffa
+  button(ng-hide="pojo._id", type="submit", ng-click="postRate()").btn.btn-default #{__('add-technician-rate')}	
+  button(ng-show="pojo._id", type="submit", ng-click="putRate()").btn.btn-default #{__('edit-technician-rate')}
 
-a(ng-click="viewRate()") Visualizza tariffa
+a(ng-click="viewRate()") #{__('view-technician-rate')}

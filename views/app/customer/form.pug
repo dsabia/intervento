@@ -30,8 +30,8 @@ form.form-horizontal
     div.col-md-6.col-xs-12
       label(for='email') #{__('email')}
       input(name='email', type='email', ng-model="pojo.email").form-control
-  button(ng-hide="pojo._id", type="submit", ng-click="postCustomer()").btn.btn-default Aggiungi cliente
-  button(ng-show="pojo._id", type="submit", ng-click="putCustomer()").btn.btn-default Modifica cliente
+  button(ng-hide="pojo._id", type="submit", ng-click="postCustomer()").btn.btn-default #{__('add-customer')}	
+  button(ng-show="pojo._id", type="submit", ng-click="putCustomer()").btn.btn-default #{__('edit-customer')}
 
-a(ng-click="listCustomers()") Elenco clienti |&nbsp;
-a(ng-click="addCustomer()") Aggiungi clienti
+a(ng-click="listCustomers()")  #{__('list-customer')} |&nbsp;
+a(ng-click="addCustomer()")  #{__('add-customer')}	

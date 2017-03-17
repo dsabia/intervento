@@ -26,8 +26,8 @@ form.form-horizontal
       label(for='note') #{__('note')}
       textarea(name='note', ng-model="pojo.note", rows="3").form-control
 
-  button(ng-hide="pojo._id", type="submit", ng-click="postIntervention()").btn.btn-default Aggiungi intervento
-  button(ng-show="pojo._id", type="submit", ng-click="putIntervention()").btn.btn-default Modifica intervento
+  button(ng-hide="pojo._id", type="submit", ng-click="postIntervention()").btn.btn-default  #{__('add-intervention')}	
+  button(ng-show="pojo._id", type="submit", ng-click="putIntervention()").btn.btn-default #{__('edit-intervention')}
 
-a(ng-click="listInterventions()") Elenco interventi |&nbsp;
-a(ng-click="addIntervention()") Aggiungi interventi
+a(ng-click="listInterventions()") #{__('list-intervention')} |&nbsp;
+a(ng-click="addIntervention()")  #{__('add-intervention')}	

@@ -14,8 +14,8 @@ div(ng-show="pojo")
         label {{pojo.technician.name}} {{pojo.technician.surname}}
     tr
       td(colspan="2") {{pojo.note}}
-  a(ng-click="editWorkFolder(pojo.code)") Modifica lavoro |&nbsp;
-  a(ng-click="deleteWorkFolder(pojo._id)") Elimina lavoro
+  a(ng-click="editWorkFolder(pojo.code)") #{__('edit-work-folder')} |&nbsp;
+  a(ng-click="deleteWorkFolder(pojo._id)") #{__('del-work-folder')}
 
 div(ng-show="list.length")
   table(class="table table-striped table-responsive")
@@ -32,5 +32,5 @@ div(ng-show="list.length")
       td {{item.technician.name}} {{item.technician.surname}}
 
 br
-a(ng-click="listWorkFolders()") Elenco lavori |&nbsp;
-a(ng-click="addWorkFolder()") Aggiungi lavori
+a(ng-click="listWorkFolders()") #{__('list-work-folder')}	 |&nbsp;
+a(ng-click="addWorkFolder()") #{__('add-work-folder')}

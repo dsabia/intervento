@@ -17,8 +17,8 @@ div(ng-show="pojo")
         label {{pojo.phone}}
       td
         label {{pojo.email}}
-  a(ng-click="editTechnician(pojo.account_code)") Modifica tecnico |&nbsp;
-  a(ng-click="deleteTechnician(pojo._id)") Elimina tecnico
+  a(ng-click="editTechnician(pojo.account_code)") #{__('edit-technician')} |&nbsp;
+  a(ng-click="deleteTechnician(pojo._id)")  #{__('del-technician')}	
 div(ng-show="list.length")
   table(class="table table-striped table-responsive")
     tr
@@ -37,5 +37,5 @@ div(ng-show="list.length")
       td {{item.phone}}
       td {{item.email}}
 br
-a(ng-click="listTechnicians()") Elenco tecnici |&nbsp;
-a(ng-click="addTechnician()") Aggiungi tecnico
+a(ng-click="listTechnicians()")  #{__('list-technician')} |&nbsp;
+a(ng-click="addTechnician()") #{__('add-technician')}

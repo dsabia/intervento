@@ -19,8 +19,8 @@ form.form-horizontal
         span.input-group-addon
           span.fa.fa-euro
         input(name='price',  ng-model="pojo.price", type='number', min="0", step="0.01", data-number-to-fixed="2").form-control.currency
-  button(ng-hide="pojo._id", type="submit", ng-click="postMaterial()").btn.btn-default Aggiungi materiale
-  button(ng-show="pojo._id", type="submit", ng-click="putMaterial()").btn.btn-default Modifica materiale
+  button(ng-hide="pojo._id", type="submit", ng-click="postMaterial()").btn.btn-default #{__('add-material')}	
+  button(ng-show="pojo._id", type="submit", ng-click="putMaterial()").btn.btn-default #{__('edit-material')}
 
-a(ng-click="listMaterials()") Elenco materiali |&nbsp;
-a(ng-click="addMaterial()") Aggiungi materiale
+a(ng-click="listMaterials()")  #{__('list-material')} |&nbsp;
+a(ng-click="addMaterial()") #{__('add-material')}	

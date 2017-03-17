@@ -35,9 +35,9 @@ form.form-horizontal
       label(for='note') #{__('note')}
       input(name='note', ng-model="pojo.note").form-control
 
-  button(ng-hide="pojo._id", type="submit", ng-click="postWorkFolder()").btn.btn-default Aggiungi lavoro
-  button(ng-show="pojo._id", type="submit", ng-click="putWorkFolder()").btn.btn-default Modifica lavoro
+  button(ng-hide="pojo._id", type="submit", ng-click="postWorkFolder()").btn.btn-default #{__('add-work-folder')}
+  button(ng-show="pojo._id", type="submit", ng-click="putWorkFolder()").btn.btn-default #{__('edit-work-folder')}
 
 br
-a(ng-click="listWorkFolders()") Elenco lavori |&nbsp;
-a(ng-click="addWorkFolder()") Aggiungi lavori
+a(ng-click="listWorkFolders()") #{__('list-work-folder')}	 |&nbsp;
+a(ng-click="addWorkFolder()") #{__('add-work-folder')}

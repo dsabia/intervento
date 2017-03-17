@@ -130,4 +130,34 @@
   "link-technician-rate" : "Pagina tariffe",
   "link-image"           : "Immagini",
   "link-add-image"       : "Aggiungi immagine",
+
+  "list-customer":	"Elenco clienti"  ,
+  "del-customer"	:	"Elimina cliente"  ,
+  "add-customer"	:	"Aggiungi cliente" ,
+  "edit-customer"	:	"Modifica cliente" ,
+
+  "list-intervention":	"Elenco interventi"  ,
+  "del-intervention"	:	"Elimina intervento"  ,
+  "add-intervention"	:	"Aggiungi intervento" ,
+  "edit-intervention"	:	"Modifica intervento" ,
+
+  "list-material":	"Elenco materiali"  ,
+  "del-material"	:	"Elimina materiale"  ,
+  "add-material"	:	"Aggiungi materiale" ,
+  "edit-material"	:	"Modifica materiale" ,
+
+  "list-technician"	:	"Elenco tecnici"  ,
+  "del-technician"	:	"Elimina tecnico"  ,
+  "add-technician"	:	"Aggiungi tecnico" ,
+  "edit-technician"	:	"Modifica tecnico" ,
+
+  "list-work-folder"	:	"Elenco cartelle lavoro"  ,
+  "del-work-folder"	:	"Elimina cartella lavoro"  ,
+  "add-work-folder"	:	"Aggiungi cartella lavoro" ,
+  "edit-work-folder"	:	"Modifica cartella lavoro",
+
+  "view-technician-rate" : "Visualizza tariffe",
+  "add-technician-rate"  : "Aggiungi tariffe",
+  "edit-technician-rate" : "Modifica tariffe"
+  
 }

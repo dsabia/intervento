@@ -129,5 +129,35 @@
   "link-list-materials" : "Material list",
   "link-technician-rate" : "Technician rate",
   "link-image"           : "Images",
-  "link-add-image"       : "Add Image"
+  "link-add-image"       : "Add Image",
+
+  "list-customer":	"List customers"  ,
+  "del-customer"	:	"Delete customer"  ,
+  "add-customer"	:	"Add customer" ,
+  "edit-customer"	:	"Edit customer" ,
+
+  "list-intervention":	"List interventions"  ,
+  "del-intervention"	:	"Delete intervention"  ,
+  "add-intervention"	:	"Add intervention" ,
+  "edit-intervention"	:	"Edit intervention" ,
+
+  "list-material":	"List materials"  ,
+  "del-material"	:	"Delete material"  ,
+  "add-material"	:	"Add material" ,
+  "edit-material"	:	"Edit material" ,
+
+  "list-technician":	"List technicians"  ,
+  "del-technician"	:	"Delete technician"  ,
+  "add-technician"	:	"Add technician" ,
+  "edit-technician"	:	"Edit technician" ,
+
+  "list-work-folder"	:	"List work folders"  ,
+  "del-work-folder"	:	"Delete work folder"  ,
+  "add-work-folder"	:	"Add work folder" ,
+  "edit-work-folder"	:	"Edit work folder",
+
+  "view-technician-rate" : "View rates",
+  "add-technician-rate"  : "Add rates",
+  "edit-technician-rate" : "Edit rates"
+
 }

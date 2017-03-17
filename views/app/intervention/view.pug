@@ -15,8 +15,8 @@ div(ng-show="pojo")
     tr
       td(colspan='2')
         label {{pojo.note}}
-  a(ng-click="editIntervention(pojo.code)") Modifica intervento |&nbsp;
-  a(ng-click="deleteIntervention(pojo._id)") Elimina intervento
+  a(ng-click="editIntervention(pojo.code)") #{__('edit-intervention')} |&nbsp;
+  a(ng-click="deleteIntervention(pojo._id)") #{__('del-intervention')}	
 
 div(ng-show="list.length")
   table(class="table table-striped table-responsive")
@@ -33,5 +33,5 @@ div(ng-show="list.length")
       td {{item.start_time | date:'shortTime'}} - {{item.end_time | date:'shortTime'}}
 
 br
-a(ng-click="listInterventions()") Elenco interventi |&nbsp;
-a(ng-click="addIntervention()") Aggiungi interventi
+a(ng-click="listInterventions()") #{__('list-intervention')}  |&nbsp;
+a(ng-click="addIntervention()") #{__('add-intervention')}	

@@ -24,8 +24,8 @@ form.form-horizontal
     div.col-md-6.col-xs-12
       label(for='email') #{__('email')}
       input(type='email',name='email', ng-model="pojo.email" ).form-control
-  button(ng-hide="pojo._id", type="submit", ng-click="postTechnician()").btn.btn-default Aggiungi tecnico
-  button(ng-show="pojo._id", type="submit", ng-click="putTechnician()").btn.btn-default Modifica tecnico
+  button(ng-hide="pojo._id", type="submit", ng-click="postTechnician()").btn.btn-default #{__('add-technician')}
+  button(ng-show="pojo._id", type="submit", ng-click="putTechnician()").btn.btn-default #{__('edit-technician')}
 
-a(ng-click="listTechnicians()") Elenco tecnici |&nbsp;
-a(ng-click="addTechnician()") Aggiungi tecnico
+a(ng-click="listTechnicians()")  #{__('list-technician')} |&nbsp;
+a(ng-click="addTechnician()") #{__('add-technician')}

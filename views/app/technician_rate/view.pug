@@ -15,7 +15,7 @@ div(ng-show="pojo")
       td
         label #{__('km_rate')}: {{pojo.km_rate}}
       td
-  a(ng-click="editRate()") Modifica tariffa
+  a(ng-click="editRate()") #{__('edit-technician-rate')}
 div(ng-hide="pojo")
   p Aggiungere il piano tariffario
-  a(ng-click="addRate()") Aggiungi tariffa
+  a(ng-click="addRate()") #{__('add-technician-rate')}
