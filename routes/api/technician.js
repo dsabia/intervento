@@ -66,7 +66,7 @@ module.exports = function(){
   });
 
 
-  function populateRequestAndSave(req, technician){
+  function populateRequestAndSave(req, res, technician){
     technician.name         = req.body.name;
     technician.surname      = req.body.surname;
     technician.account_code = req.body.account_code;
