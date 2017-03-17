@@ -8,8 +8,8 @@ var app = angular.module('interventoController').controller('customerController'
   $scope.listCustomers = function(){
     $http.get('/api/customer/')
          .success(function(res) {
-           $scope.title= 'Elenco clienti';
-           $scope.list= res;
+           $scope.title= res.title;
+           $scope.list= res.list;
            $scope.pojo = null;
            changePagecontent($scope, '/fragment/customer/view');
          }).error(function(res) {
@@ -17,16 +17,22 @@ var app = angular.module('interventoController').controller('customerController'
          });
   };
   $scope.addCustomer = function(){
-    $scope.pojo = {};
-    $scope.title= 'Aggiungi un nuovo cliente';
-    changePagecontent($scope, '/fragment/customer/form');
+    $http.get('/api/customer/formAdd')
+         .success(function(res, code) {
+           $scope.pojo = {};
+           $scope.list = null;
+           $scope.title= res.title;
+           changePagecontent($scope, '/fragment/customer/form');
+         }).error(function(res) {
+           console.error("error in get");
+         });
   };
   $scope.viewCustomer = function(code){
     console.log("code: " + code);
     $http.get('/api/customer/' + code)
          .success(function(res, code) {
-           $scope.title= 'Dettaglio del cliente';
-           $scope.pojo = res;
+           $scope.title= res.title;
+           $scope.pojo = res.pojo;
            $scope.list = null;
            changePagecontent($scope, '/fragment/customer/view');
          }).error(function(res) {
@@ -34,10 +40,10 @@ var app = angular.module('interventoController').controller('customerController'
          });
   };
   $scope.editCustomer = function(code){
-    $http.get('/api/customer/' + code)
+    $http.get('/api/customer/formEdit/' + code)
          .success(function(res, code) {
-           $scope.pojo = res;
-           $scope.title= 'Modifica il cliente';
+           $scope.pojo = res.pojo;
+           $scope.title= res.title;
            changePagecontent($scope, '/fragment/customer/form');
          }).error(function(res) {
            console.error("error in get");

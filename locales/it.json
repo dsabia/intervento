@@ -38,6 +38,16 @@
   "title-add-technician" : "Aggiungi un tecnico",
   "title-edit-technician" : "Modifica il tecnico",
 
+  "title-list-customer" :  "Elenco clienti",
+  "title-det-customer" :  "Dettaglio del cliente",
+  "title-add-customer" :  "Aggiungi un nuovo cliente",
+  "title-edit-customer" : "Modifica il cliente",
+
+  "title-list-material" :  "Elenco materiali",
+  "title-det-material" :   "Dettaglio materiale",
+  "title-add-material" :   "Aggiungi materiale",
+  "title-edit-material" :  "Modifica materiale",
+
   "index"     : "Index",
   "log-in" 	  : "Log In",
   "login" 	  : "Login",

@@ -10,8 +10,8 @@ var app = angular.module('interventoController').controller('mainController', fu
     $scope.listMaterials = function(){
       $http.get('/api/material/')
            .success(function(res) {
-             $scope.title= 'Elenco materiali';
-             $scope.list= res;
+             $scope.title= res.title;
+             $scope.list= res.list;
              $scope.pojo = null;
              changePagecontent($scope, '/fragment/material/view');
            }).error(function(res) {
@@ -19,16 +19,22 @@ var app = angular.module('interventoController').controller('mainController', fu
            });
     };
     $scope.addMaterial = function(){
-      $scope.pojo = {};
-      $scope.title= 'Aggiungi materiale';
-      changePagecontent($scope, '/fragment/material/form');
+      $http.get('/api/material/formAdd')
+             .success(function(res, code) {
+               $scope.pojo = {};
+               $scope.list = null;
+               $scope.title= res.title;
+               changePagecontent($scope, '/fragment/material/form');
+             }).error(function(res) {
+               console.error("error in get");
+             });
     };
     $scope.viewMaterial = function(code){
       console.log("code: " + code);
       $http.get('/api/material/' + code)
            .success(function(res, code) {
-             $scope.title= 'Dettaglio materiale';
-             $scope.pojo = res;
+             $scope.title= res.title;
+             $scope.pojo = res.pojo;
              $scope.list = null;
              changePagecontent($scope, '/fragment/material/view');
            }).error(function(res) {
@@ -36,10 +42,10 @@ var app = angular.module('interventoController').controller('mainController', fu
            });
     };
     $scope.editMaterial = function(code){
-      $http.get('/api/material/' + code)
+      $http.get('/api/material/formEdit/' + code)
            .success(function(res, code) {
-             $scope.pojo = res;
-             $scope.title= 'Modifica materiale';
+             $scope.pojo = res.pojo;
+             $scope.title= res.title;
              changePagecontent($scope, '/fragment/material/form');
            }).error(function(res) {
              console.error("error in get");
@@ -74,7 +80,7 @@ var app = angular.module('interventoController').controller('mainController', fu
 
     /* RATES*/
     $scope.addRate = function(){
-      $http.get('/api/technician_rate/formData')
+      $http.get('/api/technician_rate/formAdd')
            .success(function(res, code) {
              $scope.pojo = {};
              $scope.title= res.title;

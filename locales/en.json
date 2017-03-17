@@ -38,6 +38,16 @@
   "title-add-technician" : "Add technician",
   "title-edit-technician" : "Edit technician",
 
+  "title-list-customer" :  "List customers",
+  "title-det-customer" :  "Detail customer",
+  "title-add-customer" :  "Add customer",
+  "title-edit-customer" : "Edit customer",
+
+  "title-list-material" :  "List materials",
+  "title-det-material" :   "Detail material",
+  "title-add-material" :   "Add material",
+  "title-edit-material" :  "Edit material",
+
   "index"     : "Index",
   "log-in" 	  : "Log In",
   "login" 	  : "Login",

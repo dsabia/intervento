@@ -64,7 +64,7 @@ module.exports = function(){
           }
           pojo.status = res.__(pojo.status);
           res.json({pojo:pojo,
-                    title:res.__('title-det-work-folder'));
+                    title:res.__('title-det-work-folder')});
         });
   });
 

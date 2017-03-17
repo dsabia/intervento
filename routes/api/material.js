@@ -4,6 +4,18 @@ var appUtil = require('../../services/app_util');
 var Material = require('../../models/material');
 
 module.exports = function(){
+  /* GET for form */
+  router.get('/formAdd', appUtil.ensureAuthenticated, function(req, res, next) {
+    res.json({ title: res.__('title-add-material') });
+  });
+
+  router.get('/formEdit/:code', appUtil.ensureAuthenticated, function(req, res, next) {
+    Material.findOne({ 'code' :  req.params.code, 'owner' : req.user._id}, function(err, pojo) {
+      res.json({ title: res.__('title-edit-material'),
+                 pojo: pojo });
+    });
+  });
+
 
   /* REST API */
   router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {

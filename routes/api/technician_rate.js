@@ -25,7 +25,7 @@ module.exports = function(){
   });
 
   /* GET for form */
-  router.get('/formData', appUtil.ensureAuthenticated, function(req, res, next) {
+  router.get('/formAdd', appUtil.ensureAuthenticated, function(req, res, next) {
     TechnicianRate.findOne({ 'owner' : req.user._id }, function(err, pojo){
       if(!pojo){
         res.json({ title: res.__('title-add-technician-rate'),

@@ -5,13 +5,26 @@ var Customer = require('../../models/customer').model;
 
 module.exports = function(){
 
+  /* GET for form */
+  router.get('/formAdd', appUtil.ensureAuthenticated, function(req, res, next) {
+    res.json({ title: res.__('title-add-customer') });
+  });
+
+  router.get('/formEdit/:code', appUtil.ensureAuthenticated, function(req, res, next) {
+    Customer.findOne({ 'code' :  req.params.code, 'owner' : req.user._id}, function(err, pojo) {
+      res.json({ title: res.__('title-edit-customer'),
+                 pojo: pojo });
+    });
+  });
+
   router.get('/', appUtil.ensureAuthenticated, function(req, res, next) {
     Customer.find({'owner' : req.user._id}, function(err, list) {
       if (err){
         console.log(err);
         return;
       }
-      res.json(list);
+      res.json({list:list,
+                title:res.__('title-list-customer')});
     });
   });
 
@@ -23,7 +36,8 @@ module.exports = function(){
         console.log(err);
         return;
       }
-      res.json(pojo);
+      res.json({pojo:pojo,
+                title:res.__('title-det-customer')});
     });
   });
 
