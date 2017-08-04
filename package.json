@@ -4,7 +4,13 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "istanbul cover ./node_modules/mocha/bin/_mocha -R && cat ./coverage/lcov.info | ./node_modules/.bin/codecov"
+    "test": "istanbul cover ./node_modules/mocha/bin/_mocha -R && cat ./coverage/lcov.info | ./node_modules/.bin/codecov",
+    "sonar_scanner" : "sonar-scanner.bat \
+  -Dsonar.projectKey=sonarqube_intervento \
+  -Dsonar.organization=dsabia-github \
+  -Dsonar.sources=. \
+  -Dsonar.host.url=https://sonarcloud.io \
+  -Dsonar.login=f382eabcda7d50e7997c04bdcb642e722e6807f5"
   },
   "dependencies": {
     "config": "1.24.0",
